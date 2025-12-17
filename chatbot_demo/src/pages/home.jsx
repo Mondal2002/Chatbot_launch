@@ -205,12 +205,9 @@ const Home = () => {
     right: -60px;
     box-shadow: 0px 9px 16px rgb(0 0 0 / 5%);
 }
-
-
-
 .custom-img {
-  width: 450px;      /* or % */
-  height: auto;      /* keeps aspect ratio */
+  width: 600px;      
+  height: auto;     
 }
 `
 }
@@ -340,8 +337,8 @@ const Home = () => {
                     {/* <!-- col --> */}
                 </div>
                 <div className="col-lg-5 col-md-5" >
-                    <div class="banner-img-con position-absolute custom-img">
-                        <figure><img src="assets/images/banner-robot.png" alt="robot" class=" img-fluid custom-img animated-robot"/></figure>
+                    <div class="banner-img-con position-relative">
+                        <figure><img src="assets/images/banner-robot.png" alt="robot" class="img-fluid custom-img animated-robot"/></figure>
                         {/* <!-- banner img con --> */}
                     </div>
                     {/* <!-- col --> */}
@@ -370,7 +367,7 @@ const Home = () => {
             </div>
             <div>
             <div class="row all_row wow fadeIn pricing-title" data-wow-duration="2s" data-wow-delay="0.4s">
-                <div class="col-lg-4 col-md-6 all_column wow fadeInLeft " data-wow-duration="2s" data-wow-delay="0.5s" >
+                <div class="col-lg-4 col-md-6 all_column wow fadeInLeft pricing-title " data-wow-duration="2s" data-wow-delay="0.5s" >
                     <div class="feature-box position-relative all_boxes border black rounded md">
                         <h3 class="pricing-title  bit-to-right">Conversational AI</h3>
                         <p class="mb-0 bit-to-right">Respond intelligently with GPT-powered
@@ -388,7 +385,7 @@ const Home = () => {
                     </div>
                     {/* <!-- col --> */}
                 </div>
-                <div class="col-lg-4 col-md-6 all_column wow fadeInUp " data-wow-duration="2s" data-wow-delay="0.5s" >
+                <div class="col-lg-4 col-md-6 all_column wow fadeInUp pricing-title " data-wow-duration="2s" data-wow-delay="0.5s" >
                     <div class="feature-box position-relative all_boxes bg-green border black rounded md">
                         <h3 class='pricing-title bit-to-right' >Multi-Platform</h3>
                         <p class="mb-0 bit-to-right">Integrate with websites, apps, Facebook, <br/>
@@ -414,7 +411,7 @@ const Home = () => {
                     </div>
                     {/* <!-- col --> */}
                 </div>
-                <div class="col-lg-4 col-md-6 all_column  wow fadeInRight " data-wow-duration="2s" data-wow-delay="0.5s">
+                <div class="col-lg-4 col-md-6 all_column  wow fadeInRight pricing-title " data-wow-duration="2s" data-wow-delay="0.5s">
                     <div class="feature-box position-relative all_boxes border black rounded md">
                         <h3 class='pricing-title bit-to-right'>Real-Time Analytics</h3>
                         <p class="mb-0 bit-to-right">Monitor chatbot performance and <br/>
@@ -422,9 +419,9 @@ const Home = () => {
                         <img src="assets/images/feature-img3-icon1.png" alt="feature image"
                             class="img-fluid position-absolute feature-icon6 wow fadeInUp" data-wow-duration="2s"
                             data-wow-delay="0.6s"/>
-                        <img src="assets/images/elipse-blue.png" alt="feature image"
+                        {/* <img src="assets/images/elipse-blue.png" alt="feature image"
                             class="img-fluid position-absolute blue-elipse wow fadeInDown" data-wow-duration="2s"
-                            data-wow-delay="0.7s"/>
+                            data-wow-delay="0.7s"/> */}
                         <figure><img src="assets/images/feature-img3.png" alt="feature image"
                                 class="img-fluid feature-img3 wow fadeIn" data-wow-duration="2s" data-wow-delay="0.8s"/>
                         </figure>
@@ -444,14 +441,14 @@ const Home = () => {
     {/* <span className="d-block bg-danger text-white">TEST</span> */}
 
     {/* <!-- HOW IT WORKS SECTION --> */}
-    <section class="float-left w-100 position-relative main-box how-it-works-con padding-top padding-bottom ">
-        <figure><img src="assets/images/vector3.png" alt="vector"
-                class="img-fluid position-absolute vector3 animated-plane pricing-title"/></figure>
+    <section class="float-left w-100 position-relative main-box how-it-works-con padding-top padding-bottom pricing-title">
+        {/* <figure><img src="assets/images/vector3.png" alt="vector"
+                class="img-fluid position-absolute vector3 animated-plane pricing-title"/></figure> */}
         <div class="container wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.2s">
             <div class="row all_row">
                 <div class="col-lg-7 col-md-12 wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.4s">
                     <div class="work-img-con position-relative">
-                        <figure><img src="assets/images/work-img.png" alt="image" class="img-fluid pricing-title"/></figure>
+                        <figure><img src="assets/images/work-img.png" alt="image" class="img-fluid position-relative pricing-title"/></figure>
                         <figure><img src="assets/images/robot.png" alt="robot"
                                 class="img-fluid position-absolute robot-img animated-robot"/>
                         </figure>
@@ -472,8 +469,8 @@ const Home = () => {
                             <li class="position-relative d-flex align-items-center">
                                 <span className="step-number">01</span>
                                 <div className="work-content-inner-con">
-                                    <h5>Build with Ease</h5>
-                                    <p class="mb-0 font-lg">Build your chatbot using our intuitive drag-and-drop <br/>
+                                    <h5 class='bit-to-right'>Build with Ease</h5>
+                                    <p class="mb-0 font-lg bit-to-right">Build your chatbot using our intuitive drag-and-drop <br/>
                                         interface — no coding needed.</p>
                                     {/* <!-- work content inner con --> */}
                                 </div>
@@ -481,8 +478,8 @@ const Home = () => {
                             <li class="position-relative d-flex align-items-center pricing-title">
                                 <span className="step-number">02</span>
                                 <div class="work-content-inner-con pricing-title">
-                                    <h5>Train with Your Content</h5>
-                                    <p class="mb-0 font-lg">Train your AI using documents, FAQs, or URLs to create <br/>
+                                    <h5 class='bit-to-right'>Train with Your Content</h5>
+                                    <p class="mb-0 font-lg bit-to-right">Train your AI using documents, FAQs, or URLs to create <br/>
                                         accurate, personalized responses.</p>
                                     {/* <!-- work content inner con --> */}
                                 </div>
@@ -490,8 +487,8 @@ const Home = () => {
                             <li class="position-relative d-flex align-items-center pricing-title">
                                 <span className="step-number ">03</span>
                                 <div class="work-content-inner-con ">
-                                    <h5>Deploy Anywhere</h5>
-                                    <p class="mb-0 font-lg" >Launch on your website, mobile app, or messaging <br/>
+                                    <h5 class='bit-to-right'>Deploy Anywhere</h5>
+                                    <p class="mb-0 font-lg bit-to-right" >Launch on your website, mobile app, or messaging <br/>
                                         platforms in just a few clicks.</p>
                                     {/* <!-- work content inner con --> */}
                                 </div>
@@ -598,7 +595,7 @@ const Home = () => {
                     <a href="about.html" class="text-decoration-none primary_btn d-inline-block wow fadeInLeft"
                         data-wow-duration="2s" data-wow-delay="0.6s">Get
                         Started</a>
-                    <a href="contact.html" class="text-decoration-none secondary_btn d-inline-block wow fadeInRight"
+                    <a href="contact.html" class="text-decoration-none secondary_btn d-inline-block wow fadeInRight bit-to-right"
                         data-wow-duration="2s" data-wow-delay="0.7s">Live Demo</a>
                     {/* <!-- heading title con --> */}
                 </div>
