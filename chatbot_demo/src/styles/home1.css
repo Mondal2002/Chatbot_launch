@@ -1,0 +1,185 @@
+.footer-con {
+  margin-top: 120px;
+}
+
+.feature-wrapper {
+/* controls spacing between cards */
+}
+.why-choose-us-con .choose-outer-con {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 25px;
+    margin-bottom: 54px;
+}
+
+.pricing-title {
+  margin-bottom: 40px;
+  line-height: 1.4;
+  margin-top:40px
+}
+.animated-robot {
+    animation: float 2s ease-in-out infinite;
+    transition: transform 0.4s ease-in-out;
+}
+.animated-robot,
+.animated-robot:hover {
+    transition: ease-in-out 0.6s;
+}
+.animated-robot:hover {
+    transform: translateY(-3px);
+}
+.banner-con {
+    background-image: url(/assets/images/banner-bg-img.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 909px;
+}
+.banner-con::before {
+    position: absolute;
+    content: '';
+    background-image: url(/assets/images/faded-ellipse.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 558px;
+    height: 558px;
+    top: 80px;
+    left: 90px;
+}
+
+.primary_btn {
+    font-size: 16px;
+    min-width: 178px;
+    padding: 22px 30px;
+    line-height: 16px;
+    font-weight: 700;
+    text-align: center;
+    border-radius: 10px;
+    display: inline-block;
+    color: #ffffff;
+    background-color: #2777fc;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.primary_btn:hover {
+    color: #2777fc;
+    background-color: #ffffff;
+}
+
+.secondary_btn {
+    font-size: 16px;
+    min-width: 178px;
+    padding: 22px 30px;
+    line-height: 16px;
+    font-weight: 700;
+    text-align: center;
+    border-radius: 10px;
+    display: inline-block;
+    color: #2777fc;
+    background-color: #ffffff;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.secondary_btn:hover {
+    color: #ffffff;
+    background-color: #080808ff;
+}
+.text{
+    color: #2777fc;}
+.how-it-works-con {
+    background-image: url(/assets/images/work-banner-bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.how-it-works-con img.robot-img {
+    top: 187px;
+    left: -79px;
+}
+.d-block {
+    display: block;
+}
+.step-number {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background-color: #ffffff;
+    color: #1e6bff;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.font-lg {
+    font-size: 1.25rem; /* ~20px */
+}
+.text-blue {
+    color: #2777fc;
+}
+.bit-to-right {
+    margin-left: 20px;
+}
+.call-to-action-con .cta-inner-con {
+    background-image: url(/assets/images/call-to-action-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50px;
+}
+.heading-title-con {
+    margin-bottom: 46px;
+}
+.heading-title-con h2 {
+    margin-bottom: 18px;
+}
+.robot2 {
+    right: -45px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    }
+.robot1 {
+    left: -45px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.banner-con a.primary_btn {
+    margin-right: 12px;
+}
+
+.banner-con .banner-img-con .coment-box1 {
+    background-color: rgb(255 255 255 / 90%);
+    border-radius: 10px;
+    width: 240px;
+    padding: 10px 12px;
+    position: absolute;
+    top: 245px;
+    box-shadow: 0px 9px 16px rgb(0 0 0 / 5%);
+
+}
+
+.banner-con .banner-img-con p {
+    font-size: 14px;
+    line-height: 1.1em;
+    margin-left: 10px;
+    font-weight: 500;
+    color: #000000;
+}
+
+.banner-con .banner-img-con .coment-box2 {
+    background-color: rgb(255 255 255 / 90%);
+    border-radius: 10px;
+    width: 240px;
+    padding: 14px 12px;
+    position: absolute;
+    bottom: 230px;
+    right: -60px;
+    box-shadow: 0px 9px 16px rgb(0 0 0 / 5%);
+}
+
+
+
+.custom-img {
+  width: 450px;      /* or % */
+  height: auto;      /* keeps aspect ratio */
+}
