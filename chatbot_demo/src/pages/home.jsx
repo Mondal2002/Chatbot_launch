@@ -32,223 +32,249 @@ const[modelvalue,setModelvalue]=useState(false);
       <style>
         {`
         
-.footer-con {
-  margin-top: 120px;
-}
-
-.feature-wrapper {
-/* controls spacing between cards */
-}
-.why-choose-us-con .choose-outer-con {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 25px;
-    margin-bottom: 54px;
+/* =========================
+   GLOBAL LAYOUT
+========================= */
+.main-box {
+  position: relative;
+  overflow: hidden;
 }
 
 .pricing-title {
   margin-bottom: 40px;
+  margin-top: 40px;
   line-height: 1.4;
-  margin-top:40px
 }
-.animated-robot {
-    animation: float 2s ease-in-out infinite;
-    transition: transform 0.4s ease-in-out;
+
+.top-space {
+  margin-top: 80px;
 }
-.animated-robot,
-.animated-robot:hover {
-    transition: ease-in-out 0.6s;
+
+.bottom-space {
+  margin-bottom: 40px;
 }
-.animated-robot:hover {
-    transform: translateY(-3px);
+
+.text-blue {
+  color: #2777fc;
 }
-.banner-con {
-    background-image: url(/assets/images/banner-bg-img.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 909px;
+
+.black-background {
+  background-color: #000;
 }
-.banner-con::before {
-    position: absolute;
-    content: '';
-    background-image: url(/assets/images/faded-ellipse.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 558px;
-    height: 558px;
-    top: 80px;
-    left: 90px;
+
+/* =========================
+   BUTTONS
+========================= */
+.primary_btn,
+.secondary_btn {
+  font-size: 16px;
+  min-width: 178px;
+  padding: 18px 26px;
+  font-weight: 700;
+  border-radius: 10px;
+  display: inline-block;
+  transition: all 0.4s ease;
 }
 
 .primary_btn {
-    font-size: 16px;
-    min-width: 178px;
-    padding: 22px 30px;
-    line-height: 16px;
-    font-weight: 700;
-    text-align: center;
-    border-radius: 10px;
-    display: inline-block;
-    color: #ffffff;
-    background-color: #2777fc;
-    transition: background-color 0.4s ease, color 0.4s ease;
+  background-color: #2777fc;
+  color: #fff;
 }
 
 .primary_btn:hover {
-    color: #2777fc;
-    background-color: #ffffff;
+  background-color: #fff;
+  color: #2777fc;
 }
 
 .secondary_btn {
-    font-size: 16px;
-    min-width: 178px;
-    padding: 22px 30px;
-    line-height: 16px;
-    font-weight: 700;
-    text-align: center;
-    border-radius: 10px;
-    display: inline-block;
-    color: #2777fc;
-    background-color: #ffffff;
-    transition: background-color 0.4s ease, color 0.4s ease;
+  background-color: #fff;
+  color: #2777fc;
 }
 
 .secondary_btn:hover {
-    color: #ffffff;
-    background-color: #080808ff;
-}
-.text{
-    color: #2777fc;}
-.how-it-works-con {
-    background-image: url(/assets/images/work-banner-bg.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
+  background-color: #080808;
+  color: #fff;
 }
 
-.how-it-works-con img.robot-img {
-    top: 187px;
-    left: -79px;
-}
-.d-block {
-    display: block;
-}
-.step-number {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    background-color: #ffffff;
-    color: #1e6bff;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.font-lg {
-    font-size: 1.50rem; /* ~20px */
-}
-.font-lg-bold{
-    font-weight:bold;
-}
-.text-blue {
-    color: #2777fc;
-}
-.bit-to-right {
-    margin-left: 20px;
-}
-.call-to-action-con .cta-inner-con {
-    background-image: url(/assets/images/call-to-action-bg.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 50px;
-}
-.heading-title-con {
-    margin-bottom: 46px;
-}
-.heading-title-con h2 {
-    margin-bottom: 18px;
-}
-.robot2 {
-    right: -45px;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    }
-.robot1 {
-    left: -45px;
-    top: 0;
-    bottom: 0;
-    margin: auto;
+/* =========================
+   BANNER
+========================= */
+.banner-con {
+  background-image: url(/assets/images/banner-bg-img.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 900px;
+  display: flex;
+  align-items: center;
 }
 
-.banner-con a.primary_btn {
-    margin-right: 12px;
-}
-
-.banner-con .banner-img-con .coment-box1 {
-    background-color: rgb(255 255 255 / 90%);
-    border-radius: 10px;
-    width: 240px;
-    padding: 10px 12px;
-    position: absolute;
-    top: 245px;
-    box-shadow: 0px 9px 16px rgb(0 0 0 / 5%);
-
-}
-
-.banner-con .banner-img-con p {
-    font-size: 14px;
-    line-height: 1.1em;
-    margin-left: 10px;
-    font-weight: 500;
-    color: #000000;
-}
-
-.banner-con .banner-img-con .coment-box2 {
-    background-color: rgb(255 255 255 / 90%);
-    border-radius: 10px;
-    width: 240px;
-    padding: 14px 12px;
-    position: absolute;
-    bottom: 230px;
-    right: -60px;
-    box-shadow: 0px 9px 16px rgb(0 0 0 / 5%);
-}
 .custom-img {
-  width: 600px;      
-  height: auto;     
+  width: 100%;
+  max-width: 600px;
 }
-.top-space {
-  line-height: 1.4;
-  margin-top:80px
+
+.banner-img-con {
+  text-align: center;
 }
-.bottom-space{
-line-height: 1.4;
- margin-bottom:40px
+
+/* =========================
+   ANIMATIONS
+========================= */
+.animated-robot {
+  animation: float 2s ease-in-out infinite;
+  transition: transform 0.4s ease;
 }
-.black-background{
-  background-color: #000000
+
+.animated-robot:hover {
+  transform: translateY(-4px);
 }
-.copyright-style{
-    font-size: 12px;
-    line-height: 12px;
-    font-weight: 400;
-    padding: 21px 0;
-    text-align: center;
-    color: #bebebe;
-    border-top: 1px solid rgb(255 255 255 / 10%);
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
 }
+
+/* =========================
+   FEATURES
+========================= */
 .amazing-features-con .feature-box {
-    background-color: #f2f7ff;
-    border-radius: 20px;
-    padding: 44px 30px 0 34px;
-    transition: all 0.4s ease;
-    transform: translateY(0);
+  background-color: #f2f7ff;
+  border-radius: 20px;
+  padding: 40px 30px;
+  transition: all 0.4s ease;
 }
 
 .amazing-features-con .feature-box:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.1);
 }
+
+.bit-to-right {
+  margin-left: 20px;
+}
+
+/* =========================
+   HOW IT WORKS
+========================= */
+.how-it-works-con {
+  background-image: url(/assets/images/work-banner-bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.step-number {
+  width: 48px;
+  height: 48px;
+  background: #fff;
+  color: #2777fc;
+  font-weight: 700;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.font-lg {
+  font-size: 1.1rem;
+}
+
+.font-lg-bold {
+  font-weight: 700;
+}
+
+/* =========================
+   WHY CHOOSE US
+========================= */
+.choose-outer-con {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 25px;
+}
+
+.choose-box {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+}
+
+/* =========================
+   CTA
+========================= */
+.call-to-action-con .cta-inner-con {
+  background-image: url(/assets/images/call-to-action-bg.jpg);
+  background-size: cover;
+  border-radius: 50px;
+  padding: 80px 20px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer-con {
+  margin-top: 120px;
+}
+
+.copyright-style {
+  font-size: 12px;
+  padding: 20px 0;
+  color: #bebebe;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* =========================
+   RESPONSIVE BREAKPOINTS
+========================= */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .banner-con {
+    min-height: auto;
+    padding: 80px 0;
+    text-align: center;
+  }
+
+  .bit-to-right {
+    margin-left: 0;
+  }
+
+  .choose-outer-con {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .custom-img {
+    max-width: 450px;
+    margin-top: 40px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  h1 {
+    font-size: 2rem !important;
+  }
+
+  .primary_btn,
+  .secondary_btn {
+    width: 100%;
+    margin-bottom: 12px;
+  }
+
+  .choose-outer-con {
+    grid-template-columns: 1fr;
+  }
+
+  .custom-img {
+    max-width: 100%;
+  }
+
+  .step-number {
+    width: 40px;
+    height: 40px;
+  }
+}
+
 
 `
 }
@@ -490,9 +516,9 @@ line-height: 1.4;
                 <div class="col-lg-7 col-md-12 wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.4s">
                     <div class="work-img-con position-relative">
                         <figure><img src="assets/images/work-img.png" alt="image" class="img-fluid position-relative pricing-title"/></figure>
-                        <figure><img src="assets/images/robot.png" alt="robot"
+                        {/* <figure><img src="assets/images/robot.png" alt="robot"
                                 class="img-fluid position-absolute robot-img animated-robot"/>
-                        </figure>
+                        </figure> */}
                     </div>
                     {/* <!-- col --> */}
                 </div>
@@ -558,7 +584,8 @@ line-height: 1.4;
                     of Our Service</h2>
                 {/* <!-- heading title con --> */}
             </div>
-            <div class="choose-outer-con wow fadeInDown" data-wow-duration="2s" data-wow-delay="0.5s">
+            <div class="row justify-content-center wow fadeInDown" data-wow-duration="2s" data-wow-delay="0.5s">
+              <div className="col-lg-4 col-md-6 mb-4">
                 <div class="choose-box">
                     <figure><img src="assets/images/choose-icon1.png" alt="icon" class="img-fluid"/></figure>
                     <h6>Tailored Solutions</h6>
@@ -567,6 +594,8 @@ line-height: 1.4;
                         the specific needs...</p>
                     {/* <!-- choose box --> */}
                 </div>
+                </div>
+              <div className="col-lg-4 col-md-6 mb-4">
                 <div class="choose-box">
                     <figure><img src="assets/images/choose-icon2.png" alt="icon" class="img-fluid"/></figure>
                     <h6>Customer Support</h6>
@@ -575,6 +604,8 @@ line-height: 1.4;
                         providing assistance...</p>
                     {/* <!-- choose box --> */}
                 </div>
+              </div>
+              <div className="col-lg-4 col-md-6 mb-4">
                 <div class="choose-box">
                     <figure><img src="assets/images/choose-icon3.png" alt="icon" class="img-fluid"/></figure>
                     <h6>Affordable Pricing</h6>
@@ -584,6 +615,8 @@ line-height: 1.4;
                     </p>
                     {/* <!-- choose box --> */}
                 </div>
+              </div>
+              <div className="col-lg-4 col-md-6 mb-4"> 
                 <div class="choose-box">
                     <figure><img src="assets/images/choose-icon4.png" alt="icon" class="img-fluid"/></figure>
                     <h6>Scalable Solutions</h6>
@@ -592,6 +625,8 @@ line-height: 1.4;
                         you to scale up...</p>
                     {/* <!-- choose box --> */}
                 </div>
+              </div>
+              <div className="col-lg-4 col-md-6 mb-4">
                 <div class="choose-box">
                     <figure><img src="assets/images/choose-icon5.png" alt="icon" class="img-fluid"/></figure>
                     <h6>Expert Team</h6>
@@ -600,6 +635,7 @@ line-height: 1.4;
                         industry knowledge...</p>
                     {/* <!-- choose box --> */}
                 </div>
+              </div>
                 {/* <!-- choose outer con --> */}
             </div>
             <div class="float-left w-100 m-auto text-center wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.4s">
@@ -621,10 +657,10 @@ line-height: 1.4;
     <div class="float-left w-100 position-relative call-to-action-con main-box padding-bottom top-space">
         <div class="container wow fadeInUp top-space pricing title" data-wow-duration="2s" data-wow-delay="0.2s">
             <div class="cta-inner-con padding-top100 padding-bottom100 position-relative top-pricing-title ">
-                <figure><img src="assets/images/robot1.png" alt="vector"
-                        class="img-fluid position-absolute robot1 animated-robot"/></figure>
-                <figure><img src="assets/images/robot2.png" alt="vector"
-                        class="img-fluid position-absolute robot2 animated-robot "/></figure>
+                {/* <figure><img src="assets/images/robot1.png" alt="vector"
+                        class="img-fluid position-absolute robot1 animated-robot"/></figure> */}
+                {/* <figure><img src="assets/images/robot2.png" alt="vector"
+                        class="img-fluid position-absolute robot2 animated-robot "/></figure> */}
                 <div class=" text-center mb-0 top-space pricing-title">
                   <span>   <br /></span>
                     <span class="special-text text-blue d-block wow fadeInLeft font-lg top-space pricing-title font-lg-bold" data-wow-duration="2s"

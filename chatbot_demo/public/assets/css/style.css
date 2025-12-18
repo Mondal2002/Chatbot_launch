@@ -836,7 +836,7 @@ html {
     justify-content: center;
     position: relative;
     overflow: hidden;
-    background-image: url(../images/pricing-plan-bg-img.jpg);
+    background-image: url(/chatbot_demo/public/assets/images/pricing-plan-bg-img.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -956,7 +956,7 @@ html {
 
 /* BANNER SECTION */
 .banner-con {
-    background-image: url(../images/banner-bg-img.jpg);
+    background-image: url(/chatbot_demo/public/assets/images//banner-bg-img.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     height: 909px;
@@ -965,7 +965,7 @@ html {
 .banner-con::before {
     position: absolute;
     content: '';
-    background-image: url(../images/faded-ellipse.png);
+    background-image: url(/chatbot_demo/public/assets/images/faded-ellipse.png);
     background-repeat: no-repeat;
     background-size: cover;
     width: 558px;
@@ -1137,7 +1137,7 @@ html {
 
 /* AMAZING FEATURES SECTION */
 .amazing-features-con .feature-box {
-    background-color: var(--e-global-color-light-blue);
+    background-color: #f2f7ff;
     border-radius: 20px;
     padding: 44px 30px 0 34px;
     transition: all 0.4s ease;
@@ -1261,7 +1261,7 @@ html {
 
 /* HOW IT WORKS SECTION */
 .how-it-works-con {
-    background-image: url(../images/work-banner-bg.jpg);
+    background-image: url(/chatbot_demo/public/assets/images/work-banner-bg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -1562,7 +1562,7 @@ html {
 
 /* PRICING PLAN SECTION */
 .pricing-plan-con {
-    background-image: url(../images/pricing-plan-bg-img.jpg);
+    background-image: url(/chatbot_demo/public/assets/images/pricing-plan-bg-img.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -1650,7 +1650,7 @@ html {
 
 /* CTA SECTION */
 .call-to-action-con .cta-inner-con {
-    background-image: url(/assets/images/call-to-action-bg.jpg);
+    background-image: url(/chatbot_demo/public/assets/images/call-to-action-bg.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 50px;
@@ -1768,7 +1768,7 @@ html {
 /* SERVICES SECTION */
 /* SUB BANNER */
 .sub-banner-con {
-    background-image: url(../images/sub-banner-bg-img.jpg);
+    background-image: url(/chatbot_demo/public/assets/images/sub-banner-bg-img.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     padding-top: 64px;
@@ -1789,7 +1789,7 @@ html {
 .sub-banner-con::before {
     position: absolute;
     content: '';
-    background-image: url(../images/faded-elipse2.png);
+    background-image: url(/chatbot_demo/public/assets/images/faded-elipse2.png);
     background-repeat: no-repeat;
     background-size: cover;
     width: 373px;
@@ -2002,7 +2002,7 @@ html {
 
 /* STATISTICS SECTION */
 .statistics-con {
-    background-image: url(../images/statistics-bg-img.jpg);
+    background-image: url(/chatbot_demo/public/assets/images/statistics-bg-img.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -2109,7 +2109,7 @@ html {
 
 /*  */
 .contact-form-con {
-    background-image: url(../images/get-in-touch-bg.jpg);
+    background-image: url(/chatbot_demo/public/assets/images/get-in-touch-bg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
 }
