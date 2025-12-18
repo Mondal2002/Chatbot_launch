@@ -1,8 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import WOW from "wowjs";
+import '../styles/home1.css'
+import Model from "../components/model";
 
 
 
@@ -22,8 +24,11 @@ const Home = () => {
   useEffect(() => {
   new WOW.WOW().init();
 }, []);
+const[modelvalue,setModelvalue]=useState(false);
   return (
     <div>
+      {modelvalue && <Model onClose={() => setModelvalue(false)} />}
+
       <style>
         {`
         
@@ -139,7 +144,10 @@ const Home = () => {
     justify-content: center;
 }
 .font-lg {
-    font-size: 1.25rem; /* ~20px */
+    font-size: 1.50rem; /* ~20px */
+}
+.font-lg-bold{
+    font-weight:bold;
 }
 .text-blue {
     color: #2777fc;
@@ -209,6 +217,39 @@ const Home = () => {
   width: 600px;      
   height: auto;     
 }
+.top-space {
+  line-height: 1.4;
+  margin-top:80px
+}
+.bottom-space{
+line-height: 1.4;
+ margin-bottom:40px
+}
+.black-background{
+  background-color: #000000
+}
+.copyright-style{
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: 400;
+    padding: 21px 0;
+    text-align: center;
+    color: #bebebe;
+    border-top: 1px solid rgb(255 255 255 / 10%);
+}
+.amazing-features-con .feature-box {
+    background-color: #f2f7ff;
+    border-radius: 20px;
+    padding: 44px 30px 0 34px;
+    transition: all 0.4s ease;
+    transform: translateY(0);
+}
+
+.amazing-features-con .feature-box:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
 `
 }
 
@@ -252,11 +293,11 @@ const Home = () => {
             </li>
 
             <li className="nav-item">
-              <Link to="/about" className="nav-link">About</Link>
+              <a href="#Features">Features</a>
             </li>
 
             <li className="nav-item">
-              <Link to="/services" className="nav-link">Services</Link>
+              <a href="#Services">Services</a>
             </li>
 
             {/* Blog Dropdown */}
@@ -301,9 +342,9 @@ const Home = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/contact" className="btn btn-outline-primary rounded-pill px-4">
-              Connect Us
-            </Link>
+              <button className="btn btn-outline-primary rounded-pill px-4" onClick={()=>setModelvalue(true)}>
+              Contact Us
+            </button>
             </li>
 
           </ul>
@@ -356,10 +397,10 @@ const Home = () => {
 {/* class='pricing-title text-black' */}
     {/* <!-- CLIENT'S LOGO SECTION --> */}
     {/* <!-- AMAZING FEATURES SECTION --> */}
-    <section class="float-left w-100 amazing-features-con position-relative padding-top padding-bottom main-box">
+    <section class="float-left w-100 amazing-features-con position-relative padding-top padding-bottom main-box" id="Features">
         <div class="container wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.2s">
             <div class="heading-title-con text-center">
-                <h4 class='text' className="padding:20px font-size:100px color:#2777fc">Amazing Features</h4>
+                <h4 class='text' className="padding:20px font-size:100px text-blue ">Amazing Features</h4>
                 <h1 class="wow fadeInRight pricing-title" data-wow-duration="2s" data-wow-delay="0.4s" style={{ fontSize: "clamp(2.5rem, 5vw, 3.5rem)" }} >AI That Understands, Learns
                     <br/>
                     & Engages</h1>
@@ -368,9 +409,9 @@ const Home = () => {
             <div>
             <div class="row all_row wow fadeIn pricing-title" data-wow-duration="2s" data-wow-delay="0.4s">
                 <div class="col-lg-4 col-md-6 all_column wow fadeInLeft pricing-title " data-wow-duration="2s" data-wow-delay="0.5s" >
-                    <div class="feature-box position-relative all_boxes border black rounded md">
+                    <div class="feature-box position-relative all_boxes">
                         <h3 class="pricing-title  bit-to-right">Conversational AI</h3>
-                        <p class="mb-0 bit-to-right">Respond intelligently with GPT-powered
+                        <p class="mb-0 bit-to-right bottom-space pricing-title">Respond intelligently with GPT-powered
                             natural language understanding.</p>
                         <img src="assets/images/feature-img1-icon1.png" alt="feature image"
                             class="img-fluid position-absolute feature-icon1  wow fadeInUp bit-to-right" data-wow-duration="2s"
@@ -379,16 +420,16 @@ const Home = () => {
                         <figure><img src="assets/images/feature-img1.png" alt="feature image"
                                 class="img-fluid  wow fadeInDown" data-wow-duration="2s" data-wow-delay="0.7s"/>
                         </figure>
-                        <a href="services.html"><img src="assets/images/up-right-arrow.png" alt="arrow"
-                                class="img-fluid"/></a>
+                        {/* <a href="services.html"><img src="assets/images/up-right-arrow.png" alt="arrow"
+                                class="img-fluid"/></a> */}
                         {/* <!-- feature box --> */}
                     </div>
                     {/* <!-- col --> */}
                 </div>
                 <div class="col-lg-4 col-md-6 all_column wow fadeInUp pricing-title " data-wow-duration="2s" data-wow-delay="0.5s" >
-                    <div class="feature-box position-relative all_boxes bg-green border black rounded md">
+                    <div class="feature-box position-relative all_boxes bg-green ">
                         <h3 class='pricing-title bit-to-right' >Multi-Platform</h3>
-                        <p class="mb-0 bit-to-right">Integrate with websites, apps, Facebook, <br/>
+                        <p class="mb-0 bit-to-right bottom-space pricing-title">Integrate with websites, apps, Facebook, <br/>
                             WhatsApp & more.</p>
                         <img src="assets/images/feature-img2-icon1.png" alt="feature image"
                             class="img-fluid position-absolute feature-icon2  wow fadeInLeft" data-wow-duration="2s"
@@ -405,16 +446,16 @@ const Home = () => {
                         <figure><img src="assets/images/feature-img2.png" alt="feature image"
                                 class="img-fluid wow fadeInDown" data-wow-duration="2s" data-wow-delay="1.2s"/>
                         </figure>
-                        <a href="services.html"><img src="assets/images/up-right-arrow.png" alt="arrow"
-                                class="img-fluid"/></a>
+                        {/* <a href="services.html"><img src="assets/images/up-right-arrow.png" alt="arrow"
+                                class="img-fluid"/></a> */}
                         {/* <!-- feature box --> */}
                     </div>
                     {/* <!-- col --> */}
                 </div>
                 <div class="col-lg-4 col-md-6 all_column  wow fadeInRight pricing-title " data-wow-duration="2s" data-wow-delay="0.5s">
-                    <div class="feature-box position-relative all_boxes border black rounded md">
+                    <div class="feature-box position-relative all_boxes">
                         <h3 class='pricing-title bit-to-right'>Real-Time Analytics</h3>
-                        <p class="mb-0 bit-to-right">Monitor chatbot performance and <br/>
+                        <p class="mb-0 bit-to-right bottom-space">Monitor chatbot performance and <br/>
                             user behavior in real time.</p>
                         <img src="assets/images/feature-img3-icon1.png" alt="feature image"
                             class="img-fluid position-absolute feature-icon6 wow fadeInUp" data-wow-duration="2s"
@@ -425,8 +466,8 @@ const Home = () => {
                         <figure><img src="assets/images/feature-img3.png" alt="feature image"
                                 class="img-fluid feature-img3 wow fadeIn" data-wow-duration="2s" data-wow-delay="0.8s"/>
                         </figure>
-                        <a href="services.html"><img src="assets/images/up-right-arrow.png" alt="arrow"
-                                class="img-fluid"/></a>
+                        {/* <a href="services.html"><img src="assets/images/up-right-arrow.png" alt="arrow"
+                                class="img-fluid"/></a> */}
                         {/* <!-- feature box --> */}
                     </div>
                     {/* <!-- col --> */}
@@ -441,7 +482,7 @@ const Home = () => {
     {/* <span className="d-block bg-danger text-white">TEST</span> */}
 
     {/* <!-- HOW IT WORKS SECTION --> */}
-    <section class="float-left w-100 position-relative main-box how-it-works-con padding-top padding-bottom pricing-title">
+    <section class="float-left w-100 position-relative main-box how-it-works-con padding-top padding-bottom pricing-title" id="Services" >
         {/* <figure><img src="assets/images/vector3.png" alt="vector"
                 class="img-fluid position-absolute vector3 animated-plane pricing-title"/></figure> */}
         <div class="container wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.2s">
@@ -458,7 +499,7 @@ const Home = () => {
                 <div class="col-lg-5 col-md-12 wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.4s">
                     <div class="work-content-con">
                         <div class="heading-title-con">
-                            <span class="special-text color-#0000FF d-block wow fadeInLeft pricing-title font-lg text-blue" data-wow-duration="2s"
+                            <span class="special-text color-#0000FF d-block wow fadeInLeft pricing-title font-lg text-blue font-lg-bold" data-wow-duration="2s"
                                 data-wow-delay="0.5s">How it Works</span>
                             <h1 class="wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.6s">How Our Advanced
                                 <br/>
@@ -506,64 +547,63 @@ const Home = () => {
         </div>
         {/* <!-- how it works con --> */}
     </section>
-
     {/* <!-- WHY CHOOSE US SECTION --> */}
-    <section class="why-choose-us-con padding-top padding-bottom pricing-title">
+    <section class="float-left w-100 position-relative why-choose-us-con padding-top padding-bottom main-box">
         <div class="container wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.2s">
-            <div class="heading-title-con text-center pricing-title">
-                <span class="special-text color-blue d-block wow fadeInLeft font-lg text-blue pricing-title" data-wow-duration="2s"
+            <div class="heading-title-con text-center">
+                <span class="special-text color-blue d-block wow fadeInLeft" data-wow-duration="2s"
                     data-wow-delay="0.2s">Why Choose Us</span>
-                <h1 class="wow fadeInRight " data-wow-duration="2s" data-wow-delay="0.4s">Unique Selling Points &
+                <h2 class="wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.4s">Unique Selling Points &
                     Advantages <br/>
-                    of Our Service</h1>
+                    of Our Service</h2>
                 {/* <!-- heading title con --> */}
             </div>
             <div class="choose-outer-con wow fadeInDown" data-wow-duration="2s" data-wow-delay="0.5s">
-                <div class="choose-box border black rounded md">
-                    <figure><img src="assets/images/choose-icon1.png" alt="icon" class="img-fluid bit-to-right pricing-title"/></figure>
-                    <h6 class='bit-to-right  font-lg'>Tailored Solutions</h6>
-                    <p class="mb-0 bit-to-right  font-lg">We offer customized
+                <div class="choose-box">
+                    <figure><img src="assets/images/choose-icon1.png" alt="icon" class="img-fluid"/></figure>
+                    <h6>Tailored Solutions</h6>
+                    <p class="mb-0">We offer customized
                         services designed to meet
                         the specific needs...</p>
                     {/* <!-- choose box --> */}
                 </div>
-                <div class="choose-box border black rounded md">
-                    <figure><img src="assets/images/choose-icon2.png" alt="icon" class="img-fluid bit-to-right pricing-title"/></figure>
-                    <h6 class='bit-to-right  font-lg'>Customer Support</h6>
-                    <p class="mb-0 bit-to-right  font-lg">Our dedicated support
+                <div class="choose-box">
+                    <figure><img src="assets/images/choose-icon2.png" alt="icon" class="img-fluid"/></figure>
+                    <h6>Customer Support</h6>
+                    <p class="mb-0">Our dedicated support
                         team is available 24/7,
                         providing assistance...</p>
                     {/* <!-- choose box --> */}
                 </div>
-                <div class="choose-box border black rounded md">
-                    <figure><img src="assets/images/choose-icon3.png" alt="icon" class="img-fluid bit-to-right pricing-title"/></figure>
-                    <h6 class='bit-to-right  font-lg'>Affordable Pricing</h6>
-                    <p class="mb-0 bit-to-right  font-lg">Competitive rates with
+                <div class="choose-box">
+                    <figure><img src="assets/images/choose-icon3.png" alt="icon" class="img-fluid"/></figure>
+                    <h6>Affordable Pricing</h6>
+                    <p class="mb-0">Competitive rates with
                         transparent pricing—no
                         hidden fees...
                     </p>
                     {/* <!-- choose box --> */}
                 </div>
-                <div class="choose-box border black rounded md">
-                    <figure><img src="assets/images/choose-icon4.png" alt="icon" class="img-fluid bit-to-right pricing-title"/></figure>
-                    <h6 class='bit-to-right  font-lg'>Scalable Solutions</h6>
-                    <p class="mb-0 bit-to-right  font-lg">Our services grow with
+                <div class="choose-box">
+                    <figure><img src="assets/images/choose-icon4.png" alt="icon" class="img-fluid"/></figure>
+                    <h6>Scalable Solutions</h6>
+                    <p class="mb-0">Our services grow with
                         your business, allowing
                         you to scale up...</p>
                     {/* <!-- choose box --> */}
                 </div>
-                <div class="choose-box border black rounded md ">
-                    <figure><img src="assets/images/choose-icon5.png" alt="icon" class="img-fluid bit-to-right pricing-title"/></figure>
-                    <h6 class='bit-to-right  font-lg'>Expert Team</h6>
-                    <p class="mb-0 bit-to-right  font-lg">Our experienced
+                <div class="choose-box">
+                    <figure><img src="assets/images/choose-icon5.png" alt="icon" class="img-fluid"/></figure>
+                    <h6>Expert Team</h6>
+                    <p class="mb-0">Our experienced
                         professionals bring deep
                         industry knowledge...</p>
                     {/* <!-- choose box --> */}
                 </div>
                 {/* <!-- choose outer con --> */}
             </div>
-            <div class="float-left w-100 m-auto text-center wow fadeInUp pricing-title" data-wow-duration="2s" data-wow-delay="0.4s">
-                <a href="about.html" class="text-decoration-none primary_btn d-inline-block pricing-title">Get
+            <div class="float-left w-100 m-auto text-center wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.4s">
+                <a href="about.html" class="text-decoration-none primary_btn d-inline-block">Get
                     Started</a>
             </div>
             {/* <!-- container --> */}
@@ -571,31 +611,33 @@ const Home = () => {
         {/* <!-- why choose us  --> */}
     </section>
 
+
     {/* <!-- PRICING PLAN SECTION --> */}
     
     {/* <!-- FAQ'S SECTION --> */}
   
     {/* <!-- CALL TO ACTION --> */}
     
-    <div class="float-left w-100 position-relative call-to-action-con main-box padding-bottom pricing title">
-        <div class="container wow fadeInUp pricing-title" data-wow-duration="2s" data-wow-delay="0.2s">
-            <div class="cta-inner-con padding-top100 padding-bottom100 position-relative ">
+    <div class="float-left w-100 position-relative call-to-action-con main-box padding-bottom top-space">
+        <div class="container wow fadeInUp top-space pricing title" data-wow-duration="2s" data-wow-delay="0.2s">
+            <div class="cta-inner-con padding-top100 padding-bottom100 position-relative top-pricing-title ">
                 <figure><img src="assets/images/robot1.png" alt="vector"
                         class="img-fluid position-absolute robot1 animated-robot"/></figure>
                 <figure><img src="assets/images/robot2.png" alt="vector"
                         class="img-fluid position-absolute robot2 animated-robot "/></figure>
-                <div class="heading-title-con text-center mb-0 pricing-title">
-                    <span class="special-text text-blue d-block wow fadeInLeft font-lg " data-wow-duration="2s"
+                <div class=" text-center mb-0 top-space pricing-title">
+                  <span>   <br /></span>
+                    <span class="special-text text-blue d-block wow fadeInLeft font-lg top-space pricing-title font-lg-bold" data-wow-duration="2s"
                         data-wow-delay="0.2s">Experience Boost</span>
                     <h1 class="wow fadeInRight " data-wow-duration="2s" data-wow-delay="0.4s">Ready to Supercharge
                         <br/>
                         Your Customer Experience?</h1>
                     <p class="wow fadeInDown font-lg pricing-title" data-wow-duration="2s" data-wow-delay="0.5s">Start using our AI chatbot
                         today to automate support, boost engagement, and save time.</p>
-                    <a href="about.html" class="text-decoration-none primary_btn d-inline-block wow fadeInLeft"
+                    <a href="about.html" class="text-decoration-none primary_btn d-inline-block wow fadeInLeft pricing-title"
                         data-wow-duration="2s" data-wow-delay="0.6s">Get
                         Started</a>
-                    <a href="contact.html" class="text-decoration-none secondary_btn d-inline-block wow fadeInRight bit-to-right"
+                    <a href="contact.html" class="text-decoration-none secondary_btn d-inline-block wow fadeInRight bit-to-right pricing-title"
                         data-wow-duration="2s" data-wow-delay="0.7s">Live Demo</a>
                     {/* <!-- heading title con --> */}
                 </div>
@@ -606,19 +648,19 @@ const Home = () => {
     </div>
 
     {/* <!-- FOOTER SECTION --> */}
-    <footer class="footer-con main-box margin-right:40px">
-    <section class="footer-con position-relative float-left w-100 main-box bit-to-right">
+    <footer class="footer-con main-box margin-right:40px black-background text-center">
+    <section class="footer-con position-relative float-left w-100 main-box bit-to-right black-background">
         <div class="container">
             <div class="middle_portion">
                 <div class="row">
                     <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
                         <div class="logo-content bit-to-right">
                             <a href="index.html">
-                                <figure class="footer-logo">
+                                <figure class="footer-logo pricing-title">
                                     <img src="assets/images/footer-logo.png" alt="image" class="img-fluid"/>
                                 </figure>
                             </a>
-                            <p class="text-size-16 text">We create intelligent, scalable AI solutions that help
+                            <p class="text-size-16 text-white pricing-title">We create intelligent, scalable AI solutions that help
                                 businesses work smarter, move faster, and achieve more..</p>
                             <ul class="list-unstyled mb-0 social-icons">
                                 <li><a href="https://www.facebook.com/" class="text-decoration-none"><i
@@ -632,35 +674,32 @@ const Home = () => {
                     </div>
                     <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-5">
                         <div class="links">
-                            <h4 class="heading">Navigation</h4>
-                            <ul class="list-unstyled mb-0">
-                                <li><i class="fa-solid fa-arrow-right"></i><a href="about.html"
-                                        class="text-decoration-none">About</a></li>
-                                <li><i class="fa-solid fa-arrow-right"></i><a href="services.html"
-                                        class="text-decoration-none">Services</a></li>
-                                <li><i class="fa-solid fa-arrow-right"></i><a href="faq.html"
-                                        class="text-decoration-none">Faq</a></li>
-                                <li><i class="fa-solid fa-arrow-right"></i><a href="pricing.html"
-                                        class="text-decoration-none">Pricing</a></li>
+                            <h4 class="heading pricing-title">Navigation</h4>
+                            <ul class="list-unstyled mb-0pricing-title text-white">
+                                <li><i class="fa-solid fa-arrow-right"></i><a href="#Features"
+                                        class="text-decoration-none text-white">About</a></li>
+                                <li><i class="fa-solid fa-arrow-right "></i><a href="services.html"
+                                        class="text-decoration-none text-white">Services</a></li>
+                                
                             </ul>
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-7">
                         <div class="icon">
-                            <h4 class="heading">Contact Info</h4>
-                            <ul class="list-unstyled mb-0">
-                                <li class="text">
+                            <h4 class="heading pricing-title">Contact Info</h4>
+                            <ul class="list-unstyled mb-0 pricing-title">
+                                <li class="text-white">
                                     <i class="fa-solid fa-phone-volume"></i>
-                                    <a href="tel:++61383766284" class="text-decoration-none">+61 3 8376 6284</a>
+                                    <a href="tel:++61383766284" class="text-decoration-none text-white">+61 3 8376 6284</a>
                                 </li>
-                                <li class="text">
+                                <li class="text-white">
                                     <i class="fa-solid fa-envelope"></i>
-                                    <a href="mailto:info@chatnex.com" class="text-decoration-none">info@chatnex.com</a>
+                                    <a href="mailto:info@chatnex.com" class="text-decoration-none text-white">info@chatnex.com</a>
                                 </li>
-                                <li class="text">
+                                <li class="text-white">
                                     <i class="fa-solid fa-location-dot"></i>
                                     <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.332688122342!2d144.96016967662732!3d-37.805675733576976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642cce121b239%3A0xa42b424ded3a529a!2s551%20Swanston%20St%2C%20Carlton%20VIC%203053%2C%20Australia!5e0!3m2!1sen!2s!4v1747807044579!5m2!1sen!2s"
-                                        class="text-decoration-none address mb-0">551 Swanston Street, Melbourne
+                                        class="text-decoration-none address mb-0 text-white">551 Swanston Street, Melbourne
                                         Victoria 3053 Australia
                                     </a>
                                 </li>
@@ -669,7 +708,7 @@ const Home = () => {
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-5 col-sm-12 col-12">
                         <div class="email-form">
-                            <h4 class="heading">Newsletter Signup</h4>
+                            <h4 class="heading pricing-title">Newsletter Signup</h4>
                             <form action="javascript">
                                 <div class="form-group position-relative mb-0">
                                     <input type="text" class="form_style" placeholder="Enter Your Email Address"
@@ -686,13 +725,12 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <div class="copyright pricing-title">
+            <div class="copyright-style ">
                 <p class="mb-0">Copyright © 2025 Aivio. All Rights Reserved.</p>
             </div>
         </div>
     </section>
     </footer>
-
     {/* <!-- PRE LOADER -->
     <div class="loader-mask">
         <div class="loader">
@@ -709,7 +747,7 @@ const Home = () => {
     <script src="assets/js/wow.js"></script>
     <script src="assets/js/back-to-top-button.js"></script>
     <script src="assets/js/preloader.js"></script>
-    <script src="assets/js/counter.js"></script> */}
+    <script src="assets/js/counter.js"></script>  */}
       </div>
     </div>
   );
