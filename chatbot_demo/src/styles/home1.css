@@ -311,3 +311,9 @@
     transform: scale(1);
   }
 }
+.fixed-img {
+  width: 100%;
+  max-width: 120px;     /* fixed visual size */
+  height: px;        /* fixed height */
+  object-fit: contain;  /* no stretching */
+}

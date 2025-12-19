@@ -314,20 +314,23 @@ const[modelvalue,setModelvalue]=useState(false);
         <div className="collapse navbar-collapse" id="mainNavbar">
           <ul className="navbar-nav ms-auto align-items-center gap-4">
 
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link to="/" className="nav-link active">Home</Link>
-            </li>
+            </li> */}
 
             <li className="nav-item">
               <a href="#Features">Features</a>
             </li>
 
             <li className="nav-item">
-              <a href="#Services">Services</a>
+              <a href="#Services">How it Works</a>
+            </li>
+            <li>
+              <a href="#why choose us">Why choose us</a>
             </li>
 
             {/* Blog Dropdown */}
-            <li className="nav-item dropdown">
+            {/* <li className="nav-item dropdown">
               <span
                 className="nav-link dropdown-toggle"
                 role="button"
@@ -339,10 +342,10 @@ const[modelvalue,setModelvalue]=useState(false);
                 <li><Link className="dropdown-item" to="/blog">All Blogs</Link></li>
                 <li><Link className="dropdown-item" to="/blog/single">Single Blog</Link></li>
               </ul>
-            </li>
+            </li> */}
 
             {/* Pages Dropdown */}
-            <li className="nav-item dropdown">
+            {/* <li className="nav-item dropdown">
               <span
                 className="nav-link dropdown-toggle"
                 role="button"
@@ -355,18 +358,14 @@ const[modelvalue,setModelvalue]=useState(false);
                 <li><Link className="dropdown-item" to="/faq">FAQ</Link></li>
                 <li><Link className="dropdown-item" to="/contact">Contact</Link></li>
               </ul>
-            </li>
-
-            <li className="nav-item">
-              <Link to="/pricing" className="nav-link">Pricing</Link>
-            </li>
+            </li> */}
 
             {/* CTA Button */}
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link to="/contact" className="btn btn-primary px-4 py-2 rounded-pill">
                 Try Free Trial
               </Link>
-            </li>
+            </li> */}
             <li className="nav-item">
               <button className="btn btn-outline-primary rounded-pill px-4" onClick={()=>setModelvalue(true)}>
               Contact Us
@@ -433,12 +432,13 @@ const[modelvalue,setModelvalue]=useState(false);
                 {/* <!-- heading title con --> */}
             </div>
             <div>
-            <div class="row all_row wow fadeIn pricing-title" data-wow-duration="2s" data-wow-delay="0.4s">
+            <div class="row all_row wow fadeIn " data-wow-duration="2s" data-wow-delay="0.4s">
                 <div class="col-lg-4 col-md-6 all_column wow fadeInLeft pricing-title " data-wow-duration="2s" data-wow-delay="0.5s" >
                     <div class="feature-box position-relative all_boxes">
-                        <h3 class="pricing-title  bit-to-right">Conversational AI</h3>
+                        <h3 class="bit-to-right">Conversational AI</h3>
                         <p class="mb-0 bit-to-right bottom-space pricing-title">Respond intelligently with GPT-powered
                             natural language understanding.</p>
+                      <div class='top-space pricing-title'>
                         <img src="assets/images/feature-img1-icon1.png" alt="feature image"
                             class="img-fluid position-absolute feature-icon1  wow fadeInUp bit-to-right" data-wow-duration="2s"
                             data-wow-delay="0.6s"/>
@@ -446,17 +446,19 @@ const[modelvalue,setModelvalue]=useState(false);
                         <figure><img src="assets/images/feature-img1.png" alt="feature image"
                                 class="img-fluid  wow fadeInDown" data-wow-duration="2s" data-wow-delay="0.7s"/>
                         </figure>
+                        </div>
                         {/* <a href="services.html"><img src="assets/images/up-right-arrow.png" alt="arrow"
                                 class="img-fluid"/></a> */}
                         {/* <!-- feature box --> */}
                     </div>
                     {/* <!-- col --> */}
                 </div>
-                <div class="col-lg-4 col-md-6 all_column wow fadeInUp pricing-title " data-wow-duration="2s" data-wow-delay="0.5s" >
-                    <div class="feature-box position-relative all_boxes bg-green ">
-                        <h3 class='pricing-title bit-to-right' >Multi-Platform</h3>
+                <div class="col-lg-4 col-md-6 all_column wow fadeInUp  " data-wow-duration="2s" data-wow-delay="0.5s" >
+                    <div class="feature-box position-relative all_boxes bg-green pricing-title ">
+                        <h3 class=' bit-to-right' >Multi-Platform</h3>
                         <p class="mb-0 bit-to-right bottom-space pricing-title">Integrate with websites, apps, Facebook, <br/>
                             WhatsApp & more.</p>
+                      <div class=" top-space pricing-title">
                         <img src="assets/images/feature-img2-icon1.png" alt="feature image"
                             class="img-fluid position-absolute feature-icon2  wow fadeInLeft" data-wow-duration="2s"
                             data-wow-delay="0.8s"/>
@@ -470,8 +472,9 @@ const[modelvalue,setModelvalue]=useState(false);
                             class="img-fluid position-absolute feature-icon5 wow fadeInRight" data-wow-duration="2s"
                             data-wow-delay="1.1s"/>
                         <figure><img src="assets/images/feature-img2.png" alt="feature image"
-                                class="img-fluid wow fadeInDown" data-wow-duration="2s" data-wow-delay="1.2s"/>
+                                class="img-fluid wow fadeInDown " data-wow-duration="2s" data-wow-delay="1.2s"/>
                         </figure>
+                        </div>
                         {/* <a href="services.html"><img src="assets/images/up-right-arrow.png" alt="arrow"
                                 class="img-fluid"/></a> */}
                         {/* <!-- feature box --> */}
@@ -479,12 +482,13 @@ const[modelvalue,setModelvalue]=useState(false);
                     {/* <!-- col --> */}
                 </div>
                 <div class="col-lg-4 col-md-6 all_column  wow fadeInRight pricing-title " data-wow-duration="2s" data-wow-delay="0.5s">
-                    <div class="feature-box position-relative all_boxes">
-                        <h3 class='pricing-title bit-to-right'>Real-Time Analytics</h3>
-                        <p class="mb-0 bit-to-right bottom-space">Monitor chatbot performance and <br/>
+                    <div class="feature-box position-relative all_boxes justify-content:center">
+                        <h3 class=' bit-to-right'>Real-Time Analytics</h3>
+                        <p class="mb-0 bit-to-right bottom-space pricing-title">Monitor chatbot performance and <br/>
                             user behavior in real time.</p>
+                      <div class='top-space'>
                         <img src="assets/images/feature-img3-icon1.png" alt="feature image"
-                            class="img-fluid position-absolute feature-icon6 wow fadeInUp" data-wow-duration="2s"
+                            class="img-fluid position-absolute feature-icon6 wow fadeInUp fixed-img" data-wow-duration="2s"
                             data-wow-delay="0.6s"/>
                         {/* <img src="assets/images/elipse-blue.png" alt="feature image"
                             class="img-fluid position-absolute blue-elipse wow fadeInDown" data-wow-duration="2s"
@@ -492,6 +496,7 @@ const[modelvalue,setModelvalue]=useState(false);
                         <figure><img src="assets/images/feature-img3.png" alt="feature image"
                                 class="img-fluid feature-img3 wow fadeIn" data-wow-duration="2s" data-wow-delay="0.8s"/>
                         </figure>
+                        </div>
                         {/* <a href="services.html"><img src="assets/images/up-right-arrow.png" alt="arrow"
                                 class="img-fluid"/></a> */}
                         {/* <!-- feature box --> */}
@@ -574,7 +579,7 @@ const[modelvalue,setModelvalue]=useState(false);
         {/* <!-- how it works con --> */}
     </section>
     {/* <!-- WHY CHOOSE US SECTION --> */}
-    <section class="float-left w-100 position-relative why-choose-us-con padding-top padding-bottom main-box">
+    <section class="float-left w-100 position-relative why-choose-us-con padding-top padding-bottom main-box" id='why choose us'>
         <div class="container wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.2s">
             <div class="heading-title-con text-center">
                 <span class="special-text color-blue d-block wow fadeInLeft" data-wow-duration="2s"
@@ -662,7 +667,7 @@ const[modelvalue,setModelvalue]=useState(false);
                 {/* <figure><img src="assets/images/robot2.png" alt="vector"
                         class="img-fluid position-absolute robot2 animated-robot "/></figure> */}
                 <div class=" text-center mb-0 top-space pricing-title">
-                  <span>   <br /></span>
+                  <span>  </span>
                     <span class="special-text text-blue d-block wow fadeInLeft font-lg top-space pricing-title font-lg-bold" data-wow-duration="2s"
                         data-wow-delay="0.2s">Experience Boost</span>
                     <h1 class="wow fadeInRight " data-wow-duration="2s" data-wow-delay="0.4s">Ready to Supercharge
