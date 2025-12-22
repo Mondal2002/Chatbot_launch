@@ -43,7 +43,7 @@ const sendMail=async(name,phone_No,emailId,message)=>{
     ${message}`, // Plain-text version of the message // HTML version of the message
   });
 
-  console.log("Message sent:", info.messageId);
+  console.log("Message sent:", info);
 })();
 }
 app.post('/mail',(req,res)=>{
@@ -55,6 +55,9 @@ app.post('/mail',(req,res)=>{
             res.send("Something is wrong Cannot Get User Mail Id or password");
         }
         sendMail(name,phone_No,emailId, message);
+        return res.status(200).json({
+      message: "Messesge sent  successfully"
+    });
 
     }catch(error){
         console.log(error);

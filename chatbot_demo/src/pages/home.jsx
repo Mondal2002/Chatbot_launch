@@ -178,7 +178,9 @@ const[modelvalue,setModelvalue]=useState(false);
 .font-lg {
   font-size: 1.1rem;
 }
-
+.font-big{
+  font-size: 2 rem;
+}
 .font-lg-bold {
   font-weight: 700;
 }
@@ -274,7 +276,19 @@ const[modelvalue,setModelvalue]=useState(false);
     height: 40px;
   }
 }
+  .custom-link{
+  color: black;
+  text-decoration: none;
+  }
+  .custom-link:hover{
+  color: #2777fc;
+  }
 
+.image-wrapper {
+  display: flex;
+  justify-content: center; /* horizontal */
+  align-items: center;     /* vertical */
+}
 
 `
 }
@@ -312,60 +326,23 @@ const[modelvalue,setModelvalue]=useState(false);
 
         {/* Menu */}
         <div className="collapse navbar-collapse" id="mainNavbar">
-          <ul className="navbar-nav ms-auto align-items-center gap-4">
+          <ul className="navbar-nav ms-auto align-items-center gap-5">
 
             {/* <li className="nav-item">
               <Link to="/" className="nav-link active">Home</Link>
             </li> */}
 
             <li className="nav-item">
-              <a href="#Features">Features</a>
+              <a href="#Features" class="custom-link">Features</a>
             </li>
 
             <li className="nav-item">
-              <a href="#Services">How it Works</a>
+              <a href="#Services" class="custom-link">How it Works</a>
             </li>
             <li>
-              <a href="#why choose us">Why choose us</a>
+              <a href="#why choose us" class="custom-link">Why choose us</a>
             </li>
 
-            {/* Blog Dropdown */}
-            {/* <li className="nav-item dropdown">
-              <span
-                className="nav-link dropdown-toggle"
-                role="button"
-                data-bs-toggle="dropdown"
-              >
-                Blog
-              </span>
-              <ul className="dropdown-menu">
-                <li><Link className="dropdown-item" to="/blog">All Blogs</Link></li>
-                <li><Link className="dropdown-item" to="/blog/single">Single Blog</Link></li>
-              </ul>
-            </li> */}
-
-            {/* Pages Dropdown */}
-            {/* <li className="nav-item dropdown">
-              <span
-                className="nav-link dropdown-toggle"
-                role="button"
-                data-bs-toggle="dropdown"
-              >
-                Pages
-              </span>
-              <ul className="dropdown-menu">
-                <li><Link className="dropdown-item" to="/pricing">Pricing</Link></li>
-                <li><Link className="dropdown-item" to="/faq">FAQ</Link></li>
-                <li><Link className="dropdown-item" to="/contact">Contact</Link></li>
-              </ul>
-            </li> */}
-
-            {/* CTA Button */}
-            {/* <li className="nav-item">
-              <Link to="/contact" className="btn btn-primary px-4 py-2 rounded-pill">
-                Try Free Trial
-              </Link>
-            </li> */}
             <li className="nav-item">
               <button className="btn btn-outline-primary rounded-pill px-4" onClick={()=>setModelvalue(true)}>
               Contact Us
@@ -380,24 +357,23 @@ const[modelvalue,setModelvalue]=useState(false);
     </header>
     {/* <!--  --> */}
     {/* <!-- BANNER SECTION --> */}
-    <section class="float-left w-100 banner-con position-relative main-box pricing-title">
+    <section class="float-left w-100 banner-con position-relative main-box ">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-7 col-md-7">
                     <div class="banner-content-con">
-                        <ul class="list-unstyled p-0 pricing-title">
-                            <li class="position-relative d-inline-block me-4  "><i class="fa-solid fa-circle-check pricing-title"></i>Free
+                        <ul class="list-unstyled p-0 ">
+                            <li class="position-relative d-inline-block me-4  "><i class="fa-solid fa-circle-check "></i>Free
                                 14-day
                                 trial</li>
                             <li class="position-relative d-inline-block"><i class="fa-solid fa-circle-check"></i>No credit card required</li>
                         </ul>
-                        <h1 style={{ fontSize: "clamp(2.5rem, 5vw, 5rem)" }} class='pricing-title text-black'>Transform Business Calls with Our  <br/>
+                        <h1 style={{ fontSize: "clamp(2.5rem, 5vw, 5rem)" }} class='pricing-title text-black'>Transform Business Calls with Our <br /> 
                             Intelligent 
                             AI Frontdesk</h1>
                         <h4 class='pricing-title text-black'>An Intelligent AI Frontdesk That Answers Calls,<br /> Books Appointments, and Engages Customers Automatically</h4>
-                        <a href="about.html" class="text-decoration-none primary_btn d-inline-block">Get
-                            Started</a>
-                        <a href="contact.html" class="text-decoration-none secondary_btn d-inline-block">Live Demo</a>
+                        <a class="text-decoration-none primary_btn d-inline-block" onClick={()=>setModelvalue(true)}>Contact Us</a>
+                        {/* <a href="contact.html" class="text-decoration-none secondary_btn d-inline-block">Live Demo</a> */}
                         {/* <!-- banner content con --> */}
                     </div>
                     {/* <!-- col --> */}
@@ -410,11 +386,11 @@ const[modelvalue,setModelvalue]=useState(false);
                     {/* <!-- col --> */}
                 </div>
             </div>
-            <div class="down_button text-center d-inline-block">
-                <a href="#client" class="scroll text-decoration-none">
-                    <figure class="banner-dropdownimage mb-0 d-inline-block ">
-                        <img src="assets/images/banner-dropdownimage.png" class="img-fluid" alt="image"/>
-                    </figure>
+            <div class="down_button text-center d-inline-block image-wrapper">
+                <a href="#Features" class="scroll text-decoration-none image-wrapper">
+                    {/* <figure class="banner-dropdownimage mb-0 d-inline-block image-wrapper ">
+                        <img src="assets/images/banner-dropdownimage.png" class="img-fluid " alt="image"/>
+                    </figure> */}
                 </a>
             </div>
         </div>
@@ -425,7 +401,7 @@ const[modelvalue,setModelvalue]=useState(false);
     <section class="float-left w-100 amazing-features-con position-relative padding-top padding-bottom main-box" id="Features">
         <div class="container wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.2s">
             <div class="heading-title-con text-center">
-                <h4 class='text' className="padding:20px font-size:100px text-blue ">Amazing Features</h4>
+                <h4 class='text' className="padding:20px font-size:100px text-blue pricing-title">Amazing Features</h4>
                 <h1 class="wow fadeInRight pricing-title" data-wow-duration="2s" data-wow-delay="0.4s" style={{ fontSize: "clamp(2.5rem, 5vw, 3.5rem)" }} >AI That Understands, Learns
                     <br/>
                     & Engages</h1>
@@ -433,7 +409,8 @@ const[modelvalue,setModelvalue]=useState(false);
             </div>
             <div>
             <div class="row all_row wow fadeIn " data-wow-duration="2s" data-wow-delay="0.4s">
-                <div class="col-lg-4 col-md-6 all_column wow fadeInLeft pricing-title " data-wow-duration="2s" data-wow-delay="0.5s" >
+                <div class="col-lg-4 col-md-6 mb-0
+                 all_column wow fadeInLeft pricing-title " data-wow-duration="2s" data-wow-delay="0.5s" >
                     <div class="feature-box position-relative all_boxes">
                         <h3 class="bit-to-right">Conversational AI</h3>
                         <p class="mb-0 bit-to-right bottom-space pricing-title">Respond intelligently with GPT-powered
@@ -530,9 +507,9 @@ const[modelvalue,setModelvalue]=useState(false);
                 <div class="col-lg-5 col-md-12 wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.4s">
                     <div class="work-content-con">
                         <div class="heading-title-con">
-                            <span class="special-text color-#0000FF d-block wow fadeInLeft pricing-title font-lg text-blue font-lg-bold" data-wow-duration="2s"
+                            <span class="special-text color-#0000FF d-block wow fadeInLeft pricing-title font-lg text-blue font-lg-bold top-space" data-wow-duration="2s"
                                 data-wow-delay="0.5s">How it Works</span>
-                            <h1 class="wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.6s">How Our Advanced
+                            <h1 class="wow fadeInRight " data-wow-duration="2s" data-wow-delay="0.6s"  style={{ fontSize: "clamp(2.5rem, 5vw, 3.5rem)" }}>How Our Advanced
                                 <br/>
                                 AI Chatbot Works</h1>
                             {/* <!-- heading title con --> */}
@@ -566,8 +543,7 @@ const[modelvalue,setModelvalue]=useState(false);
                                 </div>
                             </li>
                         </ul>
-                        <a href="about.html" class="text-decoration-none primary_btn d-inline-block pricing-title ">Get
-                            Started</a>
+                        <a onClick={()=>setModelvalue(true)} class="text-decoration-none primary_btn d-inline-block pricing-title ">Contact Us</a>
                         {/* <!-- work content con --> */}
                     </div>
                     {/* <!-- col --> */}
@@ -582,11 +558,11 @@ const[modelvalue,setModelvalue]=useState(false);
     <section class="float-left w-100 position-relative why-choose-us-con padding-top padding-bottom main-box" id='why choose us'>
         <div class="container wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.2s">
             <div class="heading-title-con text-center">
-                <span class="special-text color-blue d-block wow fadeInLeft" data-wow-duration="2s"
-                    data-wow-delay="0.2s">Why Choose Us</span>
-                <h2 class="wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.4s">Unique Selling Points &
+                <h4 class="special-text color-blue d-block wow fadeInLeft text-blue pricing-title" data-wow-duration="2s"
+                    data-wow-delay="0.2s">Why Choose Us</h4>
+                <h1 class="wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.4s">Unique Selling Points &
                     Advantages <br/>
-                    of Our Service</h2>
+                    of Our Service</h1>
                 {/* <!-- heading title con --> */}
             </div>
             <div class="row justify-content-center wow fadeInDown" data-wow-duration="2s" data-wow-delay="0.5s">
@@ -644,8 +620,7 @@ const[modelvalue,setModelvalue]=useState(false);
                 {/* <!-- choose outer con --> */}
             </div>
             <div class="float-left w-100 m-auto text-center wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.4s">
-                <a href="about.html" class="text-decoration-none primary_btn d-inline-block">Get
-                    Started</a>
+                <a onClick={()=>setModelvalue(true)} class="text-decoration-none primary_btn d-inline-block">Contact Us</a>
             </div>
             {/* <!-- container --> */}
         </div>
@@ -666,20 +641,19 @@ const[modelvalue,setModelvalue]=useState(false);
                         class="img-fluid position-absolute robot1 animated-robot"/></figure> */}
                 {/* <figure><img src="assets/images/robot2.png" alt="vector"
                         class="img-fluid position-absolute robot2 animated-robot "/></figure> */}
-                <div class=" text-center mb-0 top-space pricing-title">
+                <div class=" text-center mb-0  pricing-title">
                   <span>  </span>
-                    <span class="special-text text-blue d-block wow fadeInLeft font-lg top-space pricing-title font-lg-bold" data-wow-duration="2s"
+                    <span class="special-text text-blue d-block wow fadeInLeft font-lg  pricing-title font-lg-bold" data-wow-duration="2s"
                         data-wow-delay="0.2s">Experience Boost</span>
-                    <h1 class="wow fadeInRight " data-wow-duration="2s" data-wow-delay="0.4s">Ready to Supercharge
+                    <h1 class="wow fadeInRight " data-wow-duration="2s" data-wow-delay="0.4s"  style={{ fontSize: "clamp(2.5rem, 5vw, 3.5rem)" }}>Ready to Supercharge
                         <br/>
                         Your Customer Experience?</h1>
                     <p class="wow fadeInDown font-lg pricing-title" data-wow-duration="2s" data-wow-delay="0.5s">Start using our AI chatbot
                         today to automate support, boost engagement, and save time.</p>
-                    <a href="about.html" class="text-decoration-none primary_btn d-inline-block wow fadeInLeft pricing-title"
-                        data-wow-duration="2s" data-wow-delay="0.6s">Get
-                        Started</a>
-                    <a href="contact.html" class="text-decoration-none secondary_btn d-inline-block wow fadeInRight bit-to-right pricing-title"
-                        data-wow-duration="2s" data-wow-delay="0.7s">Live Demo</a>
+                    <a onClick={()=>setModelvalue(true)} class="text-decoration-none primary_btn d-inline-block wow fadeInLeft pricing-title"
+                        data-wow-duration="2s" data-wow-delay="0.6s">Contact Us</a>
+                    {/* <a href="contact.html" class="text-decoration-none secondary_btn d-inline-block wow fadeInRight bit-to-right pricing-title"
+                        data-wow-duration="2s" data-wow-delay="0.7s">Live Demo</a> */}
                     {/* <!-- heading title con --> */}
                 </div>
                 {/* <!-- cta inner con --> */}
@@ -693,8 +667,8 @@ const[modelvalue,setModelvalue]=useState(false);
     <section class="footer-con position-relative float-left w-100 main-box bit-to-right black-background">
         <div class="container">
             <div class="middle_portion">
-                <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                <div class="row ">
+                    <div class="col-lg-4 col-md-12">
                         <div class="logo-content bit-to-right">
                             <a href="index.html">
                                 <figure class="footer-logo pricing-title">
@@ -713,19 +687,21 @@ const[modelvalue,setModelvalue]=useState(false);
                             </ul>
                         </div>
                     </div>
-                    <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-5">
+                    <div class="col-lg-4 col-md-12">
                         <div class="links">
                             <h4 class="heading pricing-title">Navigation</h4>
                             <ul class="list-unstyled mb-0pricing-title text-white">
                                 <li><i class="fa-solid fa-arrow-right"></i><a href="#Features"
-                                        class="text-decoration-none text-white">About</a></li>
-                                <li><i class="fa-solid fa-arrow-right "></i><a href="services.html"
-                                        class="text-decoration-none text-white">Services</a></li>
+                                        class="text-decoration-none text-white">Features</a></li>
+                                <li><i class="fa-solid fa-arrow-right "></i><a href="#Services"
+                                        class="text-decoration-none text-white">How it works</a></li>
+                                <li><i class="fa-solid fa-arrow-right "></i><a href="#why choose us"
+                                        class="text-decoration-none text-white">Why choose us</a></li>
                                 
                             </ul>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-7">
+                    <div class="col-lg-4 col-md-12">
                         <div class="icon">
                             <h4 class="heading pricing-title">Contact Info</h4>
                             <ul class="list-unstyled mb-0 pricing-title">
@@ -745,23 +721,6 @@ const[modelvalue,setModelvalue]=useState(false);
                                     </a>
                                 </li>
                             </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-5 col-sm-12 col-12">
-                        <div class="email-form">
-                            <h4 class="heading pricing-title">Newsletter Signup</h4>
-                            <form action="javascript">
-                                <div class="form-group position-relative mb-0">
-                                    <input type="text" class="form_style" placeholder="Enter Your Email Address"
-                                        name="email"/>
-                                    <button><i class="send fa-sharp fa-solid fa-paper-plane"></i></button>
-                                </div>
-                                <div class="form-group check-box mb-0">
-                                    <input type="checkbox" id="term"/>
-                                    <label for="term">I agree to the <a href="privacy-policy.html">Privacy
-                                            Policy</a>.</label>
-                                </div>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -795,3 +754,22 @@ const[modelvalue,setModelvalue]=useState(false);
 };
 
 export default Home;
+                    // <div class="col-xl-4 col-lg-4 col-md-5 col-sm-12 col-12">
+                        
+                    // </div>
+
+{/* <div class="email-form">
+                            <h4 class="heading pricing-title">Newsletter Signup</h4>
+                            <form action="javascript">
+                                <div class="form-group position-relative mb-0">
+                                    <input type="text" class="form_style" placeholder="Enter Your Email Address"
+                                        name="email"/>
+                                    <button><i class="send fa-sharp fa-solid fa-paper-plane"></i></button>
+                                </div>
+                                <div class="form-group check-box mb-0">
+                                    <input type="checkbox" id="term"/>
+                                    <label for="term">I agree to the <a href="privacy-policy.html">Privacy
+                                            Policy</a>.</label>
+                                </div>
+                            </form>
+                        </div> */}

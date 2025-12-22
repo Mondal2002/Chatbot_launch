@@ -5,25 +5,47 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "../styles/home1.css";
 import axios from 'axios';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const Model = ({ onClose }) => {
     const[name,setName]=useState('');
     const[phone_No,setPhone_No]=useState('');
     const[emailId,setEmailId]=useState('');
     const[message,setMessage]=useState('');
-    const sendmessage=async()=>{
-        const data={
-            name,
-            phone_No,
-            emailId,
-            message
-        }
-        await axios.post('http://localhost:5555/mail',data,{
-            withCredentials : true
-        }).then(()=>{
-            onClose();
-        })
-    }
+    const navigate = useNavigate();
+   const sendmessage = async () => {
+  const data = {
+    name,
+    phone_No,
+    emailId,
+    message,
+  };
+
+  try {
+    await axios.post("http://localhost:5555/mail", data, {
+      withCredentials: true,
+    });
+    onClose();
+    await Swal.fire({
+      icon: "success",
+      title: "Message Sent",
+      text: "Your message has been sent successfully.",
+      timer: 2000,
+      showConfirmButton: false,
+    });
+
+    navigate("/books");
+  } catch (error) {
+    await Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "Something went wrong. Please try again.",
+    });
+
+    navigate("/books");
+  }
+};
 
 
   return (
@@ -38,6 +60,7 @@ const Model = ({ onClose }) => {
         <h2>Contact Us</h2>
     <div >
     <p>Give us Your messege</p>
+    <form action="">
     <label >Enter your Name  </label>
     <div className="form-floating mb-3">
           <input
@@ -54,6 +77,7 @@ const Model = ({ onClose }) => {
             className="form-control"
             maxLength="10"
             value={phone_No} 
+            required
             onChange={(e)=>setPhone_No(e.target.value)}
           />
         </div>
@@ -78,9 +102,10 @@ const Model = ({ onClose }) => {
             onChange={(e)=>setMessage(e.target.value)}
           />
       </div>
+      </form>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick={onClose}>close</button>
-        <button type="button" class="btn btn-primary" onClick={sendmessage}><Send/></button>
+        <button type="button" class="btn btn-primary" onClick={ sendmessage }><Send/></button>
   </div>
 
         {/* Add form or content here */}
