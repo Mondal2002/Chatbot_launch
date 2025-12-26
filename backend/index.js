@@ -37,7 +37,8 @@ const sendMail=async(name,phone_No,emailId,message)=>{
     to: 'sub0.wheeljack@gmail.com' ,
     replyTo:emailId,
     subject: `New request for Chatbot from ${emailId}`,
-    text: `Sender: ${name}.
+    text: `
+    Sender: ${name}.
     Email Id: ${emailId}.
     Customer Phone No. ${phone_No}.
     ${message}`, // Plain-text version of the message // HTML version of the message
@@ -58,6 +59,7 @@ app.post('/mail',(req,res)=>{
         return res.status(200).json({
       message: "Messesge sent  successfully"
     });
+
 
     }catch(error){
         console.log(error);

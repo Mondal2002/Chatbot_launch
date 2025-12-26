@@ -61,7 +61,6 @@ const Model = ({ onClose }) => {
     <div >
     <p>Give us Your messege</p>
     <form action="">
-    <label >Enter your Name  </label>
     <div className="form-floating mb-3">
           <input
             type="text"
@@ -69,8 +68,10 @@ const Model = ({ onClose }) => {
             value={name} 
             onChange={(e)=>setName(e.target.value)}
           />
+          <label htmlFor="floatingInput">Enter Your Name</label>
         </div>
-    <label >Enter your Phone No.  </label>
+
+
         <div className="form-floating mb-3">
           <input
             type="tel"
@@ -80,9 +81,10 @@ const Model = ({ onClose }) => {
             required
             onChange={(e)=>setPhone_No(e.target.value)}
           />
+          <label htmlFor="floatingInput">Enter your Phone No.</label>
         </div>
 
-    <label >Enter your Gmail  </label>
+
         <div className="form-floating mb-3">
           <input
             type="email"
@@ -90,21 +92,24 @@ const Model = ({ onClose }) => {
             value={emailId} 
             onChange={(e)=>setEmailId(e.target.value)}
           />
+          <label htmlFor="floatingInput">Enter your Gmail</label>
         </div>
+
       <br/>
 
-    <label >enter your message</label>
         <div className="form-floating mb-3">
           <input
             type="text"
             className="form-control"
             value={message} 
             onChange={(e)=>setMessage(e.target.value)}
+            rows='3'
           />
+          <label htmlFor="floatingInput">enter your message</label>
       </div>
       </form>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick={onClose}>close</button>
+        {/* <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick={onClose}>close</button> */}
         <button type="button" class="btn btn-primary" onClick={ sendmessage }><Send/></button>
   </div>
 
