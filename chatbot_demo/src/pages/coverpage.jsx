@@ -2395,7 +2395,7 @@ button.primary_btn:hover {
                         <div class="coment-box2 d-flex align-items-center popup-bubble popup-delay-2">
                             <img src="assets/images/coment-box-icon2.png" alt="icon" class="img-fluid"/>
                             <p class="typing mb-0" id="text2"></p>
-                            {/* <!-- coment box1 --> */}
+                            {/* <!-- coment box2 --> */}
                         </div>
                         {/* <!-- banner img con --> */}
                     </div>

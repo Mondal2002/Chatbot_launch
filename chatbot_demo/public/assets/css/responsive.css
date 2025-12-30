@@ -888,10 +888,10 @@
 
     .navbar-toggler-icon {
         float: left;
-        width: 100%;
+        width: 50%;
         height: 2px;
         margin: 3px 0;
-        background: var(--e-global-color-accent);
+        background: #2777fc;
     }
 
     .navbar-toggler:focus {

@@ -35,7 +35,7 @@ const Model = ({ onClose }) => {
       showConfirmButton: false,
     });
 
-    navigate("/books");
+    navigate("/");
   } catch (error) {
     await Swal.fire({
       icon: "error",
@@ -43,7 +43,7 @@ const Model = ({ onClose }) => {
       text: "Something went wrong. Please try again.",
     });
 
-    navigate("/books");
+    navigate("/");
   }
 };
 
@@ -109,7 +109,7 @@ const Model = ({ onClose }) => {
       </div>
       </form>
       <div class="modal-footer">
-        {/* <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick={onClose}>close</button> */}
+        {/* <button type="button" class="btn btn-secondary" onClick={'/'} ></button> */}
         <button type="button" class="btn btn-primary" onClick={ sendmessage }><Send/></button>
   </div>
 

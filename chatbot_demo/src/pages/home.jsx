@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import WOW from "wowjs";
-import '../styles/home1.css'
+import '../styles/home1.css';
 import Model from "../components/model";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel } from "swiper/modules";
@@ -11,23 +11,26 @@ import "swiper/css";
 
 
 
-// import "./assets/images/feature-img1-icon1.png"
-
-
-// #  --e-global-color-primary: #ffffff;
-// #  --e-global-color-secondary: #000000;
-// #  --e-global-color-accent: #2777fc;
-// #  --e-global-color-text: #5f5f5f;
-// #  --e-global-color-text2: #bebebe;
-// #  --e-global-color-light-blue: #f2f7ff;
-// #  --e-global-color-light-green: #f1fdff;
 
 
 const Home = () => {
+
   useEffect(() => {
   new WOW.WOW().init();
 }, []);
+
+
+
 const[modelvalue,setModelvalue]=useState(false);
+useEffect(()=>{
+    const timeout = setTimeout(() => {
+      setModelvalue(true);
+    }, 1500); 
+
+
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <div>
       {modelvalue && <Model onClose={() => setModelvalue(false)} />}
@@ -54,7 +57,13 @@ const[modelvalue,setModelvalue]=useState(false);
 margin-bottom: 15px;}
 
 .top-space {
-  margin-top: 80px;
+  margin-top: 10px;
+}
+.top-space-more{
+ margin-top:50px;
+}
+.top-space-img{
+margin-top:120px;
 }
 
 .bottom-space {
@@ -110,7 +119,7 @@ margin-bottom: 15px;}
   background-image: url(/assets/images/banner-bg-img.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: 700px;
+  min-height: 600px;
   display: flex;
   align-items: center;
 }.banner-img-con {
@@ -135,6 +144,10 @@ margin-bottom: 15px;}
 .custom-img {
   width: 100%;
   max-width: 600px;
+}
+.custom-img2{
+height:100%;
+width:100%;
 }
 
 
@@ -422,15 +435,7 @@ p {
 .cta-inner-con .primary_btn {
     margin-right: 12px;
 }
-.robot1 {
-  width: 100px;
-  left: -20px;
-    }
 
-.robot2 {
-  width: 120px;
-  right: -20px;
-    }
 
 /* =========================
    FOOTER
@@ -462,7 +467,7 @@ p {
 @media (max-width: 992px) {
   .banner-con {
     min-height: auto;
-    padding: 80px 0;
+    padding: 10px ;
     text-align: center;
   }
 
@@ -478,6 +483,25 @@ p {
     max-width: 450px;
     margin-top: 40px;
   }
+  h1{
+  line-height:50px;
+  }
+  h2 {
+    line-height:50px;
+}
+    top-space{
+    margin-top:40px
+    }
+
+    .robot1 {
+        display: none;
+    }
+
+    .robot2 {
+        display: none;
+    }
+
+     
 }
 
 /* Mobile */
@@ -492,7 +516,7 @@ p {
   .primary_btn,
   .secondary_btn {
     width: 100%;
-    margin-bottom: 12px;
+    margin-bottom: 50px;
   }
 
   .choose-outer-con {
@@ -514,6 +538,119 @@ p {
     .robot2 {
         display: none;
     }
+
+.header-con .navbar-light .navbar-nav .nav-link {
+    font-size: 16px;
+    color: #000000;
+    font-weight: 500;
+    padding: 10px 0 !important;
+    position: relative;
+}
+
+.header-con .navbar-light .navbar-nav .nav-link:hover {
+    color: #2777fc;
+    /* text-decoration: underline; */
+}
+
+.header-con .navbar-expand-lg .navbar-nav {
+    gap: 58px;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-con {
+    z-index: 5;
+    padding: 19px 0;
+    border-top: 2px solid #2777fc;
+}
+
+.header-con .navbar {
+    padding: 0;
+}
+
+.header-con .navbar-brand figure img {
+    width: 145px;
+}
+
+
+.header-con .navbar-light .navbar-nav .nav-link:hover::before {
+    width: 100%;
+}
+
+.header-con .navbar-light .navbar-nav .nav-link::before {
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    content: '';
+    position: absolute;
+    background: #2777fc;
+    transition: ease-in-out 0.6s;
+}
+
+.header-con .navbar-light .navbar-nav .nav-link.active {
+    color: #2777fc;
+}
+
+.header-con .navbar-light .navbar-nav .dropdown .nav-link:hover::after {
+    width: 0;
+}
+
+.header-con .navbar-light .navbar-nav .dropdown .nav-link::after {
+    width: unset;
+    position: absolute;
+    background: none;
+    top: 19px;
+    font-size: 15px;
+}
+
+.header-con .navbar-light .navbar-nav .dropdown-menu {
+    padding: 10px;
+    margin: 0;
+    background-color:#ffffff;
+    border: 0;
+    z-index: 2;
+    width: 230px;
+    margin-top: 10px;
+    box-shadow: 0px 0px 100px rgb(0 0 0 / 15%);
+    border-radius: 10px;
+}
+
+.header-con .navbar-light .navbar-nav .dropdown-menu a:last-child {
+    border-bottom: none;
+}
+
+.header-con .navbar-light .navbar-nav .dropdown-menu .dropdown-item {
+    padding: 7px 12px;
+    border-bottom: 1px solid #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    color: #000000;
+    border-radius: 6px;
+}
+
+.header-con .navbar-light .navbar-nav .dropdown-menu .dropdown-item:active,
+.header-con .navbar-light .navbar-nav .dropdown-menu .dropdown-item:active {
+    background-color: #2777fc;
+    color: #ffffff;
+}
+
+.header-con .navbar-light .navbar-nav .dropdown-menu .dropdown-item.active {
+    background-color: #2777fc;
+    color: #ffffff;
+}
+
+.header-con .navbar-light .navbar-nav .dropdown-menu .dropdown-item:hover {
+    background-color: #2777fc;
+    color: #ffffff
+}
+
+.header-con .navbar-light .navbar-brand {
+    margin: 0;
+    padding: 0;
+}
+
 }
 
 @media (min-width: 577px) and (max-width: 991px) {
@@ -530,7 +667,7 @@ p {
   .secondary_btn {
     width: auto;
     min-width: 180px;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
   }
 
   .choose-outer-con {
@@ -599,13 +736,14 @@ font-weight: 600;
 }.work-swiper .swiper-slide {
   height:auto !important;
 }.robot1 {
-    width: 100px;
-    left: -20px;
+    width: 180px;
+    left: -40px;
   }
 .robot2 {
-  width: 120px;
-  right: -20px;
+  width: 250px;
+  right: -60px;
 }
+  
 
 
 /* Back to top button */
@@ -629,6 +767,8 @@ font-weight: 600;
     to {
         box-shadow: 0 0 0 35px rgba(39, 39, 252, .01)
     }
+
+    
 }
 
 
@@ -759,10 +899,10 @@ font-weight: 600;
                 <div class="col-lg-7 col-md-7">
                     <div class="banner-content-con">
                         <ul class="list-unstyled p-0 ">
-                            <li class="position-relative d-inline-block me-4  top-space"><i class="fa-solid fa-circle-check "></i>Free
+                            <li class="position-relative d-inline-block me-4  "><i class="fa-solid fa-circle-check "></i>Free
                                 14-day
                                 trial</li>
-                            <li class="position-relative d-inline-block top-space "><i class="fa-solid fa-circle-check"></i>No credit card required</li>
+                            <li class="position-relative d-inline-block  "><i class="fa-solid fa-circle-check"></i>No credit card required</li>
                         </ul>
                         <h1>Transform Business Calls with Our Intelligent AI Frontdesk</h1>
                         <p >An Intelligent AI Frontdesk That Answers Calls,<br /> Books Appointments, and Engages Customers Automatically</p>
@@ -773,8 +913,8 @@ font-weight: 600;
                     {/* <!-- col --> */}
                 </div>
                 <div className="col-lg-5 col-md-5 center-all" >
-                    <div class="banner-img-con position-relative ">
-                        <figure><img src="assets/images/banner-robot.png" alt="robot" class="img-fluid custom-img animated-robot "/></figure>
+                    <div class="banner-img-con position-relative">
+                        <figure><img src="assets/images/AI_frontdesk2-removebg-preview.png" alt="robot" class="img-fluid animated-robot custom-img2 "/></figure>
                       {/* <div class="coment-box1 d-flex align-items-center popup-bubble popup-delay-1">
                             <img src="assets/images/coment-box-icon1.png" alt="icon" class="img-fluid"/>
                             <p class="typing mb-0" id="text1">Hey how we can help you?</p>
@@ -806,7 +946,7 @@ font-weight: 600;
     <section class="float-left w-100 amazing-features-con position-relative padding-top padding-bottom main-box" id="Features">
         <div class="container wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.2s">
             <div class="heading-title-con text-center">
-                <h5 class='text' className="content-font padding:20px  text-blue top-space bottom-space">Amazing Features</h5>
+                <h5 class='text' className="content-font  text-blue top-space-more bottom-space">Amazing Features</h5>
                 <h1 class="wow fadeInRights" data-wow-duration="2s" data-wow-delay="0.4s" style={{ fontSize: "clamp(2.5rem, 5vw, 3.5rem)"}} >AI That Answers, Assists
 & Automates <br /> Your Calls</h1>
                 {/* <!-- heading title con --> */}
@@ -897,7 +1037,7 @@ font-weight: 600;
             <div class="row all_row">
                 <div class="col-lg-7 col-md-12 wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.4s">
                     <div class="work-img-con position-relative">
-                        <figure><img src="assets/images/work-img.png" alt="image" class="img-fluid position-relative top-space"/></figure>
+                        <figure><img src="assets/images/work-img.png" alt="image" class="img-fluid position-relative top-space-img bottom-space"/></figure>
                         {/* <figure><img src="assets/images/robot.png" alt="robot"
                                 class="img-fluid position-absolute robot-img animated-robot"/>
                         </figure> */}
@@ -907,9 +1047,9 @@ font-weight: 600;
                 <div class="col-lg-5 col-md-12 wow fadeInRight center-all" data-wow-duration="2s" data-wow-delay="0.4s">
                     <div class="work-content-con">
                         <div class="heading-title-con">
-                            <h4 class="special-text color-#0000FF d-block wow fadeInLeft  text-blue  top-space" data-wow-duration="2s"
+                            <h4 class="special-text color-#0000FF d-block wow fadeInLeft  text-blue  top-space-more" data-wow-duration="2s"
                                 data-wow-delay="0.5s">How it Works</h4>
-                            <h1 class="wow fadeInRight " data-wow-duration="2s" data-wow-delay="0.6s"  
+                            <h1 class="wow fadeInRight top-space  " data-wow-duration="2s" data-wow-delay="0.6s"  
                             style={{ fontSize: "clamp(2.5rem, 4.5vw, 3.5rem)" }}>How Our Advanced
                                 <br/>
                                 AI Chatbot Works</h1>
@@ -990,7 +1130,7 @@ font-weight: 600;
     <section class="float-left w-100 position-relative why-choose-us-con padding-top padding-bottom main-box" id='why choose us'>
         <div class="container wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.2s">
             <div class="heading-title-con text-center">
-                <h4 class="special-text color-blue d-block wow fadeInLeft text-blue " data-wow-duration="2s"
+                <h4 class="special-text color-blue d-block wow fadeInLeft text-blue top-space " data-wow-duration="2s"
                     data-wow-delay="0.2s">Why Choose Us</h4>
                 <h2 class="wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.4s" >Unique Selling Points &
                     Advantages <br/>
@@ -1051,9 +1191,9 @@ font-weight: 600;
               </div>
                 {/* <!-- choose outer con --> */}
             </div>
-            <div class="float-left w-100 m-auto text-center wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.4s">
+            {/* <div class="float-left w-100 m-auto text-center wow fadeInUp bottom-gap bottom-space" data-wow-duration="2s" data-wow-delay="0.4s">
                 <a onClick={()=>setModelvalue(true)} class="text-decoration-none primary_btn d-inline-block">Contact Us</a>
-            </div>
+            </div> */}
             {/* <!-- container --> */}
         </div>
         {/* <!-- why choose us  --> */}
@@ -1068,21 +1208,21 @@ font-weight: 600;
   
     {/* <!-- CALL TO ACTION --> */}
     
-    <div class="float-left w-100 position-relative call-to-action-con main-box padding-bottom ">
+    <div class="float-left w-100 position-relative call-to-action-con main-box padding-bottom top-space-more">
         <div class="container wow fadeInUp top-space " data-wow-duration="2s" data-wow-delay="0.2s">
             <div class="cta-inner-con padding-top100 padding-bottom100 position-relative top ">
-                <figure><img src="assets/images/robot1.png" alt="vector"
+                <figure><img src="assets/images/AI_frontdesk_right_preview_rev_1.png" alt="vector"
                         class="img-fluid position-absolute robot1 animated-robot"/></figure>
-                <figure><img src="assets/images/robot2.png" alt="vector"
+                <figure><img src="assets/images/AI_frontdesk_left_preview_rev_1.png" alt="vector"
                         class="img-fluid position-absolute robot2 animated-robot "/></figure>
                 <div class=" text-center mb-0  ">
                   <span>  </span>
-                    <h4 class="special-text text-blue d-block wow fadeInLeft   pricing-title " data-wow-duration="2s"
+                    <h4 class="special-text text-blue d-block wow fadeInLeft  " data-wow-duration="2s"
                         data-wow-delay="0.2s">Experience Boost</h4>
                     <h2 class="wow fadeInRight " data-wow-duration="2s" data-wow-delay="0.4s"  >Ready to Supercharge
                         <br/>
                         Your Customer Experience?</h2>
-                    <p class="wow fadeInDown pricing-title" data-wow-duration="2s" data-wow-delay="0.5s">Start using our AI chatbot
+                    <p class="wow fadeInDown pricing-title" data-wow-duration="2s" data-wow-delay="0.5s">Start using our AI Frontdesk
                         today to automate support, boost engagement, and save time.</p>
                     <a onClick={()=>setModelvalue(true)} class="text-decoration-none primary_btn d-inline-block wow fadeInLeft "
                         data-wow-duration="2s" data-wow-delay="0.6s">Contact Us</a>

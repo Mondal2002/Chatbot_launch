@@ -40,7 +40,8 @@ const sendMail=async(name,phone_No,emailId,message)=>{
     text: `
     Sender: ${name}.
     Email Id: ${emailId}.
-    Customer Phone No. ${phone_No}.
+    Phone No. ${phone_No}.
+    
     ${message}`, // Plain-text version of the message // HTML version of the message
   });
 
