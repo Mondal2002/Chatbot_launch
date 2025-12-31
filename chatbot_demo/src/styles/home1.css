@@ -334,3 +334,52 @@
   height: px;        /* fixed height */
   object-fit: contain;  /* no stretching */
 }
+
+
+#ai-showcase {
+  background: #ffffff;
+}
+
+.feature-card {
+  background: #f7f9fc;
+  border-radius: 14px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.05);
+  transition: transform 0.25s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+}
+
+.section-title {
+  font-weight: 700;
+  font-size: 32px;
+}
+
+.section-subtitle {
+  font-size: 16px;
+  color: #666;
+}
+
+.feature-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+/* Where to use */
+
+ .feature-box-2 {
+  background-color: #f2f7ff;
+  border-radius: 20px;
+  padding: 40px 30px;
+  transition: all 0.4s ease;
+}
+.feature-box-2:hover {
+  transform: scale(1.03);
+  
+  box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+}
+.bg-for-cards{
+     background: linear-gradient(135deg,#e0f4ff 0%, #c8e4fa 100%);
+     color: #333;
+}

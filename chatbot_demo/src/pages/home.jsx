@@ -8,6 +8,7 @@ import Model from "../components/model";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel } from "swiper/modules";
 import "swiper/css";
+import '../styles/animations.css';
 
 
 
@@ -22,6 +23,7 @@ const Home = () => {
 
 
 const[modelvalue,setModelvalue]=useState(false);
+const[showAllIndustries,setShowAllIndustries]=useState(false);
 useEffect(()=>{
     const timeout = setTimeout(() => {
       setModelvalue(true);
@@ -875,14 +877,15 @@ font-weight: 600;
             <li className="nav-item">
               <a href="#Services" class="custom-link">How it Works</a>
             </li>
+            <li className="nav-item">
+              <a href="#where-to-use" class="custom-link">Where to use</a>
+            </li>
             <li>
               <a href="#why choose us" class="custom-link">Why choose us</a>
             </li>
 
             <li className="nav-item">
-              <button className="btn btn-outline-primary rounded-pill px-4" onClick={()=>setModelvalue(true)}>
-              Contact Us
-            </button>
+              <a onClick={()=>setModelvalue(true)} class="text-decoration-none primary_btn d-inline-block">Contact Us</a>
             </li>
 
           </ul>
@@ -1030,7 +1033,7 @@ font-weight: 600;
     {/* <span className="d-block bg-danger text-white">TEST</span> */}
 
     {/* <!-- HOW IT WORKS SECTION --> */}
-    <section class="float-left w-100 position-relative main-box how-it-works-con padding-top padding-bottom pricing-title" id="Services" >
+    <section class="float-left w-100 position-relative main-box how-it-works-con padding-top pri " id="Services" >
         {/* <figure><img src="assets/images/vector3.png" alt="vector"
                 class="img-fluid position-absolute vector3 animated-plane pricing-title"/></figure> */}
         <div class="container wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.2s">
@@ -1052,31 +1055,35 @@ font-weight: 600;
                             <h1 class="wow fadeInRight top-space  " data-wow-duration="2s" data-wow-delay="0.6s"  
                             style={{ fontSize: "clamp(2.5rem, 4.5vw, 3.5rem)" }}>How Our Advanced
                                 <br/>
-                                AI Chatbot Works</h1>
+                                AI Frontdesk Works</h1>
                             {/* <!-- heading title con --> */}
                         </div>
                         <div class='list-unstyled p-0 fixed-box fixed-section'>
                         <Swiper
-                              direction="vertical"
-                              slidesPerView={1}
-                              mousewheel={{
-                                forceToAxis: false,
-                                releaseOnEdges: true,
-                                sensitivity:0.3
-                              }}
-                              freeMode={true}
-                              resistance={true}
-                              resistanceRatio={2}
-                              watchOverflow={true}
-                              modules={[Mousewheel]}
-                              className="work-swiper"
+                            direction="vertical"
+                            slidesPerView={1}
+                            mousewheel={{
+                              forceToAxis: true,
+                              releaseOnEdges: true,
+                              sensitivity: 1.0,
+                            }}
+                            freeMode={{
+                              enabled: true,
+                              momentum: true,
+                              momentumRatio: 1.2,
+                            }}
+                            resistance={true}
+                            resistanceRatio={0.85}
+                            speed={800}
+                            watchOverflow={true}
+                            modules={[Mousewheel]}
+                            className="work-swiper"
                             >
                           <SwiperSlide><div class='position-relative d-flex align-items-center '>
                             <span className="step-number">01</span>
                                 <div className="work-content-inner-con">
-                                    <h5 class='bit-to-right'>Build with Ease</h5>
-                                    <p class="mb-0 font-lg bit-to-right">Build your chatbot using our intuitive drag-and-drop <br/>
-                                    interface — no coding needed.</p>
+                                    <h5 class='bit-to-right'>Customer Speaks</h5>
+                                    <p class="mb-0 font-lg bit-to-right">Customers call and interact naturally with the AI assistant.</p>
                                     {/* <!-- work content inner con --> */}
                                 </div>
                             </div></SwiperSlide>
@@ -1084,18 +1091,17 @@ font-weight: 600;
                             
                             <span className="step-number">02</span>
                                 <div class="work-content-inner-con pricing-title">
-                                    <h5 class='bit-to-right'>Train with Your Content</h5>
-                                    <p class="mb-0 font-lg bit-to-right">Train your AI using documents, FAQs, or URLs to create <br/>
-                                    accurate, personalized responses.</p>
+                                    <h5 class='bit-to-right'>AI Understands Intent
+</h5>
+                                    <p class="mb-0 font-lg bit-to-right">The system listens, interprets, and responds intelligently in real time.</p>
                                     {/* <!-- work content inner con --> */}
                                     </div>
                             </div></SwiperSlide>
                           <SwiperSlide><div class='position-relative d-flex align-items-center '>
                              <span className="step-number ">03</span>
                                 <div class="work-content-inner-con ">
-                                    <h5 class='bit-to-right'>Deploy Anywhere</h5>
-                                    <p class="mb-0 font-lg bit-to-right" >Launch on your website, mobile app, or messaging <br/>
-                                    platforms in just a few clicks.</p>
+                                    <h5 class='bit-to-right'>Actions Executed</h5>
+                                    <p class="mb-0 font-lg bit-to-right" >It answers questions, handles requests, automates tasks, and records information..</p>
                                     {/* <!-- work content inner con --> */}
                                     </div>
                             </div></SwiperSlide>
@@ -1104,9 +1110,9 @@ font-weight: 600;
                             
                             <span className="step-number">04</span>
                                 <div class="work-content-inner-con pricing-title">
-                                    <h5 class='bit-to-right'>Train with Your Content</h5>
-                                    <p class="mb-0 font-lg bit-to-right">Train your AI using documents, FAQs, or URLs to create <br/>
-                                    accurate, personalized responses.</p>
+                                    <h5 class='bit-to-right'>Team Gets Instant Updates
+</h5>
+                                    <p class="mb-0 font-lg bit-to-right">Your staff receives real-time updates — no manual effort required.</p>
                                     {/* <!-- work content inner con --> */}
                                     </div>
                             </div></SwiperSlide>
@@ -1126,6 +1132,304 @@ font-weight: 600;
         </div>
         {/* <!-- how it works con --> */}
     </section>
+{/* where to use */}
+<section id="where-to-use" className="py-5 position-relative" >
+  <div className="container">
+    <div className="text-center mb-5 wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.2s">
+      <h4 className="text-blue mb-3 fw-bold">Where It Can Be Used</h4>
+      <h2 className="mb-3" style={{ fontSize: "clamp(2rem, 4vw, 2.8rem)", fontWeight: 600 }}>
+        Versatile AI Solutions<br/>Across Industries
+      </h2>
+      <p className="text-muted" style={{ fontSize: '18px', maxWidth: '700px', margin: '0 auto' }}>
+        Transform your customer experience with intelligent automation tailored for your industry
+      </p>
+    </div>
+
+    {/* Healthcare Industry */}
+    <div className="mb-5">
+      <div className="d-flex align-items-center mb-4 wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.3s">
+        <div className="rounded-3 p-3" style={{ background: 'linear-gradient(135deg, #2777fc 0%, #1a5fd9 100%)' }}>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22 12H18L15 21L9 3L6 12H2" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>
+        <h3 className="mb-0 fw-bold bit-to-right">Healthcare & Hospitals</h3>
+      </div>
+      <div className="row g-4 mb-5 center-all ">
+        <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.4s">
+          <div className="h-100 p-4 rounded-4 bg-white shadow-sm hover-lift feature-box-2" style={{ border: '2px solid #e8f0ff', background: 'linear-gradient(135deg, #f2f7ff)', transition: 'all 0.4s ease', borderLeft: '4px solid #2777fc' }}>
+            <h5 className="mb-3 fw-semibold text-blue">Smart Triage & Direction</h5>
+            <p className="text-muted mb-3" style={{ lineHeight: '1.7', fontSize: '15px' }}>
+              Patients simply state their problem and get directed to the correct floor, ward, or counter instantly.
+            </p>
+            <div className="d-flex align-items-start mb-2">
+              <span className="text-blue me-2">•</span>
+              <small className="text-muted">Real-time doctor availability tracking</small>
+            </div>
+            <div className="d-flex align-items-start">
+              <span className="text-blue me-2">•</span>
+              <small className="text-muted">Department routing based on symptoms</small>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.5s">
+          <div className="h-100 p-4 rounded-4  shadow-sm  feature-box-2" style={{ border: '2px solid #e8f0ff', background: 'linear-gradient(135deg, #f2f7ff)', transition: 'all 0.4s ease', borderLeft: '4px solid #2777fc' }}>
+            <h5 className="mb-3 fw-semibold text-blue">Touchless Check-In Kiosk</h5>
+            <p className="text-muted mb-3" style={{ lineHeight: '1.7', fontSize: '15px' }}>
+              Verify appointments, print tokens, and assign waiting rooms without long queues.
+            </p>
+            <div className="d-flex align-items-start mb-2">
+              <span className="text-blue me-2">•</span>
+              <small className="text-muted">QR code scanning for instant check-in</small>
+            </div>
+            <div className="d-flex align-items-start">
+              <span className="text-blue me-2">•</span>
+              <small className="text-muted">Automated token generation & queue updates</small>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.6s">
+          <div className="h-100 p-4 rounded-4 bg-white shadow-sm hover-lift feature-box-2" style={{ border: '2px solid #e8f0ff', background: 'linear-gradient(135deg, #f2f7ff)', transition: 'all 0.4s ease', borderLeft: '4px solid #2777fc' }}>
+            <h5 className="mb-3 fw-semibold text-blue">24/7 FAQ Handler</h5>
+            <p className="text-muted mb-3" style={{ lineHeight: '1.7', fontSize: '15px' }}>
+              Answer repetitive questions about visiting hours, cafeteria, pharmacy locations, and billing.
+            </p>
+            <div className="d-flex align-items-start mb-2">
+              <span className="text-blue me-2">•</span>
+              <small className="text-muted">Multilingual support (Hindi, Bengali, English)</small>
+            </div>
+            <div className="d-flex align-items-start">
+              <span className="text-blue me-2">•</span>
+              <small className="text-muted">Reduces receptionist workload by 70%</small>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.7s">
+          <div className="h-100 p-4 rounded-4 bg-white shadow-sm hover-lift feature-box-2" style={{ border: '2px solid #e8f0ff', background: 'linear-gradient(135deg, #f2f7ff)', transition: 'all 0.4s ease', borderLeft: '4px solid #2777fc' }}>
+            <h5 className="mb-3 fw-semibold text-blue">Patient Education & Comfort</h5>
+            <p className="text-muted mb-3" style={{ lineHeight: '1.7', fontSize: '15px' }}>
+              Explain medical procedures like MRI, CT scans in simple terms to reduce patient anxiety.
+            </p>
+            <div className="d-flex align-items-start mb-2">
+              <span className="text-blue me-2">•</span>
+              <small className="text-muted">Queue management with wait time estimates</small>
+            </div>
+            <div className="d-flex align-items-start">
+              <span className="text-blue me-2">•</span>
+              <small className="text-muted">Pre-procedure preparation instructions</small>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.8s">
+          <div className="h-100 p-4 rounded-4 bg-white shadow-sm hover-lift feature-box-2" style={{ border: '2px solid #e8f0ff', background: 'linear-gradient(135deg, #f2f7ff)', transition: 'all 0.4s ease', borderLeft: '4px solid #2777fc' }}>
+            <h5 className="mb-3 fw-semibold text-blue">Emergency & Safety Assist</h5>
+            <p className="text-muted mb-3" style={{ lineHeight: '1.7', fontSize: '15px' }}>
+              Detect emergency keywords and trigger immediate alerts to medical staff.
+            </p>
+            <div className="d-flex align-items-start mb-2">
+              <span className="text-blue me-2">•</span>
+              <small className="text-muted">Visual alarm system with flashing lights</small>
+            </div>
+            <div className="d-flex align-items-start">
+              <span className="text-blue me-2">•</span>
+              <small className="text-muted">Instant ping to nearest nurse station</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* And More Button */}
+    <div className="text-center my-5 wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.9s">
+      <button 
+        onClick={() => setShowAllIndustries(!showAllIndustries)}
+        className="btn btn-lg px-5 py-3 fw-bold position-relative overflow-hidden"
+        style={{ 
+          background: showAllIndustries ? 'linear-gradient(135deg, #1a5fd9 0%, #2777fc 100%)' : 'linear-gradient(135deg, #2777fc 0%, #1a5fd9 100%)',
+          color: 'white',
+          border: 'none',
+          borderRadius: '12px',
+          transition: 'all 0.4s ease',
+          boxShadow: '0 4px 15px rgba(39, 119, 252, 0.3)'
+        }}
+      >
+        <span className="d-flex align-items-center gap-2">
+          {showAllIndustries ? 'Show Less' : 'Explore More Industries'}
+          <svg 
+            width="20" 
+            height="20" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            xmlns="http://www.w3.org/2000/svg"
+            style={{ 
+              transform: showAllIndustries ? 'rotate(180deg)' : 'rotate(0deg)',
+              transition: 'transform 0.4s ease'
+            }}
+          >
+            <path d="M19 9L12 16L5 9" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </span>
+      </button>
+    </div>
+
+    {/* Other Industries - Collapsible */}
+    {showAllIndustries && (
+    <div className="wow fadeIn" data-wow-duration="1s">
+    <div className="row g-4">
+      {/* Corporate Offices */}
+      <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.4s">
+        <div className="h-100 p-4 rounded-4 position-relative overflow-hidden feature-box-2 bg-for-cards" >
+          <div className="position-absolute" style={{ top: '-20px', right: '-20px', opacity: '0.1' }}>
+            <svg width="120" height="120" viewBox="0 0 24 24" fill="#333">
+              {/* <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"/> */}
+            </svg>
+          </div>
+          <h4 className="mb-3 fw-bold">Corporate Offices & Reception</h4>
+          <p className="mb-3" style={{ fontSize: '15px', opacity: '0.95' }}>
+Greets visitors, verifies appointments, provides basic directions, and informs staff of arrivals.          </p>
+          <div className="d-flex align-items-start mb-2">
+            <span className="me-2" style={{ opacity: '0.8' }}>✓</span>
+            <small style={{ opacity: '0.9' }}>Touchless visitor check-in</small>
+          </div>
+          <div className="d-flex align-items-start">
+            <span className="me-2" style={{ opacity: '0.8' }}>✓</span>
+            <small style={{ opacity: '0.9' }}>Multilingual assistance for guests</small>
+          </div>
+        </div>
+      </div>
+
+      {/* Banking & Finance */}
+      <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.5s">
+        <div className="h-100 p-4 rounded-4 position-relative overflow-hidden feature-box-2 bg-for-cards">
+          <div className="position-absolute" style={{ top: '-20px', right: '-20px', opacity: '0.1' }}>
+            <svg width="120" height="120" viewBox="0 0 24 24" fill="#333">
+              {/* <rect x="2" y="5" width="20" height="14" rx="2"/>
+              <path d="M2 10H22"/> */}
+            </svg>
+          </div>
+          <h4 className="mb-3 fw-bold">Banks & Financial Services</h4>
+          <p className="mb-3" style={{ fontSize: '15px', opacity: '0.95' }}>
+            Provides quick answers about banking services and directs customers to the appropriate queue or counter.
+          </p>
+          <div className="d-flex align-items-start mb-2">
+            <span className="me-2" style={{ opacity: '0.8' }}>✓</span>
+            <small style={{ opacity: '0.9' }}>Automated token generation</small>
+          </div>
+          <div className="d-flex align-items-start">
+            <span className="me-2" style={{ opacity: '0.8' }}>✓</span>
+            <small style={{ opacity: '0.9' }}>Real-time service availability info</small>
+          </div>
+        </div>
+      </div>
+
+      {/* Retail & Customer Service */}
+      <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.6s">
+        <div className="h-100 p-4 rounded-4 position-relative overflow-hidden feature-box-2 bg-for-cards" >
+          <div className="position-absolute" style={{ top: '-20px', right: '-20px', opacity: '0.1' }}>
+            <svg width="120" height="120" viewBox="0 0 24 24" fill="#333">
+              {/* <circle cx="9" cy="21" r="1"/>
+              <circle cx="20" cy="21" r="1"/> */}
+              {/* <path d="M1 1H5L7.68 14.39C7.77144 14.8504 8.02191 15.264 8.38755 15.5583C8.75318 15.8526 9.2107 16.009 9.68 16H19.4C19.8693 16.009 20.3268 15.8526 20.6925 15.5583C21.0581 15.264 21.3086 14.8504 21.4 14.39L23 6H6"/> */}
+            </svg>
+          </div>
+          <h4 className="mb-3 fw-bold">Retail & Customer Care</h4>
+          <p className="mb-3" style={{ fontSize: '15px', opacity: '0.95' }}>
+            Helps customers find information quickly such as product details, service desk location, or billing help.
+          </p>
+          <div className="d-flex align-items-start mb-2">
+            <span className="me-2" style={{ opacity: '0.8' }}>✓</span>
+            <small style={{ opacity: '0.9' }}>Return & exchange policy FAQs</small>
+          </div>
+          <div className="d-flex align-items-start">
+            <span className="me-2" style={{ opacity: '0.8' }}>✓</span>
+            <small style={{ opacity: '0.9' }}>Store service desk routing</small>
+          </div>
+        </div>
+      </div>
+
+      {/* Hotels & Hospitality */}
+      <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.7s">
+        <div className="h-100 p-4 rounded-4 position-relative overflow-hidden feature-box-2 bg-for-cards" >
+          <div className="position-absolute" style={{ top: '-20px', right: '-20px', opacity: '0.1' }}>
+            <svg width="120" height="120" viewBox="0 0 24 24" fill="#333">
+              {/* <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"/>
+              <path d="M9 22V12H15V22"/> */}
+            </svg>
+          </div>
+          <h4 className="mb-3 fw-bold">Hotels & Hospitality</h4>
+          <p className="mb-3" style={{ fontSize: '15px', opacity: '0.95' }}>
+            Acts as a friendly digital concierge to help with check-in prompts, amenity queries, and general information.
+          </p>
+          <div className="d-flex align-items-start mb-2">
+            <span className="me-2" style={{ opacity: '0.8' }}>✓</span>
+            <small style={{ opacity: '0.9', fontcolor:'#2e2d2d9a' }}>Multilingual tourist assistance</small>
+          </div>
+          <div className="d-flex align-items-start">
+            <span className="me-2" style={{ opacity: '0.8' }}>✓</span>
+            <small style={{ opacity: '0.9' }}>Restaurant & service desk info</small>
+          </div>
+        </div>
+      </div>
+
+      {/* Government Offices */}
+      <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.8s">
+        <div className="h-100 p-4 rounded-4 position-relative overflow-hidden feature-box-2 bg-for-cards" >
+          <div className="position-absolute" style={{ top: '-20px', right: '-20px', opacity: '0.1' }}>
+            <svg width="120" height="120" viewBox="0 0 24 24" fill="#333">
+              {/* <path d="M3 21H21M3 7L12 3L21 7M4 21V7M20 21V7M8 9V13M12 9V13M16 9V13"/> */}
+            </svg>
+          </div>
+          <h4 className="mb-3 fw-bold">Government Offices</h4>
+          <p className="mb-3" style={{ fontSize: '15px', opacity: '0.95' }}>
+            Guides visitors to the correct department, explains document requirements, and supports basic inquiry handling.
+          </p>
+          <div className="d-flex align-items-start mb-2">
+            <span className="me-2" style={{ opacity: '0.8' }}>✓</span>
+            <small style={{ opacity: '0.9' }}>Multilingual citizen support</small>
+          </div>
+          <div className="d-flex align-items-start">
+            <span className="me-2" style={{ opacity: '0.8' }}>✓</span>
+            <small style={{ opacity: '0.9' }}>Ticketing and appointment confirmation</small>
+          </div>
+        </div>
+      </div>
+
+      {/* Educational Institutions */}
+      <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.9s">
+        <div className="h-100 p-4 rounded-4 position-relative overflow-hidden feature-box-2 bg-for-cards" >
+          <div className="position-absolute" style={{ top: '-20px', right: '-20px', opacity: '0.1' }}>
+            <svg width="120" height="120" viewBox="0 0 24 24" fill="#333">
+              {/* <path d="M12 14L12 14.01M21 12C21 13.1819 20.7672 14.3522 20.3149 15.4442C19.8626 16.5361 19.1997 17.5282 18.364 18.364C17.5282 19.1997 16.5361 19.8626 15.4442 20.3149C14.3522 20.7672 13.1819 21 12 21C10.8181 21 9.64778 20.7672 8.55585 20.3149C7.46392 19.8626 6.47177 19.1997 5.63604 18.364C4.80031 17.5282 4.13738 16.5361 3.68508 15.4442C3.23279 14.3522 3 13.1819 3 12C3 9.61305 3.94821 7.32387 5.63604 5.63604C7.32387 3.94821 9.61305 3 12 3C14.3869 3 16.6761 3.94821 18.364 5.63604C20.0518 7.32387 21 9.61305 21 12Z"/> */}
+              {/* <path d="M12 10C12 8.89543 11.1046 8 10 8C8.89543 8 8 8.89543 8 10"/> */}
+            </svg>
+          </div>
+          <h4 className="mb-3 fw-bold">Educational Institutions</h4>
+          <p className="mb-3" style={{ fontSize: '15px', opacity: '0.85' }}>
+            Assists students and visitors with campus inquiries, administrative office directions, and event information.
+          </p>
+          <div className="d-flex align-items-start mb-2">
+            <span className="me-2" style={{ opacity: '0.7' }}>✓</span>
+            <small style={{ opacity: '0.8' }}>Admission and course FAQs</small>
+          </div>
+          <div className="d-flex align-items-start">
+            <span className="me-2" style={{ opacity: '0.7' }}>✓</span>
+            <small style={{ opacity: '0.8' }}>Attendance hours and department guidance</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Call to Action */}
+    
+    </div>
+    )}
+  </div>
+</section>
+
     {/* <!-- WHY CHOOSE US SECTION --> */}
     <section class="float-left w-100 position-relative why-choose-us-con padding-top padding-bottom main-box" id='why choose us'>
         <div class="container wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.2s">
@@ -1269,6 +1573,8 @@ font-weight: 600;
                                         class="text-decoration-none text-white">Features</a></li>
                                 <li class="bottom-gap"><i class="fa-solid fa-arrow-right "></i><a href="#Services"
                                         class="text-decoration-none text-white">How it works</a></li>
+<li class="bottom-gap"><i class="fa-solid fa-arrow-right "></i><a href="#where-to-use"
+                                        class="text-decoration-none text-white">Where to use</a></li>
                                 <li class="bottom-gap"><i class="fa-solid fa-arrow-right "></i><a href="#why choose us"
                                         class="text-decoration-none text-white">Why choose us</a></li>
                                 
