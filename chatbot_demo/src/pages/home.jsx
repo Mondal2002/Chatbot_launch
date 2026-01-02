@@ -9,6 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel } from "swiper/modules";
 import "swiper/css";
 import '../styles/animations.css';
+import { Collapse } from "bootstrap";
 
 
 
@@ -24,6 +25,17 @@ const Home = () => {
 
 const[modelvalue,setModelvalue]=useState(false);
 const[showAllIndustries,setShowAllIndustries]=useState(false);
+
+const closeNavbar = () => {
+  const navbar = document.getElementById("mainNavbar");
+  if (navbar && navbar.classList.contains("show")) {
+    const bsCollapse = Collapse.getInstance(navbar) 
+      || new Collapse(navbar, { toggle: false });
+
+    bsCollapse.hide();
+  }
+};
+
 useEffect(()=>{
     const timeout = setTimeout(() => {
       setModelvalue(true);
@@ -32,6 +44,49 @@ useEffect(()=>{
 
     return () => clearTimeout(timeout);
   }, []);
+
+
+useEffect(() => {
+  const navbar = document.getElementById("mainNavbar");
+  const toggler = document.querySelector(".navbar-toggler");
+
+  if (!navbar) return;
+
+  const bsCollapse = new Collapse(navbar, { toggle: false });
+
+  const handleOutsideClick = (e) => {
+    if (
+      navbar.classList.contains("show") &&
+      !navbar.contains(e.target) &&
+      !toggler.contains(e.target)
+    ) {
+      bsCollapse.hide();
+    }
+  };
+
+  const handleNavLinkClick = () => {
+    if (navbar.classList.contains("show")) {
+      bsCollapse.hide();
+    }
+  };
+
+  document.addEventListener("mousedown", handleOutsideClick);
+
+  document.querySelectorAll(".navbar-nav .nav-link")
+    .forEach(link => {
+      link.addEventListener("click", handleNavLinkClick);
+    });
+
+  return () => {
+    document.removeEventListener("mousedown", handleOutsideClick);
+
+    document.querySelectorAll(".navbar-nav .nav-link")
+      .forEach(link => {
+        link.removeEventListener("click", handleNavLinkClick);
+      });
+  };
+}, []);
+
 
   return (
     <div>
@@ -656,6 +711,29 @@ p {
 }
 
 @media (min-width: 577px) and (max-width: 991px) {
+.navbar-collapse {
+    -ms-flex-preferred-size: 90%;
+    flex-basis: 90%;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.navbar-collapse.collapse,
+.navbar-collapse.collapsing {
+    width: 90%;
+    max-width: 420px;           /* prevents it from getting too wide */
+    position: fixed;
+    top: 58px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px;
+    z-index: 999;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 100px rgb(0 0 0 / 15%);
+    padding: 10px;
+    align-items: center;
+}
 
   h1 {
     font-size: 2.4rem !important;
@@ -871,17 +949,17 @@ font-weight: 600;
             </li> */}
 
             <li className="nav-item">
-              <a href="#Features" class="custom-link">Features</a>
+              <a href="#Features" class="custom-link" onClick={closeNavbar}>Features</a>
             </li>
 
             <li className="nav-item">
-              <a href="#Services" class="custom-link">How it Works</a>
+              <a href="#Services" class="custom-link" onClick={closeNavbar}>How it Works</a>
             </li>
             <li className="nav-item">
-              <a href="#where-to-use" class="custom-link">Where to use</a>
+              <a href="#where-to-use" class="custom-link" onClick={closeNavbar}>Where to use</a>
             </li>
             <li>
-              <a href="#why choose us" class="custom-link">Why choose us</a>
+              <a href="#why choose us" class="custom-link" onClick={closeNavbar}>Why choose us</a>
             </li>
 
             <li className="nav-item">
@@ -1040,7 +1118,15 @@ font-weight: 600;
             <div class="row all_row">
                 <div class="col-lg-7 col-md-12 wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.4s">
                     <div class="work-img-con position-relative">
-                        <figure><img src="assets/images/work-img.png" alt="image" class="img-fluid position-relative top-space-img bottom-space"/></figure>
+                        <div class="video-container top-space-img">
+                            <iframe width="560" height="315"
+                                src="https://www.youtube.com/embed/JIe8GGITRaE"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
                         {/* <figure><img src="assets/images/robot.png" alt="robot"
                                 class="img-fluid position-absolute robot-img animated-robot"/>
                         </figure> */}
@@ -1285,7 +1371,7 @@ font-weight: 600;
         <div className="h-100 p-4 rounded-4 position-relative overflow-hidden feature-box-2 bg-for-cards" >
           <div className="position-absolute" style={{ top: '-20px', right: '-20px', opacity: '0.1' }}>
             <svg width="120" height="120" viewBox="0 0 24 24" fill="#333">
-              {/* <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"/> */}
+              {/* <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z"/> */}+
             </svg>
           </div>
           <h4 className="mb-3 fw-bold">Corporate Offices & Reception</h4>
@@ -1297,7 +1383,7 @@ Greets visitors, verifies appointments, provides basic directions, and informs s
           </div>
           <div className="d-flex align-items-start">
             <span className="me-2" style={{ opacity: '0.8' }}>✓</span>
-            <small style={{ opacity: '0.9' }}>Multilingual assistance for guests</small>
+            <small style={{ opacity: '0.9' }}>Multilingual assistance for guests (Hindi,English,Bengali).</small>
           </div>
         </div>
       </div>
@@ -1366,7 +1452,7 @@ Greets visitors, verifies appointments, provides basic directions, and informs s
           </p>
           <div className="d-flex align-items-start mb-2">
             <span className="me-2" style={{ opacity: '0.8' }}>✓</span>
-            <small style={{ opacity: '0.9', fontcolor:'#2e2d2d9a' }}>Multilingual tourist assistance</small>
+            <small style={{ opacity: '0.9', fontcolor:'#2e2d2d9a' }}>Multilingual tourist assistance (Hindi,English,Bengali).</small>
           </div>
           <div className="d-flex align-items-start">
             <span className="me-2" style={{ opacity: '0.8' }}>✓</span>
