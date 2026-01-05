@@ -22,6 +22,8 @@ const Model = ({ onClose }) => {
     message,
   };
 
+
+  
   try {
     await axios.post("https://chatbot-launch.onrender.com/mail", data, {
       withCredentials: true,

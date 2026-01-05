@@ -75,3 +75,5 @@ app.get('/',(req,res)=>{
 app.listen(5555, () => {
   console.log(`Server running on port 5555`);
 });
+
+export default app;
