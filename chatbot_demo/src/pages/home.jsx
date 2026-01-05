@@ -718,6 +718,28 @@ p {
     padding: 0;
 }
 
+  #back-to-top-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #2777fc;
+    border: none;
+    border-radius: 14px;
+
+    cursor: pointer;
+    z-index: 9999;
+
+    animation: spineer 2s infinite;
+}
+
 }
 
 @media (min-width: 577px) and (max-width: 991px) {
@@ -774,6 +796,27 @@ p {
     height: 48px;
     font-size: 16px;
   }
+  #back-to-top-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #2777fc;
+    border: none;
+    border-radius: 14px;
+
+    cursor: pointer;
+    z-index: 9999;
+
+    animation: spineer 2s infinite;
+}
 
 }
 
@@ -862,7 +905,7 @@ font-weight: 600;
 }
 
 
-#back-to-top-btn {
+.back-to-top-btn {
     position: fixed;
     bottom: 60px;
     right: 60px;
@@ -892,7 +935,7 @@ font-weight: 600;
 }
 
 /* Hover effect like modern UI */
-#back-to-top-btn:hover {
+.back-to-top-btn:hover {
     transform: translateY(-6px);
     transition: transform 0.3s ease;
 }
@@ -907,7 +950,7 @@ font-weight: 600;
       </div>
       <div>
             {/* <!-- Back to top button --> */}
-    <a id="back-to-top-btn" aria-label="Back to top" href='#home'>
+    <a id="back-to-top-btn" aria-label="Back to top" href='#home' class="back-to-top-btn">
   <svg
     width="28"
     height="28"
