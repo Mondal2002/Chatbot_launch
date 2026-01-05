@@ -10,7 +10,7 @@ dotenv.config();
 
 app.use(
   cors({
-    origin: ["https://chatbot-launch.vercel.app/"],
+    origin: ["https://chatbot-launch.vercel.app/","http://localhost:3000"],
     credentials: true,
   })
 );
@@ -71,4 +71,7 @@ app.post('/mail',(req,res)=>{
 app.get('/',(req,res)=>{
     res.send('welcome to backend server');
 })
-export default app;
+
+app.listen(5555, () => {
+  console.log(`Server running on port ${PORT}`);
+});
