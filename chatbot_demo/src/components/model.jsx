@@ -23,7 +23,7 @@ const Model = ({ onClose }) => {
   };
 
   try {
-    await axios.post("https://chatbot-launch-mq1r.vercel.app/mail", data, {
+    await axios.post("https://chatbot-launch-mq1r-r2yuesxyf-subham-mondals-projects-4d6994ac.vercel.app/mail", data, {
       withCredentials: true,
     });
     onClose();
