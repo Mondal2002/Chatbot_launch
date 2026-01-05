@@ -10,7 +10,10 @@ import { Mousewheel } from "swiper/modules";
 import "swiper/css";
 import '../styles/animations.css';
 import { Collapse } from "bootstrap";
-
+import ChatBot from 'react-chatbotify';
+import settings from "../chatbot_style/settings.json";
+import styles from "../chatbot_style/styles.json";
+import '../chatbot_style/styles.css';
 
 
 
@@ -86,6 +89,13 @@ useEffect(() => {
       });
   };
 }, []);
+const [count, setCount] = useState(0)
+
+  const flow = {
+    "start": {
+      "message": "Hello world!"
+    }
+  }
 
 
   return (
@@ -980,12 +990,15 @@ font-weight: 600;
                 <div class="col-lg-7 col-md-7">
                     <div class="banner-content-con">
                         <ul class="list-unstyled p-0 ">
-                            <li class="position-relative d-inline-block me-4  "><i class="fa-solid fa-circle-check "></i>Free
+                            {/* <li class="position-relative d-inline-block me-4  "><i class="fa-solid fa-circle-check "></i>Free
                                 14-day
-                                trial</li>
-                            <li class="position-relative d-inline-block  "><i class="fa-solid fa-circle-check"></i>No credit card required</li>
+                                trial</li> */}
+                            {/* <li class="position-relative d-inline-block  "><i class="fa-solid fa-circle-check"></i>No credit card required</li> */}
+                            {/* This is chatbot part */}
+                            {/* <li><ChatBot       settings={settings}
+      styles={styles} class='.chatbot_hight' flow={flow}/></li> */}
                         </ul>
-                        <h1>Transform Business Calls with Our Intelligent AI Frontdesk</h1>
+                        <h1>Transform Business Experience with Our Intelligent AI Frontdesk</h1>
                         <p >An Intelligent AI Frontdesk That Answers Calls,<br /> Books Appointments, and Engages Customers Automatically</p>
                         <a class="text-decoration-none primary_btn d-inline-block " onClick={()=>setModelvalue(true)}>Contact Us</a>
                         {/* <a href="contact.html" class="text-decoration-none secondary_btn d-inline-block">Live Demo</a> */}
@@ -1118,7 +1131,10 @@ font-weight: 600;
             <div class="row all_row">
                 <div class="col-lg-7 col-md-12 wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.4s">
                     <div class="work-img-con position-relative">
-                        <div class="video-container top-space-img">
+                  <figure><img src="assets/images/How_it_works.jpeg" alt="image" class="img-fluid top-space-img"></img>
+                  </figure>
+                      {/* When Done Change the youtube link here */}
+                        {/* <div class="video-container top-space-img">
                             <iframe width="560" height="315"
                                 src="https://www.youtube.com/embed/JIe8GGITRaE"
                                 title="YouTube video player"
@@ -1126,7 +1142,7 @@ font-weight: 600;
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen>
                             </iframe>
-                        </div>
+                        </div> */}
                         {/* <figure><img src="assets/images/robot.png" alt="robot"
                                 class="img-fluid position-absolute robot-img animated-robot"/>
                         </figure> */}
@@ -1673,17 +1689,16 @@ Greets visitors, verifies appointments, provides basic directions, and informs s
                             <ul class="list-unstyled mb-0 bottom-gap">
                                 <li class="text-white bottom-gap">
                                     <i class="fa-solid fa-phone-volume"></i>
-                                    <a href="tel:++61383766284" class="text-decoration-none text-white">+61 3 8376 6284</a>
+                                    <a href="tel:++91 89612 75478" class="text-decoration-none text-white">+91 89612 75478</a>
                                 </li>
                                 <li class="text-white bottom-gap">
                                     <i class="fa-solid fa-envelope"></i>
-                                    <a href="mailto:info@chatnex.com" class="text-decoration-none text-white">info@chatnex.com</a>
+                                    <a href="mailto:sen@ebluesoft.in" class="text-decoration-none text-white">sen@ebluesoft.in</a>
                                 </li>
                                 <li class="text-white bottom-gap">
                                     <i class="fa-solid fa-location-dot"></i>
-                                    <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.332688122342!2d144.96016967662732!3d-37.805675733576976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642cce121b239%3A0xa42b424ded3a529a!2s551%20Swanston%20St%2C%20Carlton%20VIC%203053%2C%20Australia!5e0!3m2!1sen!2s!4v1747807044579!5m2!1sen!2s"
-                                        class="text-decoration-none address mb-0 text-white">551 Swanston Street, Melbourne
-                                        Victoria 3053 Australia
+                                    <a href="https://maps.app.goo.gl/sbVF4p9HWEj6n7jJ6"
+                                        class="text-decoration-none address mb-0 text-white">Shrachi EK Tower, EKT/5/Office-B, Newtown, Kolkata, West Bengal 700161
                                     </a>
                                 </li>
                             </ul>

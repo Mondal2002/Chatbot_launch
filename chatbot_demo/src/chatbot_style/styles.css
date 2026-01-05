@@ -1,0 +1,12 @@
+.rcb-close-chat-icon {
+  height: 18px;
+  width: 18px;
+}
+
+.rcb-chat-header {
+  display: absolute;
+  align-items: center;
+}
+.chatbot_hight{
+  left:50%;
+}
