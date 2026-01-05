@@ -10,7 +10,7 @@ dotenv.config();
 
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["https://chatbot-launch.vercel.app/"],
     credentials: true,
   })
 );
@@ -34,7 +34,7 @@ const sendMail=async(name,phone_No,emailId,message)=>{
 (async () => {
   const info = await transporter.sendMail({
     from: Server_mail_id,
-    to: 'sub0.wheeljack@gmail.com' ,
+    to: Reciever_mail_id ,
     replyTo:emailId,
     subject: `New request for Chatbot from ${emailId}`,
     text: `
@@ -70,6 +70,4 @@ app.post('/mail',(req,res)=>{
 app.get('/',(req,res)=>{
     res.send('welcome to backend server');
 })
-app.listen(5555,()=>{
-    console.log(`Server running on port 5555`);
-})
+export default app;

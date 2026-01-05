@@ -23,7 +23,7 @@ const Model = ({ onClose }) => {
   };
 
   try {
-    await axios.post("http://localhost:5555/mail", data, {
+    await axios.post("https://chatbot-launch-mq1r.vercel.app/mail", data, {
       withCredentials: true,
     });
     onClose();

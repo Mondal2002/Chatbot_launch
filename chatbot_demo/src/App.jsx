@@ -9,7 +9,7 @@ export const App = () => {
     <Routes>
       <Route path='/'element={<Home />}/>
       <Route path='/coverpage'element={<Coverpage/>}/>
-      <Route path='/chatbot' element={<Chatbox/>}></Route>
+      {/* <Route path='/chatbot' element={<Chatbox/>}></Route> */}
     </Routes>
   )
 }
