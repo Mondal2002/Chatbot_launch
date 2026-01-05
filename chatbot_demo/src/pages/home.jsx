@@ -1698,18 +1698,18 @@ Greets visitors, verifies appointments, provides basic directions, and informs s
 
     {/* <!-- FOOTER SECTION --> */}
     <footer class="footer-con main-box margin-right:40px black-background text-center">
-    <section class="footer-con position-relative float-left w-100 main-box bit-to-right black-background">
+    <section class="footer-con position-relative float-left w-100 main-box  black-background">
         <div class="container">
-            <div class="middle_portion">
+            <div class="middle_portion ">
                 <div class="row ">
-                    <div class="col-lg-4 col-md-12 bottom-space">
-                        <div class="logo-content bit-to-right">
-                            <a href="index.html">
+                    <div class="col-lg-4 col-md-12 bottom-space center-all">
+                        <div class="logo-content ">
+                            <a href="home">
                                 <figure class="footer-logo ">
                                     <img src="assets/images/Todung.png" alt="image" class="img-fluid"/>
                                 </figure>
                             </a>
-                            <p class="text-size-16 text-white ">We create intelligent, scalable AI solutions that help
+                            <p class="text-size-16 text-white center-all ">We create intelligent, scalable AI solutions that help
                                 businesses work smarter, move faster, and achieve more..</p>
                             <ul class="list-unstyled mb-0 social-icons">
                                 <li><a href="https://www.facebook.com/" class="text-decoration-none"><i
