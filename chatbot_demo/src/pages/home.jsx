@@ -579,6 +579,12 @@ p {
     align-items: center;      /* vertical center */
     justify-content: center;
   }
+  h2 {
+    font-size: 30px;
+    line-height: 50px;
+    font-weight: 600;
+    color: #000000;
+}
 
   .primary_btn,
   .secondary_btn {
@@ -739,6 +745,9 @@ p {
 
     animation: spineer 2s infinite;
 }
+    .bit-to-right {
+  margin-left: 20px;
+}
 
 }
 
@@ -817,7 +826,9 @@ p {
 
     animation: spineer 2s infinite;
 }
-
+.bit-to-right {
+  margin-left: 20px;
+}
 }
 
   .custom-link{
