@@ -18,6 +18,7 @@ app.use(
 
 const Server_mail_id=process.env.Server_mail_id;
 const Server_pass_key=process.env.Server_pass_key;
+const Reciever_mail_id=process.env.Reciever_mail_id;
 
 const sendMail=async(name,phone_No,emailId,message)=>{
     const transporter = nodemailer.createTransport({
