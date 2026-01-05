@@ -19,6 +19,7 @@ app.use(
 const Server_mail_id=process.env.Server_mail_id;
 const Server_pass_key=process.env.Server_pass_key;
 const Reciever_mail_id=process.env.Reciever_mail_id;
+const PORT=process.env.PORT;
 
 const sendMail=async(name,phone_No,emailId,message)=>{
     const transporter = nodemailer.createTransport({
@@ -72,6 +73,8 @@ app.get('/',(req,res)=>{
     res.send('welcome to backend server');
 })
 
-
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 export default app;
