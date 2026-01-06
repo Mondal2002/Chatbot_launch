@@ -20,8 +20,13 @@ import '../chatbot_style/styles.css';
 
 const Home = () => {
 
-  useEffect(() => {
-  new WOW.WOW().init();
+useEffect(() => {
+  const wow = new WOW.WOW({
+    live: false, // important for React
+  });
+
+  wow.init();
+  wow.sync(); // forces DOM rescan
 }, []);
 
 
