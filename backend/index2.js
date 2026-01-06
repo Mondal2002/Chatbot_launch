@@ -1,7 +1,7 @@
 import express from "express";
+import nodemailer from "nodemailer";
 import dotenv from "dotenv";
 import cors from "cors";
-import { Resend } from "resend";
 
 dotenv.config();
 
@@ -15,41 +15,49 @@ app.use(
   })
 );
 
+const Server_mail_id = process.env.Server_mail_id;
+const Server_pass_key = process.env.Server_pass_key;
+const Reciever_mail_id = process.env.Reciever_mail_id;
 const PORT = process.env.PORT || 5000;
-const RESEND_API_KEY = process.env.RESEND_API_KEY;
 
-if (!RESEND_API_KEY) {
-  console.error("Missing RESEND_API_KEY");
+if (!Server_mail_id || !Server_pass_key || !Reciever_mail_id) {
+  console.error("Missing environment variables");
   process.exit(1);
 }
-
-const resend = new Resend(RESEND_API_KEY);
 
 /* ---------------- MAIL FUNCTION ---------------- */
 
 const sendMail = async (name, phone_No, emailId, message) => {
-  console.log("Attempting to send mail via Resend...");
+  const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
+    auth: {
+      user: Server_mail_id,
+      pass: Server_pass_key,
+    },
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 10000,
+  });
 
-  const { error } = await resend.emails.send({
-    from: "onboarding@resend.dev", // default Resend sender
-    to: ["subhammondal735@gmail.com"],        // receiver email
-    reply_to: emailId,
+  console.log("Attempting to send mail...");
+
+  const info = await transporter.sendMail({
+    from: Server_mail_id,
+    to: Reciever_mail_id,
+    replyTo: emailId,
     subject: `New request for Chatbot from ${emailId}`,
-    html: `
-      <h3>New Chatbot Request</h3>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${emailId}</p>
-      <p><strong>Phone:</strong> ${phone_No}</p>
-      <p><strong>Message:</strong></p>
-      <p>${message}</p>
+    text: `
+Sender: ${name}
+Email Id: ${emailId}
+Phone No: ${phone_No}
+
+${message}
     `,
   });
 
-  if (error) {
-    throw error;
-  }
-
-  console.log("Mail sent successfully via Resend");
+  console.log("Mail sent:", info.response);
 };
 
 /* ---------------- ROUTES ---------------- */
@@ -61,10 +69,10 @@ app.post("/mail", (req, res) => {
     return res.status(400).json({ error: "All fields are required" });
   }
 
-  // Respond immediately
+  // Respond immediately (IMPORTANT)
   res.status(200).json({ message: "Request received" });
 
-  // Send email asynchronously
+  // Send mail asynchronously
   sendMail(name, phone_No, emailId, message)
     .then(() => console.log("Mail process completed"))
     .catch((err) => console.error("Mail failed:", err));
