@@ -25,18 +25,25 @@ if (!Server_mail_id || !Server_pass_key || !Reciever_mail_id) {
   process.exit(1);
 }
 
+/* ---------------- MAIL FUNCTION ---------------- */
+
 const sendMail = async (name, phone_No, emailId, message) => {
   const transporter = nodemailer.createTransport({
-    service: "gmail",
-    secure: true,
-    port: 465,
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
     auth: {
       user: Server_mail_id,
       pass: Server_pass_key,
     },
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 10000,
   });
 
-  return await transporter.sendMail({
+  console.log("Attempting to send mail...");
+
+  const info = await transporter.sendMail({
     from: Server_mail_id,
     to: Reciever_mail_id,
     replyTo: emailId,
@@ -49,23 +56,26 @@ Phone No: ${phone_No}
 ${message}
     `,
   });
+
+  console.log("Mail sent:", info.response);
 };
 
-app.post("/mail", async (req, res) => {
-  try {
-    const { name, phone_No, emailId, message } = req.body;
+/* ---------------- ROUTES ---------------- */
 
-    if (!name || !phone_No || !emailId || !message) {
-      return res.status(400).json({ error: "All fields are required" });
-    }
+app.post("/mail", (req, res) => {
+  const { name, phone_No, emailId, message } = req.body;
 
-    await sendMail(name, phone_No, emailId, message);
-
-    res.status(200).json({ message: "Message sent successfully" });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Mail sending failed" });
+  if (!name || !phone_No || !emailId || !message) {
+    return res.status(400).json({ error: "All fields are required" });
   }
+
+  // Respond immediately (IMPORTANT)
+  res.status(200).json({ message: "Request received" });
+
+  // Send mail asynchronously
+  sendMail(name, phone_No, emailId, message)
+    .then(() => console.log("Mail process completed"))
+    .catch((err) => console.error("Mail failed:", err));
 });
 
 app.get("/", (req, res) => {
