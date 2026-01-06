@@ -33,8 +33,8 @@ const sendMail = async (name, phone_No, emailId, message) => {
     port: 587,
     secure: false,
     auth: {
-      user: Server_mail_id,
-      pass: Server_pass_key,
+      user: "subham21010033@gmail.com",
+      pass: "vwwf cqht cqfz zoac",
     },
     connectionTimeout: 10000,
     greetingTimeout: 10000,
@@ -44,8 +44,8 @@ const sendMail = async (name, phone_No, emailId, message) => {
   console.log("Attempting to send mail...");
 
   const info = await transporter.sendMail({
-    from: Server_mail_id,
-    to: Reciever_mail_id,
+    from: "subham21010033@gmail.com",
+    to: "sub0.wheeljack@gmail.com",
     replyTo: emailId,
     subject: `New request for Chatbot from ${emailId}`,
     text: `
