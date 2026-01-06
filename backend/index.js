@@ -1,80 +1,77 @@
-import express from 'express';
-const app = express();
-import "nodemailer";
-app.use(express.json());
+import express from "express";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
 import cors from "cors";
 
-dotenv.config(); 
+dotenv.config();
+
+const app = express();
+app.use(express.json());
 
 app.use(
   cors({
-    origin: ["https://chatbot-launch.vercel.app/","http://localhost:3000"],
+    origin: true,
     credentials: true,
   })
 );
 
+const Server_mail_id = process.env.Server_mail_id;
+const Server_pass_key = process.env.Server_pass_key;
+const Reciever_mail_id = process.env.Reciever_mail_id;
+const PORT = process.env.PORT || 5000;
 
-const Server_mail_id=process.env.Server_mail_id;
-const Server_pass_key=process.env.Server_pass_key;
-const Reciever_mail_id=process.env.Reciever_mail_id;
-const PORT=process.env.PORT;
+if (!Server_mail_id || !Server_pass_key || !Reciever_mail_id) {
+  console.error("Missing environment variables");
+  process.exit(1);
+}
 
-const sendMail=async(name,phone_No,emailId,message)=>{
-    const transporter = nodemailer.createTransport({
-  service: "gmail",
-  secure: true, // Use true for port 465, false for port 587
-  port:465,
-  auth: {
-            user: Server_mail_id,
-            pass: Server_pass_key
-  },
-});
-
-// Send an email using async/await
-(async () => {
-  const info = await transporter.sendMail({
-    from: Server_mail_id,
-    to: Reciever_mail_id ,
-    replyTo:emailId,
-    subject: `New request for Chatbot from ${emailId}`,
-    text: `
-    Sender: ${name}.
-    Email Id: ${emailId}.
-    Phone No. ${phone_No}.
-    
-    ${message}`, // Plain-text version of the message // HTML version of the message
+const sendMail = async (name, phone_No, emailId, message) => {
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    secure: true,
+    port: 465,
+    auth: {
+      user: Server_mail_id,
+      pass: Server_pass_key,
+    },
   });
 
-  console.log("Message sent:", info);
-})();
-}
-app.post('/mail',(req,res)=>{
-    const{ emailId , message }=req.body;
-    try{
+  return await transporter.sendMail({
+    from: Server_mail_id,
+    to: Reciever_mail_id,
+    replyTo: emailId,
+    subject: `New request for Chatbot from ${emailId}`,
+    text: `
+Sender: ${name}
+Email Id: ${emailId}
+Phone No: ${phone_No}
 
-        const{ name,phone_No,emailId , message }=req.body;
-        if(!name||!phone_No||!emailId||!message){
-            res.send("Something is wrong Cannot Get User Mail Id or password");
-        }
-        sendMail(name,phone_No,emailId, message);
-        return res.status(200).json({
-      message: "Messesge sent  successfully"
-    });
+${message}
+    `,
+  });
+};
 
+app.post("/mail", async (req, res) => {
+  try {
+    const { name, phone_No, emailId, message } = req.body;
 
-    }catch(error){
-        console.log(error);
+    if (!name || !phone_No || !emailId || !message) {
+      return res.status(400).json({ error: "All fields are required" });
     }
+
+    await sendMail(name, phone_No, emailId, message);
+
+    res.status(200).json({ message: "Message sent successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Mail sending failed" });
+  }
 });
 
-app.get('/',(req,res)=>{
-    res.send('welcome to backend server');
-})
+app.get("/", (req, res) => {
+  res.send("Welcome to backend server");
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-
-export default app;
