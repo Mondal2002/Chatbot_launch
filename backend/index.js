@@ -116,7 +116,7 @@ app.get("/", (req, res) => {
 
 
 // })
-app.use("/api", speechRoutes)
+app.use("/api", speechRoute)
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

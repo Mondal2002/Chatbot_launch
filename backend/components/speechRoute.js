@@ -19,7 +19,6 @@ const bufferToStream = (buffer) => {
 
 router.post("/speech-to-text", upload.single("audio"), async (req, res) => {
     try {
-
         console.log("Inside api")
 
         if (!req.file) {
