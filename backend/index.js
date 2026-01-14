@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import { Resend } from "resend";
-import speechRoute from "./components/speechRoute";
+import speechRoutes from "./routes/speechRoutes.js"
 
 dotenv.config();
 
@@ -116,7 +116,7 @@ app.get("/", (req, res) => {
 
 
 // })
-app.use("/api", speechRoute)
+app.use("/api", speechRoutes)
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
