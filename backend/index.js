@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import { Resend } from "resend";
+import speechRoute from "./components/speechRoute";
 
 dotenv.config();
 
@@ -74,47 +75,48 @@ app.get("/", (req, res) => {
   res.send("Welcome to backend server");
 });
 
-app.post("/chat", (req, res) => {
-    console.log(req.body)
-    const { message } = req.body;
-    console.log("message:", message)
+// app.post("/chat", (req, res) => {
+//     console.log(req.body)
+//     const { message } = req.body;
+//     console.log("message:", message)
 
-    if (!message) {
-        return res.status(400).json({ reply: "Message is empty" })
-    }
+//     if (!message) {
+//         return res.status(400).json({ reply: "Message is empty" })
+//     }
 
-    const text = message.toLowerCase();
+//     const text = message.toLowerCase();
 
-    let reply = "Sorry, I didn't understand that ☹️";
+//     let reply = "Sorry, I didn't understand that ☹️";
 
-    if (text.includes("menu")) {
-        reply = "Here is our menu: Espresso, Cappuccino, Latte";
-    }
+//     if (text.includes("menu")) {
+//         reply = "Here is our menu: Espresso, Cappuccino, Latte";
+//     }
 
-    else if (text.includes("cappuccino")) {
-        reply = "Cappuccino added to your cart!"
-    }
+//     else if (text.includes("cappuccino")) {
+//         reply = "Cappuccino added to your cart!"
+//     }
 
-    else if (text.includes("latte")) {
-        reply = "Latte added to your cart"
-    }
+//     else if (text.includes("latte")) {
+//         reply = "Latte added to your cart"
+//     }
 
-    else if (text.includes("cart")) {
-        reply = "You have 4 cart items"
-    }
+//     else if (text.includes("cart")) {
+//         reply = "You have 4 cart items"
+//     }
 
-    else if (text.includes("tirtha da")) {
-        reply = "Hello....Tirtha da"
-    }
+//     else if (text.includes("tirtha da")) {
+//         reply = "Hello....Tirtha da"
+//     }
 
-    else if (text.includes("hello") || text.includes("hi")) {
-        reply = "Hello, how can I help you?"
-    }
+//     else if (text.includes("hello") || text.includes("hi")) {
+//         reply = "Hello, how can I help you?"
+//     }
 
-    res.json({ reply })
+//     res.json({ reply })
 
 
-})
+// })
+app.use("/api", speechRoutes)
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

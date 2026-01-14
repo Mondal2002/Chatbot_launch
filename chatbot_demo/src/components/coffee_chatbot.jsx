@@ -32,6 +32,37 @@ const ChatAssistant = () => {
 
   /* ---------------- Voice recording ---------------- */
 
+
+  const speakText = (text) => {
+const synth = window.speechSynthesis;
+
+  if (!synth) {
+    console.error("Speech Synthesis not supported");
+    return;
+  }
+
+  synth.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(text);
+
+  utterance.lang = "en-US";
+  utterance.pitch = 1.6;  // Higher pitch = child-like
+  utterance.rate = 1.05;  // Slightly faster
+  utterance.volume = 1;
+
+  // Try to select a lighter voice if available
+  const voices = synth.getVoices();
+  const preferredVoice = voices.find(v =>
+    v.name.toLowerCase().includes("female") ||
+    v.name.toLowerCase().includes("google")
+  );
+
+  if (preferredVoice) {
+    utterance.voice = preferredVoice;
+  }
+
+  synth.speak(utterance);
+};
   const startListening = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -115,6 +146,7 @@ const ChatAssistant = () => {
       });
 
       const data = await res.json();
+      speakText(data.reply);
 
       setMessages((prev) => [
         ...prev,
@@ -124,6 +156,11 @@ const ChatAssistant = () => {
       console.error("Chat error:", err);
     }
   };
+
+
+
+
+
 
   /* ---------------- UI ---------------- */
 
