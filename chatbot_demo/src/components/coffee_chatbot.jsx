@@ -46,7 +46,7 @@ const synth = window.speechSynthesis;
   const utterance = new SpeechSynthesisUtterance(text);
 
   utterance.lang = "en-US";
-  utterance.pitch = 1.4;  // Higher pitch = child-like
+  utterance.pitch = 1.2;  // Higher pitch = child-like
   utterance.rate = 1.05;  // Slightly faster
   utterance.volume = 1;
 
