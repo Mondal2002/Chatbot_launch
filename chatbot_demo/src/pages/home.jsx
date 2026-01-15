@@ -1715,7 +1715,7 @@ Greets visitors, verifies appointments, provides basic directions, and informs s
                 <div class="row ">
                     <div class="col-lg-4 col-md-12 bottom-space center-all">
                         <div class="logo-content ">
-                            <a href="home">
+                            <a href="#home">
                                 <figure class="footer-logo ">
                                     <img src="assets/images/Todung.png" alt="image" class="img-fluid"/>
                                 </figure>
