@@ -1771,9 +1771,6 @@ Greets visitors, verifies appointments, provides basic directions, and informs s
                     </div>
                 </div>
             </div>
-            <div class="copyright-style ">
-                <p class="mb-0">Copyright © 2025 Aivio. All Rights Reserved.</p>
-            </div>
         </div>
     </section>
     </footer>

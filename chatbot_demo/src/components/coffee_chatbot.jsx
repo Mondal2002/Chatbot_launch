@@ -4,7 +4,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import MicIcon from "@mui/icons-material/Mic";
 import GraphicEqIcon from "@mui/icons-material/GraphicEq";
 import "../styles/ChatAssistant.css";
-import SpeechRecognition,{ useSpeechRecognition,} from "react-speech-recognition";
+// import SpeechRecognition,{ useSpeechRecognition,} from "react-speech-recognition";
 const ChatAssistant = () => {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
@@ -83,7 +83,7 @@ const synth = window.speechSynthesis;
 
         setListening(true);
 
-        const res = await fetch("/api/speech-to-text", {
+        const res = await fetch("https://chatbot-launch.onrender.com/api/speech-to-text", {
           method: "POST",
           body: formData,
         });
@@ -110,10 +110,10 @@ const synth = window.speechSynthesis;
 
   /* ---------------- Chat logic ---------------- */
 
-  const detectName = (text) => {
-    const match = text.match(/(?:my name is|i am|i'm)\s+([a-zA-Z]+)/i);
-    return match?.[1] || null;
-  };
+  // const detectName = (text) => {
+  //   const match = text.match(/(?:my name is|i am|i'm)\s+([a-zA-Z]+)/i);
+  //   return match?.[1] || null;
+  // };
 
   const sendMessage = async (voiceText) => {
     const finalMessage = voiceText ?? message;
