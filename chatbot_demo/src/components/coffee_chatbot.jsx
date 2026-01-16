@@ -4,7 +4,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import MicIcon from "@mui/icons-material/Mic";
 import GraphicEqIcon from "@mui/icons-material/GraphicEq";
 import "../styles/ChatAssistant.css";
-// import SpeechRecognition,{ useSpeechRecognition,} from "react-speech-recognition";
+import SpeechRecognition,{ useSpeechRecognition,} from "react-speech-recognition";
 const ChatAssistant = () => {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
@@ -15,6 +15,16 @@ const ChatAssistant = () => {
   const bottomRef = useRef(null);
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
+//   const {
+//   transcript,
+//   listening: speechListening,
+//   resetTranscript,
+//   browserSupportsSpeechRecognition,
+// } = useSpeechRecognition();
+
+// const { finalTranscript } = useSpeechRecognition();
+
+
   
 
   /* ---------------- UI effects ---------------- */
@@ -30,6 +40,8 @@ const ChatAssistant = () => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+
+  
   /* ---------------- Voice recording ---------------- */
 
 
@@ -46,8 +58,8 @@ const synth = window.speechSynthesis;
   const utterance = new SpeechSynthesisUtterance(text);
 
   utterance.lang = "en-US";
-  utterance.pitch = 1.05;  // Higher pitch = child-like
-  utterance.rate = 1.05;  // Slightly faster
+  utterance.pitch = 1.0;  // Higher pitch = child-like
+  utterance.rate = 1.0;  // Slightly faster
   utterance.volume = 1;
 
   // Try to select a lighter voice if available
@@ -108,6 +120,49 @@ const synth = window.speechSynthesis;
     }
   };
 
+// const startListening = () => {
+//   if (!browserSupportsSpeechRecognition) {
+//     console.error("Browser does not support speech recognition");
+//     return;
+//   }
+
+//   resetTranscript();
+//   setListening(true);
+
+//   SpeechRecognition.startListening({
+//     continuous: false,
+//     language: "en-US",
+//   });
+// };
+
+// // Handle when speech stops
+// useEffect(() => {
+//   // Only process if we were listening and now stopped
+//   if (listening && !speechListening) {
+//     setListening(false);
+    
+//     // Small delay to ensure transcript is fully captured
+//     setTimeout(() => {
+//       if (transcript && transcript.trim()) {
+//         sendMessage(transcript);
+//         resetTranscript();
+//       }
+//     }, 300);
+//   }
+// }, [speechListening]);
+
+// // Backup timeout to stop after 5 seconds
+// useEffect(() => {
+//   if (speechListening) {
+//     const timeout = setTimeout(() => {
+//       SpeechRecognition.stopListening();
+//     }, 5000);
+    
+//     return () => clearTimeout(timeout);
+//   }
+// }, [speechListening]);
+
+
   /* ---------------- Chat logic ---------------- */
 
   // const detectName = (text) => {
@@ -131,6 +186,7 @@ const synth = window.speechSynthesis;
     //         sender: "bot",
     //         text: `Hello, ${name.charAt(0).toUpperCase() + name.slice(1)}! How are you?`,
     //       },
+
     //     ]);
     //   }, 600);
     //   return;
