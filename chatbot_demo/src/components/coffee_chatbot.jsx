@@ -60,7 +60,7 @@ const synth = window.speechSynthesis;
   utterance.lang = "en-US";
   utterance.pitch = 1.0;  // Higher pitch = child-like
   utterance.rate = 1.0;  // Slightly faster
-  utterance.volume = 1;
+  utterance.volume = 1.05;
 
   // Try to select a lighter voice if available
   const voices = synth.getVoices();
