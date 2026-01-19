@@ -1065,7 +1065,7 @@ font-weight: 600;
                         </ul>
                         <h1>Transform Business Experience with Our Intelligent AI Frontdesk</h1>
                         <p >An Intelligent AI Frontdesk That Answers Calls,<br /> Books Appointments, and Engages Customers Automatically</p>
-                        <a class="text-decoration-none primary_btn d-inline-block " onClick={()=>setModelvalue(true)}>Contact Us</a>
+                        <button class="text-decoration-none primary_btn d-inline-block " onClick={()=>setModelvalue(true)}>Contact Us</button>
                         {/* <a href="contact.html" class="text-decoration-none secondary_btn d-inline-block">Live Demo</a> */}
                         {/* <!-- banner content con --> */}
                     </div>
@@ -1093,7 +1093,7 @@ font-weight: 600;
             <div class="down_button  d-inline-block  image-wrapper">
                 <a href="#Features" class="scroll text-decoration-none image-wrapper">
                     <figure class="banner-dropdownimage mb-0 d-inline-block image-wrapper ">
-                        <img src="assets/images/banner-dropdownimage.png" class="img-fluid center-all " alt="image"/>
+                        <img src="assets/images/banner-dropdownimage.png" class="img-fluid center-all " alt=""/>
                     </figure>
                 </a>
             </div>
@@ -1121,7 +1121,7 @@ font-weight: 600;
                             class="img-fluid position-absolute feature-icon1  wow fadeInUp " data-wow-duration="2s"
                             data-wow-delay="0.6s"/> */}
 
-                        <figure><img src="assets/images/AI_Call_Handling-removebg-preview.png" alt="feature image"
+                        <figure><img src="assets/images/AI_Call_Handling-removebg-preview.png" alt="feature "
                                 class="img-fluid  wow fadeInDown image-wrapper" data-wow-duration="2s" data-wow-delay="0.7s"/>
                         </figure>
                         </div>
@@ -1148,7 +1148,7 @@ font-weight: 600;
                         <img src="assets/images/feature-img2-icon4.png" alt="feature image"
                             class="img-fluid position-absolute feature-icon5 wow fadeInRight" data-wow-duration="2s"
                             data-wow-delay="1.1s"/> */}
-                        <figure><img src="assets/images/Effortless_Scheduling-removebg-preview.png" alt="feature image"
+                        <figure><img src="assets/images/Effortless_Scheduling-removebg-preview.png" alt="feature "
                                 class="img-fluid wow fadeInDown image-wrapper " data-wow-duration="2s" data-wow-delay="1.2s"/>
                         </figure>
                         </div>
@@ -1169,7 +1169,7 @@ font-weight: 600;
                         {/* <img src="assets/images/elipse-blue.png" alt="feature image"
                             class="img-fluid position-absolute blue-elipse wow fadeInDown" data-wow-duration="2s"
                             data-wow-delay="0.7s"/> */}
-                        <figure><img src="assets/images/Secure___Fully_Customizable-removebg-preview.png" alt="feature image"
+                        <figure><img src="assets/images/Secure___Fully_Customizable-removebg-preview.png" alt="feature "
                                 class="img-fluid feature-img3 wow fadeIn image-wrapper" data-wow-duration="2s" data-wow-delay="0.8s"/>
                         </figure>
                         </div>
@@ -1196,7 +1196,7 @@ font-weight: 600;
             <div class="row all_row">
                 <div class="col-lg-7 col-md-12 wow fadeInLeft" data-wow-duration="2s" data-wow-delay="0.4s">
                     <div class="work-img-con position-relative">
-                  <figure><img src="assets/images/How_it_works.jpeg" alt="image" class="img-fluid top-space-img"></img>
+                  <figure><img src="assets/images/How_it_works.jpeg" alt="" class="img-fluid top-space-img"></img>
                   </figure>
                       {/* When Done Change the youtube link here */}
                         {/* <div class="video-container top-space-img">
@@ -1287,7 +1287,7 @@ font-weight: 600;
                         </Swiper>
                         </div>
                         <div class='center-all'>
-                          <a onClick={()=>setModelvalue(true)} class="text-decoration-none primary_btn d-inline-block pricing-title ">Contact Us</a>
+                          <button onClick={()=>setModelvalue(true)} class="text-decoration-none primary_btn d-inline-block pricing-title ">Contact Us</button>
                         </div>
                         {/* <!-- work content con --> */}
                     </div>
@@ -1717,19 +1717,19 @@ Greets visitors, verifies appointments, provides basic directions, and informs s
                         <div class="logo-content ">
                             <a href="#home">
                                 <figure class="footer-logo ">
-                                    <img src="assets/images/Todung.png" alt="image" class="img-fluid"/>
+                                    <img src="assets/images/Todung.png" alt="" class="img-fluid"/>
                                 </figure>
                             </a>
                             <p class="text-size-16 text-white center-all ">We create intelligent, scalable AI solutions that help
                                 businesses work smarter, move faster, and achieve more..</p>
-                            <ul class="list-unstyled mb-0 social-icons">
+                            {/* <ul class="list-unstyled mb-0 social-icons">
                                 <li><a href="https://www.facebook.com/" class="text-decoration-none"><i
                                             class="fa-brands fa-facebook-f social-networks"></i></a></li>
                                 <li><a href="https://www.instagram.com/" class="text-decoration-none"><i
                                             class="fa-brands fa-instagram social-networks"></i></a></li>
                                 <li><a href="https://www.linkedin.com/" class="text-decoration-none"><i
                                             class="fa-brands fa-linkedin-in social-networks"></i></a></li>
-                            </ul>
+                            </ul> */}
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12 bottom-space">
@@ -1754,11 +1754,11 @@ Greets visitors, verifies appointments, provides basic directions, and informs s
                             <ul class="list-unstyled mb-0 bottom-gap">
                                 <li class="text-white bottom-gap">
                                     <i class="fa-solid fa-phone-volume"></i>
-                                    <a href="tel:++91 89612 75478" class="text-decoration-none text-white">+91 89612 75478</a>
+                                    <p  class="text-decoration-none text-white">+91 89612 75478</p>
                                 </li>
                                 <li class="text-white bottom-gap">
                                     <i class="fa-solid fa-envelope"></i>
-                                    <a href="mailto:sen@ebluesoft.in" class="text-decoration-none text-white">sen@ebluesoft.in</a>
+                                    <p class="text-decoration-none text-white">sen@ebluesoft.in</p>
                                 </li>
                                 <li class="text-white bottom-gap">
                                     <i class="fa-solid fa-location-dot"></i>
