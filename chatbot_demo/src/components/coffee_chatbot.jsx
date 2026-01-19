@@ -4,7 +4,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import MicIcon from "@mui/icons-material/Mic";
 import GraphicEqIcon from "@mui/icons-material/GraphicEq";
 import "../styles/ChatAssistant.css";
-import SpeechRecognition,{ useSpeechRecognition,} from "react-speech-recognition";
+// import SpeechRecognition,{ useSpeechRecognition,} from "react-speech-recognition";
 const ChatAssistant = () => {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
