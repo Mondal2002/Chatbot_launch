@@ -23,11 +23,11 @@ const Home = () => {
 
 useEffect(() => {
   const wow = new WOW.WOW({
-    live: false, // important for React
+    live: false, 
   });
 
   wow.init();
-  wow.sync(); // forces DOM rescan
+  wow.sync(); 
 }, []);
 
 
