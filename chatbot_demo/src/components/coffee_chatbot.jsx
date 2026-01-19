@@ -15,6 +15,8 @@ const ChatAssistant = () => {
   const bottomRef = useRef(null);
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
+  const [voiceMode, setVoiceMode] = useState(false);
+const voiceModeRef = useRef(false);
 //   const {
 //   transcript,
 //   listening: speechListening,
@@ -202,7 +204,6 @@ const synth = window.speechSynthesis;
       });
 
       const data = await res.json();
-      speakText(data.reply);
 
       setMessages((prev) => [
         ...prev,
@@ -212,6 +213,132 @@ const synth = window.speechSynthesis;
       console.error("Chat error:", err);
     }
   };
+/* voice to voice command*/
+const toggleVoiceMode = () => {
+  if (voiceModeRef.current) {
+    stopVoiceConversation();
+  } else {
+    startVoiceConversation();
+  }
+};
+const startVoiceConversation = async () => {
+  voiceModeRef.current = true;
+  setVoiceMode(true);
+
+  await voiceConversationLoop();
+};
+const stopVoiceConversation = () => {
+  voiceModeRef.current = false;
+  setVoiceMode(false);
+
+  if (mediaRecorderRef.current?.state !== "inactive") {
+    mediaRecorderRef.current.stop();
+  }
+
+  window.speechSynthesis.cancel();
+};
+const voiceConversationLoop = async () => {
+  while (voiceModeRef.current) {
+    const userText = await recordAndTranscribe();
+
+    if (!userText || !voiceModeRef.current) break;
+
+    setMessages((prev) => [...prev, { sender: "user", text: userText }]);
+
+    const botReply = await fetchBotReply(userText);
+    if (!voiceModeRef.current) break;
+
+    setMessages((prev) => [...prev, { sender: "bot", text: botReply }]);
+
+    await speakTextAsync(botReply);
+  }
+};
+const recordAndTranscribe = () => {
+  return new Promise(async (resolve) => {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    const recorder = new MediaRecorder(stream);
+
+    mediaRecorderRef.current = recorder;
+    audioChunksRef.current = [];
+
+    recorder.ondataavailable = (e) => {
+      audioChunksRef.current.push(e.data);
+    };
+
+    recorder.onstop = async () => {
+      const audioBlob = new Blob(audioChunksRef.current, { type: "audio/webm" });
+
+      const formData = new FormData();
+      formData.append("audio", audioBlob);
+
+      const res = await fetch(
+        "https://chatbot-launch.onrender.com/api/speech-to-text",
+        { method: "POST", body: formData }
+      );
+
+      const data = await res.json();
+      resolve(data?.text || null);
+    };
+
+    recorder.start();
+
+    setTimeout(() => {
+      recorder.stop();
+    }, 4000);
+  });
+};
+const speakTextAsync = (text) => {
+  const synth = window.speechSynthesis;
+
+  if (!synth) {
+    console.error("Speech Synthesis not supported");
+    return;
+  }
+
+  synth.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(text);
+
+  utterance.lang = "en-US";
+  utterance.pitch = 1.0;  // Higher pitch = child-like
+  utterance.rate = 1.0;  // Slightly faster
+  utterance.volume = 1.05;
+
+  // Try to select a lighter voice if available
+  const voices = synth.getVoices();
+  const preferredVoice = voices.find(v =>
+    v.name.toLowerCase().includes("female") ||
+    v.name.toLowerCase().includes("google")
+  );
+
+  if (preferredVoice) {
+    utterance.voice = preferredVoice;
+  }
+
+  synth.speak(utterance);
+};
+
+const fetchBotReply = async (text) => {
+try{
+    const res = 
+      await fetch("https://chatbot-llm-6ogk.onrender.com/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ question: text }),
+      });
+
+      const data = await res.json();
+
+      return data.reply;
+  }
+  catch(err){
+    console.error("Chat error:", err);
+  }
+}
+
+
 
 
 
@@ -330,9 +457,8 @@ const synth = window.speechSynthesis;
             />
 
             <IconButton
-              onClick={startListening}
-              disabled={listening}
-              sx={{ bgcolor: "#e6d3b1" }}
+              onClick={toggleVoiceMode}
+              sx={{ bgcolor: voiceMode ? "#ff6b6b" : "#e6d3b1" }}
             >
               {listening ? <GraphicEqIcon /> : <MicIcon />}
             </IconButton>
