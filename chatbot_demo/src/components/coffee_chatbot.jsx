@@ -10,7 +10,7 @@ const ChatAssistant = () => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [bubbleText, setBubbleText] = useState(1);
-  const [listening, setListening] = useState(false);
+  const [listening] = useState(false);
 
   const bottomRef = useRef(null);
   const mediaRecorderRef = useRef(null);
