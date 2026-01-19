@@ -47,80 +47,80 @@ const voiceModeRef = useRef(false);
   /* ---------------- Voice recording ---------------- */
 
 
-  const speakText = (text) => {
-const synth = window.speechSynthesis;
+//   const speakText = (text) => {
+// const synth = window.speechSynthesis;
 
-  if (!synth) {
-    console.error("Speech Synthesis not supported");
-    return;
-  }
+//   if (!synth) {
+//     console.error("Speech Synthesis not supported");
+//     return;
+//   }
 
-  synth.cancel();
+//   synth.cancel();
 
-  const utterance = new SpeechSynthesisUtterance(text);
+//   const utterance = new SpeechSynthesisUtterance(text);
 
-  utterance.lang = "en-US";
-  utterance.pitch = 1.0;  // Higher pitch = child-like
-  utterance.rate = 1.0;  // Slightly faster
-  utterance.volume = 1.05;
+//   utterance.lang = "en-US";
+//   utterance.pitch = 1.0;  // Higher pitch = child-like
+//   utterance.rate = 1.0;  // Slightly faster
+//   utterance.volume = 1.05;
 
-  // Try to select a lighter voice if available
-  const voices = synth.getVoices();
-  const preferredVoice = voices.find(v =>
-    v.name.toLowerCase().includes("female") ||
-    v.name.toLowerCase().includes("google")
-  );
+//   // Try to select a lighter voice if available
+//   const voices = synth.getVoices();
+//   const preferredVoice = voices.find(v =>
+//     v.name.toLowerCase().includes("female") ||
+//     v.name.toLowerCase().includes("google")
+//   );
 
-  if (preferredVoice) {
-    utterance.voice = preferredVoice;
-  }
+//   if (preferredVoice) {
+//     utterance.voice = preferredVoice;
+//   }
 
-  synth.speak(utterance);
-};
-  const startListening = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      mediaRecorderRef.current = new MediaRecorder(stream);
-      audioChunksRef.current = [];
+//   synth.speak(utterance);
+// };
+  // const startListening = async () => {
+  //   try {
+  //     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  //     mediaRecorderRef.current = new MediaRecorder(stream);
+  //     audioChunksRef.current = [];
 
-      mediaRecorderRef.current.ondataavailable = (e) => {
-        audioChunksRef.current.push(e.data);
-      };
+  //     mediaRecorderRef.current.ondataavailable = (e) => {
+  //       audioChunksRef.current.push(e.data);
+  //     };
 
-      mediaRecorderRef.current.onstop = async () => {
-        const audioBlob = new Blob(audioChunksRef.current, {
-          type: "audio/webm",
-        });
+  //     mediaRecorderRef.current.onstop = async () => {
+  //       const audioBlob = new Blob(audioChunksRef.current, {
+  //         type: "audio/webm",
+  //       });
 
-        const formData = new FormData();
-        formData.append("audio", audioBlob, "speech.webm");
+  //       const formData = new FormData();
+  //       formData.append("audio", audioBlob, "speech.webm");
 
-        setListening(true);
+  //       setListening(true);
 
-        const res = await fetch("https://chatbot-launch.onrender.com/api/speech-to-text", {
-          method: "POST",
-          body: formData,
-        });
+  //       const res = await fetch("https://chatbot-launch.onrender.com/api/speech-to-text", {
+  //         method: "POST",
+  //         body: formData,
+  //       });
 
-        const data = await res.json();
-        setListening(false);
+  //       const data = await res.json();
+  //       setListening(false);
 
-        if (data?.text) {
-          sendMessage(data.text);
-        }
-      };
+  //       if (data?.text) {
+  //         sendMessage(data.text);
+  //       }
+  //     };
 
-      mediaRecorderRef.current.start();
-      setListening(true);
+  //     mediaRecorderRef.current.start();
+  //     setListening(true);
 
-      setTimeout(() => {
-        mediaRecorderRef.current.stop();
-      }, 5000);
-    } catch (err) {
-      console.error("Microphone error:", err);
-      setListening(false);
-    }
-  };
+  //     setTimeout(() => {
+  //       mediaRecorderRef.current.stop();
+  //     }, 5000);
+  //   } catch (err) {
+  //     console.error("Microphone error:", err);
+  //     setListening(false);
+  //   }
+  // };
 
 // const startListening = () => {
 //   if (!browserSupportsSpeechRecognition) {
