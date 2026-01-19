@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { href, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import WOW from "wowjs";
@@ -10,9 +10,9 @@ import { Mousewheel } from "swiper/modules";
 import "swiper/css";
 import '../styles/animations.css';
 import { Collapse } from "bootstrap";
-import ChatBot from 'react-chatbotify';
-import settings from "../chatbot_style/settings.json";
-import styles from "../chatbot_style/styles.json";
+// import ChatBot from 'react-chatbotify';
+// import settings from "../chatbot_style/settings.json";
+// import styles from "../chatbot_style/styles.json";
 import '../chatbot_style/styles.css';
 import ChatAssistantModal from '../components/coffee_chatbot';
 
@@ -34,7 +34,7 @@ useEffect(() => {
 
 const[modelvalue,setModelvalue]=useState(false);
 const[showAllIndustries,setShowAllIndustries]=useState(false);
-const[Showchatbot,setShowchatbot]=useState(false);
+// const[Showchatbot,setShowchatbot]=useState(false);
 const [isChatOpen, setIsChatOpen] = useState(true);
 
 const closeNavbar = () => {
@@ -97,13 +97,13 @@ useEffect(() => {
       });
   };
 }, []);
-const [count, setCount] = useState(0)
+// const [count, setCount] = useState(0)
 
-  const flow = {
-    "start": {
-      "message": "Hello world!"
-    }
-  }
+  // const flow = {
+  //   "start": {
+  //     "message": "Hello world!"
+  //   }
+  // }
 
 
   return (
