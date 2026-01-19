@@ -1038,7 +1038,7 @@ font-weight: 600;
             </li>
 
             <li className="nav-item">
-              <a onClick={()=>setModelvalue(true)} class="text-decoration-none primary_btn d-inline-block">Contact Us</a>
+              <button onClick={()=>setModelvalue(true)} class="text-decoration-none primary_btn d-inline-block">Contact Us</button>
             </li>
 
           </ul>
@@ -1695,8 +1695,8 @@ Greets visitors, verifies appointments, provides basic directions, and informs s
                         Your Customer Experience?</h2>
                     <p class="wow fadeInDown pricing-title" data-wow-duration="2s" data-wow-delay="0.5s">Start using our AI Frontdesk
                         today to automate support, boost engagement, and save time.</p>
-                    <a onClick={()=>setModelvalue(true)} class="text-decoration-none primary_btn d-inline-block wow fadeInLeft "
-                        data-wow-duration="2s" data-wow-delay="0.6s">Contact Us</a>
+                    <button onClick={()=>setModelvalue(true)} class="text-decoration-none primary_btn d-inline-block wow fadeInLeft "
+                        data-wow-duration="2s" data-wow-delay="0.6s">Contact Us</button>
                     {/* <a href="contact.html" class="text-decoration-none secondary_btn d-inline-block wow fadeInRight bit-to-right pricing-title"
                         data-wow-duration="2s" data-wow-delay="0.7s">Live Demo</a> */}
                     {/* <!-- heading title con --> */}
