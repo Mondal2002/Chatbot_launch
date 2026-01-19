@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import '../styles/home1.css'
-import {X,Send} from 'lucide-react';
+import {Send} from 'lucide-react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "../styles/home1.css";
