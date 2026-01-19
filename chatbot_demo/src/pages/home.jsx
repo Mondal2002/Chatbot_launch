@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { href, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import WOW from "wowjs";
@@ -23,11 +23,11 @@ const Home = () => {
 
 useEffect(() => {
   const wow = new WOW.WOW({
-    live: false, 
+    live: false, // important for React
   });
 
   wow.init();
-  wow.sync(); 
+  wow.sync(); // forces DOM rescan
 }, []);
 
 
@@ -99,11 +99,11 @@ useEffect(() => {
 }, []);
 // const [count, setCount] = useState(0)
 
-  // const flow = {
-  //   "start": {
-  //     "message": "Hello world!"
-  //   }
-  // }
+//   const flow = {
+//     "start": {
+//       "message": "Hello world!"
+//     }
+//   }
 
 
   return (
