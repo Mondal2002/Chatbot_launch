@@ -111,25 +111,25 @@ router.post("/speech-to-text", upload.single("audio"), async (req, res) => {
 
 
 })
-router.post("/tts", async (req, res) => {
-  const { text } = req.body;
+// router.post("/tts", async (req, res) => {
+//   const { text } = req.body;
 
-  const response = await axios.post(
-    `https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}`,
-    { text },
-    {
-      headers: {
-        "xi-api-key": ELEVENLABS_API_KEY,
-        "Content-Type": "application/json",
-        Accept: "audio/mpeg",
-      },
-      responseType: "arraybuffer",
-    }
-  );
+//   const response = await axios.post(
+//     `https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}`,
+//     { text },
+//     {
+//       headers: {
+//         "xi-api-key": ELEVENLABS_API_KEY,
+//         "Content-Type": "application/json",
+//         Accept: "audio/mpeg",
+//       },
+//       responseType: "arraybuffer",
+//     }
+//   );
 
-  res.set("Content-Type", "audio/mpeg");
-  res.send(response.data);
-});
+//   res.set("Content-Type", "audio/mpeg");
+//   res.send(response.data);
+// });
 
 
 export default router;
