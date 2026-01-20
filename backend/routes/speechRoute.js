@@ -8,6 +8,8 @@ const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage() });
 
 const AAI_KEY = process.env.ASSEMBLY_AI_API_KEY;
+const ELEVENLABS_API_KEY=process.env.ELEVENLABS_API_KEY;
+const VOICE_ID=process.env.VOICE_ID;
 
 const bufferToStream = (buffer) => {
     const stream = new Readable();
@@ -106,6 +108,28 @@ router.post("/speech-to-text", upload.single("audio"), async (req, res) => {
         console.error("AssemblyAI error:", err.response?.data || err.message);
         res.status(500).json({ message: "AssemblyAI failed" });
     }
+
+
 })
+router.post("/tts", async (req, res) => {
+  const { text } = req.body;
+
+  const response = await axios.post(
+    `https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}`,
+    { text },
+    {
+      headers: {
+        "xi-api-key": ELEVENLABS_API_KEY,
+        "Content-Type": "application/json",
+        Accept: "audio/mpeg",
+      },
+      responseType: "arraybuffer",
+    }
+  );
+
+  res.set("Content-Type", "audio/mpeg");
+  res.send(response.data);
+});
+
 
 export default router;
