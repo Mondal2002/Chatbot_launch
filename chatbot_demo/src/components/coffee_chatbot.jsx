@@ -4,6 +4,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import MicIcon from "@mui/icons-material/Mic";
 import GraphicEqIcon from "@mui/icons-material/GraphicEq";
 import "../styles/ChatAssistant.css";
+import { ElevenLabsClient, play } from '@elevenlabs/elevenlabs-js';
 // import SpeechRecognition,{ useSpeechRecognition,} from "react-speech-recognition";
 const ChatAssistant = () => {
   const [open, setOpen] = useState(false);
@@ -291,68 +292,84 @@ const recordAndTranscribe = () => {
     }, 4000);
   });
 };
-// const speakTextAsync = (text) => {
-//   const synth = window.speechSynthesis;
+const speakTextAsync = (text) => {
+  const synth = window.speechSynthesis;
 
-//   if (!synth) {
-//     console.error("Speech Synthesis not supported");
-//     return;
-//   }
-
-//   synth.cancel();
-
-//   const utterance = new SpeechSynthesisUtterance(text);
-
-//   utterance.lang = "en-US";
-//   utterance.pitch = 1.0;  // Higher pitch = child-like
-//   utterance.rate = 1.0;  // Slightly faster
-//   utterance.volume = 1.05;
-
-//   // Try to select a lighter voice if available
-//   const voices = synth.getVoices();
-//   const preferredVoice = voices.find(v =>
-//     v.name.toLowerCase().includes("female") ||
-//     v.name.toLowerCase().includes("google")
-//   );
-
-//   if (preferredVoice) {
-//     utterance.voice = preferredVoice;
-//   }
-
-//   synth.speak(utterance);
-// };
-
-const speakTextAsync = async(text) =>{
-  try {
-    // Stop any currently playing audio (similar to synth.cancel())
-    if (window.currentAudio) {
-      window.currentAudio.pause();
-      window.currentAudio = null;
-    }
-
-    const response = await fetch("https://chatbot-launch.onrender.com/api/tts", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ text }),
-    });
-
-    if (!response.ok) {
-      throw new Error("ElevenLabs TTS failed");
-    }
-
-    const audioBlob = await response.blob();
-    const audioUrl = URL.createObjectURL(audioBlob);
-
-    const audio = new Audio(audioUrl);
-    window.currentAudio = audio;
-
-    audio.play();
-  } catch (error) {
-    console.error("TTS Error:", error);
+  if (!synth) {
+    console.error("Speech Synthesis not supported");
+    return;
   }
-}
+
+  synth.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(text);
+
+  utterance.lang = "en-US";
+  utterance.pitch = 1.0;  // Higher pitch = child-like
+  utterance.rate = 1.0;  // Slightly faster
+  utterance.volume = 1.05;
+
+  // Try to select a lighter voice if available
+  const voices = synth.getVoices();
+  const preferredVoice = voices.find(v =>
+    v.name.toLowerCase().includes("female") ||
+    v.name.toLowerCase().includes("google")
+  );
+
+  if (preferredVoice) {
+    utterance.voice = preferredVoice;
+  }
+
+  synth.speak(utterance);
+};
+
+// const speakTextAsync = async(text) =>{
+//   try {
+//     // Stop any currently playing audio (similar to synth.cancel())
+//     if (window.currentAudio) {
+//       window.currentAudio.pause();
+//       window.currentAudio = null;
+//     }
+
+//     const response = await fetch("https://chatbot-launch.onrender.com/api/tts", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({ text }),
+//     });
+
+//     if (!response.ok) {
+//       throw new Error("ElevenLabs TTS failed");
+//     }
+
+//     const audioBlob = await response.blob();
+//     const audioUrl = URL.createObjectURL(audioBlob);
+
+//     const audio = new Audio(audioUrl);
+//     window.currentAudio = audio;
+
+//     audio.play();
+//   } catch (error) {
+//     console.error("TTS Error:", error);
+//   }
+// }
+
+
+// const speakTextAsync =async(text)=> {new ElevenLabsClient({
+//     apiKey: "YOUR_API_KEY", // Defaults to process.env.ELEVENLABS_API_KEY
+// });
+
+// const audio =await elevenlabs.textToSpeech.convert(
+//   'JBFqnCBsd6RMkjVDRZzb', // voice_id
+//   {
+//     text: 'The first move is what sets everything in motion.',
+//     modelId: 'eleven_multilingual_v2',
+//     outputFormat: 'mp3_44100_128', // output_format
+//   }
+// );
+
+await play(audio);}
 const fetchBotReply = async (text) => {
 try{
     const res = 
