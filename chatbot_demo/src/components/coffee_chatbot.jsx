@@ -4,7 +4,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import MicIcon from "@mui/icons-material/Mic";
 import GraphicEqIcon from "@mui/icons-material/GraphicEq";
 import "../styles/ChatAssistant.css";
-import { ElevenLabsClient, play } from '@elevenlabs/elevenlabs-js';
+// import { ElevenLabsClient, play } from '@elevenlabs/elevenlabs-js';
 // import SpeechRecognition,{ useSpeechRecognition,} from "react-speech-recognition";
 const ChatAssistant = () => {
   const [open, setOpen] = useState(false);
@@ -354,22 +354,6 @@ const speakTextAsync = (text) => {
 //     console.error("TTS Error:", error);
 //   }
 // }
-
-
-// const speakTextAsync =async(text)=> {new ElevenLabsClient({
-//     apiKey: "YOUR_API_KEY", // Defaults to process.env.ELEVENLABS_API_KEY
-// });
-
-// const audio =await elevenlabs.textToSpeech.convert(
-//   'JBFqnCBsd6RMkjVDRZzb', // voice_id
-//   {
-//     text: 'The first move is what sets everything in motion.',
-//     modelId: 'eleven_multilingual_v2',
-//     outputFormat: 'mp3_44100_128', // output_format
-//   }
-// );
-
-await play(audio);}
 const fetchBotReply = async (text) => {
 try{
     const res = 
