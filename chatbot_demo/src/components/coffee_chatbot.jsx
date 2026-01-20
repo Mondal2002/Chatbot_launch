@@ -235,7 +235,11 @@ const stopVoiceConversation = () => {
     mediaRecorderRef.current.stop();
   }
 
-  window.speechSynthesis.cancel();
+  if (window.currentAudio) {
+  window.currentAudio.pause();
+  window.currentAudio = null;
+}
+
 };
 const voiceConversationLoop = async () => {
   while (voiceModeRef.current) {
