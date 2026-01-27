@@ -210,7 +210,7 @@ margin-top:120px;
 }.banner-con .down_button {
     left: 0;
     right: 0;
-    bottom: 50px;
+    bottom: 20px;
     position: absolute;
     margin: 0 auto;
 }
@@ -583,7 +583,7 @@ p {
 }
 
 /* Mobile */
-@media (max-width: 576px) {
+@media (min-width: 100px) and (max-width: 576px) {
   h1 {
     font-size: 2rem !important;
       display: flex;
@@ -735,13 +735,13 @@ p {
     padding: 0;
 }
 
-  .back-to-top-btn {
+#back-to-top-btn {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 136px;
+    right: 24px;
 
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
 
     display: flex;
     align-items: center;
@@ -759,7 +759,6 @@ p {
     .bit-to-right {
   margin-left: 20px;
 }
-
 }
 
 @media (min-width: 577px) and (max-width: 991px) {
@@ -818,11 +817,11 @@ p {
   }
   #back-to-top-btn {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 136px;
+    right: 24px;
 
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
 
     display: flex;
     align-items: center;
@@ -929,7 +928,7 @@ font-weight: 600;
 
 .back-to-top-btn {
     position: fixed;
-    bottom:120px;
+    bottom:156px;
     right: 24px;
 
     width: 80px;
@@ -957,7 +956,7 @@ font-weight: 600;
 }
 
 /* Hover effect like modern UI */
-.back-to-top-btn:hover {
+#back-to-top-btn:hover {
     transform: translateY(-6px);
     transition: transform 0.3s ease;
 }
