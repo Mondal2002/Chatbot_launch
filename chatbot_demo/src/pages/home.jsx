@@ -200,6 +200,7 @@ margin-top:120px;
   min-height: 600px;
   display: flex;
   align-items: center;
+  z-index:20;
 }.banner-img-con {
   text-align: center;
 }.banner-con p {
