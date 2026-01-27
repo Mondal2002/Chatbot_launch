@@ -4,6 +4,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import MicIcon from "@mui/icons-material/Mic";
 import GraphicEqIcon from "@mui/icons-material/GraphicEq";
 import "../styles/ChatAssistant.css";
+// import {userId} from "../pages/home";
 // import { ElevenLabsClient, play } from '@elevenlabs/elevenlabs-js';
 // import SpeechRecognition,{ useSpeechRecognition,} from "react-speech-recognition";
 const ChatAssistant = () => {
@@ -12,7 +13,6 @@ const ChatAssistant = () => {
   const [messages, setMessages] = useState([]);
   const [bubbleText, setBubbleText] = useState(1);
   const [listening] = useState(false);
-
   const bottomRef = useRef(null);
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
@@ -201,7 +201,7 @@ const voiceModeRef = useRef(false);
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ question: finalMessage }),
+        body: JSON.stringify({ user_id: getUserId(), question: finalMessage }),
       });
 
       const data = await res.json();
@@ -292,6 +292,23 @@ const recordAndTranscribe = () => {
     }, 4000);
   });
 };
+
+
+function getUserId() {
+  let id = localStorage.getItem("user_id");
+
+  if (!id) {
+    id = crypto.randomUUID();
+    console.log(id);
+    localStorage.setItem("user_id", id);
+  }
+
+  return id;
+}
+
+
+
+
 const speakTextAsync = (text) => {
   const synth = window.speechSynthesis;
 
@@ -362,7 +379,7 @@ try{
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ question: text }),
+        body: JSON.stringify({ user_id: getUserId(), question: text }),
       });
 
       const data = await res.json();

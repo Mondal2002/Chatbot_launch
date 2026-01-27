@@ -37,6 +37,7 @@ const[showAllIndustries,setShowAllIndustries]=useState(false);
 // const[Showchatbot,setShowchatbot]=useState(false);
 const [isChatOpen, setIsChatOpen] = useState(true);
 
+
 const closeNavbar = () => {
   const navbar = document.getElementById("mainNavbar");
   if (navbar && navbar.classList.contains("show")) {
