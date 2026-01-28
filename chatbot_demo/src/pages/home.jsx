@@ -642,12 +642,14 @@ p {
     gap: 58px;
     justify-content: center;
     align-items: center;
+    z-index:999;
 }
 
 .header-con {
-    z-index: 5;
-    padding: 19px 0;
+    z-index: 999;
+    padding: 5px 0;
     border-top: 2px solid #2777fc;
+    
 }
 
 .header-con .navbar {
@@ -695,7 +697,7 @@ p {
     margin: 0;
     background-color:#ffffff;
     border: 0;
-    z-index: 2;
+    z-index: 999;
     width: 230px;
     margin-top: 10px;
     box-shadow: 0px 0px 100px rgb(0 0 0 / 15%);
@@ -771,6 +773,7 @@ p {
     flex-grow: 1;
     -ms-flex-align: center;
     align-items: center;
+    z-index:999;
 }
 .navbar-collapse.collapse,
 .navbar-collapse.collapsing {
@@ -786,6 +789,7 @@ p {
     box-shadow: 0px 0px 100px rgb(0 0 0 / 15%);
     padding: 10px;
     align-items: center;
+    z-index:999;
 }
 
   h1 {
@@ -890,7 +894,9 @@ font-weight: 600;
   height: 180px;   /* fixed */
   overflow: hidden;
 }.work-swiper .swiper-slide {
-  height:auto !important;
+    height: auto !important;
+    display: flex;
+    align-items: center;
 }.robot1 {
     width: 180px;
     left: -40px;
@@ -1228,25 +1234,25 @@ font-weight: 600;
                         </div>
                         <div class='list-unstyled p-0 fixed-box fixed-section'>
                         <Swiper
-                            direction="vertical"
-                            slidesPerView={1}
-                            mousewheel={{
-                              forceToAxis: true,
-                              releaseOnEdges: true,
-                              sensitivity: 1.0,
-                            }}
-                            freeMode={{
-                              enabled: true,
-                              momentum: true,
-                              momentumRatio: 1.2,
-                            }}
-                            resistance={true}
-                            resistanceRatio={0.85}
-                            speed={800}
-                            watchOverflow={true}
-                            modules={[Mousewheel]}
-                            className="work-swiper"
+                              direction="vertical"
+                              slidesPerView="auto"
+                              freeMode={{
+                                enabled: true,
+                                momentum: true,
+                                momentumRatio: 0.9,
+                                momentumBounce: false,
+                              }}
+                              mousewheel={{
+                                forceToAxis: true,
+                                releaseOnEdges: false,
+                                sensitivity: 0.8,
+                              }}
+                              resistance={false}
+                              watchOverflow={true}
+                              modules={[Mousewheel]}
+                              className="work-swiper"
                             >
+
                           <SwiperSlide><div class='position-relative d-flex align-items-center '>
                             <span className="step-number">01</span>
                                 <div className="work-content-inner-con">

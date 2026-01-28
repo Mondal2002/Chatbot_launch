@@ -236,28 +236,43 @@ const stopVoiceConversation = () => {
     mediaRecorderRef.current.stop();
   }
 
-  if (window.currentAudio) {
-  window.currentAudio.pause();
-  window.currentAudio = null;
-}
+  window.speechSynthesis?.cancel();
 
 };
+// const voiceConversationLoop = async () => {
+//   while (voiceModeRef.current) {
+//     const userText = await recordAndTranscribe();
+
+//     if (!userText || !voiceModeRef.current) break;
+
+//     setMessages((prev) => [...prev, { sender: "user", text: userText }]);
+
+//     const botReply = await fetchBotReply(userText);
+//     if (!voiceModeRef.current) break;
+
+//     setMessages((prev) => [...prev, { sender: "bot", text: botReply }]);
+
+//     await speakTextAsync(botReply);
+//   }
+// };
 const voiceConversationLoop = async () => {
-  while (voiceModeRef.current) {
-    const userText = await recordAndTranscribe();
+  if (!voiceModeRef.current) return;
 
-    if (!userText || !voiceModeRef.current) break;
+  const userText = await recordAndTranscribe();
+  if (!userText || !voiceModeRef.current) return;
 
-    setMessages((prev) => [...prev, { sender: "user", text: userText }]);
+  setMessages(p => [...p, { sender: "user", text: userText }]);
 
-    const botReply = await fetchBotReply(userText);
-    if (!voiceModeRef.current) break;
+  const botReply = await fetchBotReply(userText);
+  if (!voiceModeRef.current) return;
 
-    setMessages((prev) => [...prev, { sender: "bot", text: botReply }]);
+  setMessages(p => [...p, { sender: "bot", text: botReply }]);
 
-    await speakTextAsync(botReply);
-  }
+  await speakTextAsync(botReply);
+
+  voiceConversationLoop(); // continue conversation
 };
+
 const recordAndTranscribe = () => {
   return new Promise(async (resolve) => {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -271,8 +286,11 @@ const recordAndTranscribe = () => {
     };
 
     recorder.onstop = async () => {
-      const audioBlob = new Blob(audioChunksRef.current, { type: "audio/webm" });
+      stream.getTracks().forEach(t => t.stop());
 
+      if (!voiceModeRef.current) return resolve(null);
+
+      const audioBlob = new Blob(audioChunksRef.current, { type: "audio/webm" });
       const formData = new FormData();
       formData.append("audio", audioBlob);
 
@@ -309,36 +327,36 @@ function getUserId() {
 
 
 
-const speakTextAsync = (text) => {
-  const synth = window.speechSynthesis;
+// const speakTextAsync = (text) => {
+//   const synth = window.speechSynthesis;
 
-  if (!synth) {
-    console.error("Speech Synthesis not supported");
-    return;
-  }
+//   if (!synth) {
+//     console.error("Speech Synthesis not supported");
+//     return;
+//   }
 
-  synth.cancel();
+//   synth.cancel();
 
-  const utterance = new SpeechSynthesisUtterance(text);
+//   const utterance = new SpeechSynthesisUtterance(text);
 
-  utterance.lang = "en-US";
-  utterance.pitch = 1.0;  // Higher pitch = child-like
-  utterance.rate = 1.0;  // Slightly faster
-  utterance.volume = 1.05;
+//   utterance.lang = "en-US";
+//   utterance.pitch = 1.0;  // Higher pitch = child-like
+//   utterance.rate = 1.0;  // Slightly faster
+//   utterance.volume = 1.05;
 
-  // Try to select a lighter voice if available
-  const voices = synth.getVoices();
-  const preferredVoice = voices.find(v =>
-    v.name.toLowerCase().includes("female") ||
-    v.name.toLowerCase().includes("google")
-  );
+//   // Try to select a lighter voice if available
+//   const voices = synth.getVoices();
+//   const preferredVoice = voices.find(v =>
+//     v.name.toLowerCase().includes("female") ||
+//     v.name.toLowerCase().includes("google")
+//   );
 
-  if (preferredVoice) {
-    utterance.voice = preferredVoice;
-  }
+//   if (preferredVoice) {
+//     utterance.voice = preferredVoice;
+//   }
 
-  synth.speak(utterance);
-};
+//   synth.speak(utterance);
+// };
 
 // const speakTextAsync = async(text) =>{
 //   try {
@@ -371,6 +389,54 @@ const speakTextAsync = (text) => {
 //     console.error("TTS Error:", error);
 //   }
 // }
+const speakTextAsync = (text) => {
+  return new Promise((resolve) => {
+    const synth = window.speechSynthesis;
+
+    if (!synth) {
+      console.error("Speech Synthesis not supported");
+      return resolve();
+    }
+
+    // Stop any ongoing speech
+    synth.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(text);
+
+    utterance.lang = "en-US";
+    utterance.pitch = 1.0;
+    utterance.rate = 1.0;
+    utterance.volume = 1.05;
+
+    // Ensure voices are loaded (Chrome quirk)
+    const setVoiceAndSpeak = () => {
+      const voices = synth.getVoices();
+      const preferredVoice = voices.find(
+        (v) =>
+          v.name.toLowerCase().includes("female") ||
+          v.name.toLowerCase().includes("google")
+      );
+
+      if (preferredVoice) {
+        utterance.voice = preferredVoice;
+      }
+
+      synth.speak(utterance);
+    };
+
+    // Resolve ONLY when speech finishes
+    utterance.onend = () => resolve();
+    utterance.onerror = () => resolve();
+
+    // Handle delayed voice loading
+    if (synth.getVoices().length === 0) {
+      synth.onvoiceschanged = () => setVoiceAndSpeak();
+    } else {
+      setVoiceAndSpeak();
+    }
+  });
+};
+
 const fetchBotReply = async (text) => {
 try{
     const res = 
