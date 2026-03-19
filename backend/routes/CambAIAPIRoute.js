@@ -26,7 +26,7 @@ router.post("/tts2", async (req, res) => {
       text,
       voice_id: VOICE_ID,
       language: "en-us",
-      speech_model: "mars8-pro",
+      speech_model: "mars-pro",
       output_configuration: { format: "wav" },
     });
 
