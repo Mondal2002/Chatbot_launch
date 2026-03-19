@@ -12,10 +12,6 @@ import MicIcon from "@mui/icons-material/Mic";
 import GraphicEqIcon from "@mui/icons-material/GraphicEq";
 import "../styles/ChatAssistant.css";
 
-// const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
-const VOICE_ID = "Kavya";
-const Smallest_Ai_Api_Key = "sk_cd65f694ceecd4119a2939cec58c379e";
-
 const ChatAssistant = () => {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
@@ -195,6 +191,8 @@ const ChatAssistant = () => {
 
   /* ---------------- TTS: Smallest.ai Waves direct ---------------- */
 
+  /* ---------------- TTS: Smallest.ai via backend ---------------- */
+
   const speakTextAsync = async (text) => {
     try {
       if (window.currentAudio) {
@@ -203,24 +201,15 @@ const ChatAssistant = () => {
       }
 
       const response = await fetch(
-        "https://waves-api.smallest.ai/api/v1/lightning/get_speech",
+        "https://chatbot-launch.onrender.com/api/tts",
         {
           method: "POST",
-          headers: {
-            Authorization: `Bearer ${Smallest_Ai_Api_Key}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            text,
-            voice_id: VOICE_ID,
-            sample_rate: 24000,
-            speed: 1.0,
-            add_wav_header: true,
-          }),
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text }),
         },
       );
 
-      if (!response.ok) throw new Error("Smallest.ai TTS failed");
+      if (!response.ok) throw new Error("TTS failed");
 
       const audioBlob = await response.blob();
       const audio = new Audio(URL.createObjectURL(audioBlob));
