@@ -12,6 +12,9 @@ import MicIcon from "@mui/icons-material/Mic";
 import GraphicEqIcon from "@mui/icons-material/GraphicEq";
 import "../styles/ChatAssistant.css";
 
+const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
+const ELEVENLABS_VOICE_ID = process.env.VOICE_ID;
+
 const ChatAssistant = () => {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
@@ -95,7 +98,10 @@ const ChatAssistant = () => {
       mediaRecorderRef.current.stop();
     }
 
-    window.speechSynthesis?.cancel();
+    if (window.currentAudio) {
+      window.currentAudio.pause();
+      window.currentAudio = null;
+    }
   };
 
   const voiceConversationLoop = async () => {
@@ -169,21 +175,61 @@ const ChatAssistant = () => {
 
   /* ---------------- TTS: SpeechSynthesis ---------------- */
 
-  const speakTextAsync = (text) => {
-    return new Promise((resolve) => {
-      window.speechSynthesis?.cancel(); // stop any ongoing speech
+  // const speakTextAsync = (text) => {
+  //   return new Promise((resolve) => {
+  //     window.speechSynthesis?.cancel(); // stop any ongoing speech
 
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = "en-US";
-      utterance.rate = 1;
-      utterance.pitch = 1;
-      utterance.onend = resolve; // wait for speech to finish
-      utterance.onerror = resolve; // resolve even on error so loop continues
+  //     const utterance = new SpeechSynthesisUtterance(text);
+  //     utterance.lang = "en-US";
+  //     utterance.rate = 1;
+  //     utterance.pitch = 1;
+  //     utterance.onend = resolve; // wait for speech to finish
+  //     utterance.onerror = resolve; // resolve even on error so loop continues
 
-      window.speechSynthesis.speak(utterance);
-    });
+  //     window.speechSynthesis.speak(utterance);
+  //   });
+  // };
+
+  /* ---------------- TTS: ElevenLabs direct ---------------- */
+
+  const speakTextAsync = async (text) => {
+    try {
+      if (window.currentAudio) {
+        window.currentAudio.pause();
+        window.currentAudio = null;
+      }
+
+      const response = await fetch(
+        `https://api.elevenlabs.io/v1/text-to-speech/${ELEVENLABS_VOICE_ID}`,
+        {
+          method: "POST",
+          headers: {
+            "xi-api-key": ELEVENLABS_API_KEY,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            text,
+            model_id: "eleven_turbo_v2",
+            voice_settings: { stability: 0.5, similarity_boost: 0.75 },
+          }),
+        },
+      );
+
+      if (!response.ok) throw new Error("ElevenLabs TTS failed");
+
+      const audioBlob = await response.blob();
+      const audio = new Audio(URL.createObjectURL(audioBlob));
+      window.currentAudio = audio;
+
+      return new Promise((resolve) => {
+        audio.onended = resolve;
+        audio.onerror = resolve;
+        audio.play();
+      });
+    } catch (error) {
+      console.error("TTS Error:", error);
+    }
   };
-
   /* ---------------- UI ---------------- */
 
   return (
