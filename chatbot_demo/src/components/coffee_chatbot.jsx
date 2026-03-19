@@ -14,7 +14,7 @@ import "../styles/ChatAssistant.css";
 
 // const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
 const VOICE_ID = "Kavya";
-const Smallest_Ai_Api_Key = process.env.Smallest_Ai_Api_Key;
+const Smallest_Ai_Api_Key = import.meta.env.Smallest_Ai_Api_Key;
 
 const ChatAssistant = () => {
   const [open, setOpen] = useState(false);
