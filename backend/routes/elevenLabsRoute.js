@@ -4,7 +4,7 @@ import axios from "axios";
 const router = express.Router();
 
 const SMALLEST_API_KEY = process.env.SMALLEST_API_KEY;
-const VOICE_ID = process.env.VOICE_ID || "Kavya";
+const VOICE_ID = "mithali";
 
 router.post("/tts", async (req, res) => {
   try {
@@ -18,7 +18,7 @@ router.post("/tts", async (req, res) => {
     }
 
     const response = await axios.post(
-      "https://waves-api.smallest.ai/api/v1/lightning-large/get_speech",
+      "https://waves-api.smallest.ai/api/v1/lightning/get_speech,
       {
         text,
         voice_id: VOICE_ID,
