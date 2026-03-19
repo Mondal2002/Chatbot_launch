@@ -12,9 +12,6 @@ import MicIcon from "@mui/icons-material/Mic";
 import GraphicEqIcon from "@mui/icons-material/GraphicEq";
 import "../styles/ChatAssistant.css";
 
-const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
-const ELEVENLABS_VOICE_ID = process.env.VOICE_ID;
-
 const ChatAssistant = () => {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
@@ -98,6 +95,7 @@ const ChatAssistant = () => {
       mediaRecorderRef.current.stop();
     }
 
+    // Stop any playing ElevenLabs audio
     if (window.currentAudio) {
       window.currentAudio.pause();
       window.currentAudio = null;
@@ -117,9 +115,9 @@ const ChatAssistant = () => {
 
     setMessages((p) => [...p, { sender: "bot", text: botReply }]);
 
-    await speakTextAsync(botReply);
+    await speakTextAsync(botReply); // waits for audio to finish
 
-    voiceConversationLoop();
+    voiceConversationLoop(); // continue conversation
   };
 
   const recordAndTranscribe = () => {
@@ -173,28 +171,22 @@ const ChatAssistant = () => {
     }
   };
 
-  /* ---------------- TTS: ElevenLabs direct ---------------- */
+  /* ---------------- TTS: ElevenLabs via backend ---------------- */
 
   const speakTextAsync = async (text) => {
     try {
+      // Stop any currently playing audio
       if (window.currentAudio) {
         window.currentAudio.pause();
         window.currentAudio = null;
       }
 
       const response = await fetch(
-        `https://api.elevenlabs.io/v1/text-to-speech/${ELEVENLABS_VOICE_ID}`,
+        "https://chatbot-launch.onrender.com/api/tts",
         {
           method: "POST",
-          headers: {
-            "xi-api-key": ELEVENLABS_API_KEY,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            text,
-            model_id: "eleven_turbo_v2",
-            voice_settings: { stability: 0.5, similarity_boost: 0.75 },
-          }),
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text }),
         },
       );
 
@@ -205,9 +197,10 @@ const ChatAssistant = () => {
       const audio = new Audio(audioUrl);
       window.currentAudio = audio;
 
+      // Wait for audio to finish before resolving
       return new Promise((resolve) => {
         audio.onended = resolve;
-        audio.onerror = resolve;
+        audio.onerror = resolve; // resolve even on error so loop continues
         audio.play();
       });
     } catch (error) {
