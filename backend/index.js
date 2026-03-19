@@ -4,6 +4,7 @@ import cors from "cors";
 import { Resend } from "resend";
 import speechRoute from "./routes/speechRoute.js";
 import elevenLabsRoute from "./routes/elevenLabsRoute.js";
+import CambAIAPIRoute from "./routes/CambAIAPIRoute.js";
 
 dotenv.config();
 
@@ -81,3 +82,4 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 app.use("/api", elevenLabsRoute);
+app.use("/api", CambAIAPIRoute);
