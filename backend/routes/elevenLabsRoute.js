@@ -18,7 +18,7 @@ router.post("/tts", async (req, res) => {
     }
 
     const response = await axios.post(
-      "https://waves-api.smallest.ai/api/v1/lightning/get_speech,
+      "https://waves-api.smallest.ai/api/v1/lightning/get_speech",
       {
         text,
         voice_id: VOICE_ID,
