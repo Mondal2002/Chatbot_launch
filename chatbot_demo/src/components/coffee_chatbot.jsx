@@ -1,12 +1,17 @@
 import { useState, useEffect, useRef } from "react";
-import { Drawer, Box, Typography, IconButton, TextField, Button } from "@mui/material";
+import {
+  Drawer,
+  Box,
+  Typography,
+  IconButton,
+  TextField,
+  Button,
+} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import MicIcon from "@mui/icons-material/Mic";
 import GraphicEqIcon from "@mui/icons-material/GraphicEq";
 import "../styles/ChatAssistant.css";
-// import {userId} from "../pages/home";
-// import { ElevenLabsClient, play } from '@elevenlabs/elevenlabs-js';
-// import SpeechRecognition,{ useSpeechRecognition,} from "react-speech-recognition";
+
 const ChatAssistant = () => {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
@@ -17,18 +22,7 @@ const ChatAssistant = () => {
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
   const [voiceMode, setVoiceMode] = useState(false);
-const voiceModeRef = useRef(false);
-//   const {
-//   transcript,
-//   listening: speechListening,
-//   resetTranscript,
-//   browserSupportsSpeechRecognition,
-// } = useSpeechRecognition();
-
-// const { finalTranscript } = useSpeechRecognition();
-
-
-  
+  const voiceModeRef = useRef(false);
 
   /* ---------------- UI effects ---------------- */
 
@@ -43,135 +37,18 @@ const voiceModeRef = useRef(false);
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  /* ---------------- Helpers ---------------- */
 
-  
-  /* ---------------- Voice recording ---------------- */
-
-
-//   const speakText = (text) => {
-// const synth = window.speechSynthesis;
-
-//   if (!synth) {
-//     console.error("Speech Synthesis not supported");
-//     return;
-//   }
-
-//   synth.cancel();
-
-//   const utterance = new SpeechSynthesisUtterance(text);
-
-//   utterance.lang = "en-US";
-//   utterance.pitch = 1.0;  // Higher pitch = child-like
-//   utterance.rate = 1.0;  // Slightly faster
-//   utterance.volume = 1.05;
-
-//   // Try to select a lighter voice if available
-//   const voices = synth.getVoices();
-//   const preferredVoice = voices.find(v =>
-//     v.name.toLowerCase().includes("female") ||
-//     v.name.toLowerCase().includes("google")
-//   );
-
-//   if (preferredVoice) {
-//     utterance.voice = preferredVoice;
-//   }
-
-//   synth.speak(utterance);
-// };
-  // const startListening = async () => {
-  //   try {
-  //     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-  //     mediaRecorderRef.current = new MediaRecorder(stream);
-  //     audioChunksRef.current = [];
-
-  //     mediaRecorderRef.current.ondataavailable = (e) => {
-  //       audioChunksRef.current.push(e.data);
-  //     };
-
-  //     mediaRecorderRef.current.onstop = async () => {
-  //       const audioBlob = new Blob(audioChunksRef.current, {
-  //         type: "audio/webm",
-  //       });
-
-  //       const formData = new FormData();
-  //       formData.append("audio", audioBlob, "speech.webm");
-
-  //       setListening(true);
-
-  //       const res = await fetch("https://chatbot-launch.onrender.com/api/speech-to-text", {
-  //         method: "POST",
-  //         body: formData,
-  //       });
-
-  //       const data = await res.json();
-  //       setListening(false);
-
-  //       if (data?.text) {
-  //         sendMessage(data.text);
-  //       }
-  //     };
-
-  //     mediaRecorderRef.current.start();
-  //     setListening(true);
-
-  //     setTimeout(() => {
-  //       mediaRecorderRef.current.stop();
-  //     }, 5000);
-  //   } catch (err) {
-  //     console.error("Microphone error:", err);
-  //     setListening(false);
-  //   }
-  // };
-
-// const startListening = () => {
-//   if (!browserSupportsSpeechRecognition) {
-//     console.error("Browser does not support speech recognition");
-//     return;
-//   }
-
-//   resetTranscript();
-//   setListening(true);
-
-//   SpeechRecognition.startListening({
-//     continuous: false,
-//     language: "en-US",
-//   });
-// };
-
-// // Handle when speech stops
-// useEffect(() => {
-//   // Only process if we were listening and now stopped
-//   if (listening && !speechListening) {
-//     setListening(false);
-    
-//     // Small delay to ensure transcript is fully captured
-//     setTimeout(() => {
-//       if (transcript && transcript.trim()) {
-//         sendMessage(transcript);
-//         resetTranscript();
-//       }
-//     }, 300);
-//   }
-// }, [speechListening]);
-
-// // Backup timeout to stop after 5 seconds
-// useEffect(() => {
-//   if (speechListening) {
-//     const timeout = setTimeout(() => {
-//       SpeechRecognition.stopListening();
-//     }, 5000);
-    
-//     return () => clearTimeout(timeout);
-//   }
-// }, [speechListening]);
-
+  function getUserId() {
+    let id = localStorage.getItem("user_id");
+    if (!id) {
+      id = crypto.randomUUID();
+      localStorage.setItem("user_id", id);
+    }
+    return id;
+  }
 
   /* ---------------- Chat logic ---------------- */
-
-  // const detectName = (text) => {
-  //   const match = text.match(/(?:my name is|i am|i'm)\s+([a-zA-Z]+)/i);
-  //   return match?.[1] || null;
-  // };
 
   const sendMessage = async (voiceText) => {
     const finalMessage = voiceText ?? message;
@@ -180,296 +57,163 @@ const voiceModeRef = useRef(false);
     setMessages((prev) => [...prev, { sender: "user", text: finalMessage }]);
     setMessage("");
 
-    // const name = detectName(finalMessage);
-    // if (name) {
-    //   setTimeout(() => {
-    //     setMessages((prev) => [
-    //       ...prev,
-    //       {
-    //         sender: "bot",
-    //         text: `Hello, ${name.charAt(0).toUpperCase() + name.slice(1)}! How are you?`,
-    //       },
-
-    //     ]);
-    //   }, 600);
-    //   return;
-    // }
-
     try {
       const res = await fetch("https://chatbot-llm-6ogk.onrender.com/chat", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ user_id: getUserId(), question: finalMessage }),
       });
 
       const data = await res.json();
-
-      setMessages((prev) => [
-        ...prev,
-        { sender: "bot", text: data.reply },
-      ]);
+      setMessages((prev) => [...prev, { sender: "bot", text: data.reply }]);
     } catch (err) {
       console.error("Chat error:", err);
     }
   };
-/* voice to voice command*/
-const toggleVoiceMode = () => {
-  if (voiceModeRef.current) {
-    stopVoiceConversation();
-  } else {
-    startVoiceConversation();
-  }
-};
-const startVoiceConversation = async () => {
-  voiceModeRef.current = true;
-  setVoiceMode(true);
 
-  await voiceConversationLoop();
-};
-const stopVoiceConversation = () => {
-  voiceModeRef.current = false;
-  setVoiceMode(false);
+  /* ---------------- Voice mode ---------------- */
 
-  if (mediaRecorderRef.current?.state !== "inactive") {
-    mediaRecorderRef.current.stop();
-  }
-
-  window.speechSynthesis?.cancel();
-
-};
-// const voiceConversationLoop = async () => {
-//   while (voiceModeRef.current) {
-//     const userText = await recordAndTranscribe();
-
-//     if (!userText || !voiceModeRef.current) break;
-
-//     setMessages((prev) => [...prev, { sender: "user", text: userText }]);
-
-//     const botReply = await fetchBotReply(userText);
-//     if (!voiceModeRef.current) break;
-
-//     setMessages((prev) => [...prev, { sender: "bot", text: botReply }]);
-
-//     await speakTextAsync(botReply);
-//   }
-// };
-const voiceConversationLoop = async () => {
-  if (!voiceModeRef.current) return;
-
-  const userText = await recordAndTranscribe();
-  if (!userText || !voiceModeRef.current) return;
-
-  setMessages(p => [...p, { sender: "user", text: userText }]);
-
-  const botReply = await fetchBotReply(userText);
-  if (!voiceModeRef.current) return;
-
-  setMessages(p => [...p, { sender: "bot", text: botReply }]);
-
-  await speakTextAsync(botReply);
-
-  voiceConversationLoop(); // continue conversation
-};
-
-const recordAndTranscribe = () => {
-  return new Promise(async (resolve) => {
-    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-    const recorder = new MediaRecorder(stream);
-
-    mediaRecorderRef.current = recorder;
-    audioChunksRef.current = [];
-
-    recorder.ondataavailable = (e) => {
-      audioChunksRef.current.push(e.data);
-    };
-
-    recorder.onstop = async () => {
-      stream.getTracks().forEach(t => t.stop());
-
-      if (!voiceModeRef.current) return resolve(null);
-
-      const audioBlob = new Blob(audioChunksRef.current, { type: "audio/webm" });
-      const formData = new FormData();
-      formData.append("audio", audioBlob);
-
-      const res = await fetch(
-        "https://chatbot-launch.onrender.com/api/speech-to-text",
-        { method: "POST", body: formData }
-      );
-
-      const data = await res.json();
-      resolve(data?.text || null);
-    };
-
-    recorder.start();
-
-    setTimeout(() => {
-      recorder.stop();
-    }, 4000);
-  });
-};
-
-
-function getUserId() {
-  let id = localStorage.getItem("user_id");
-
-  if (!id) {
-    id = crypto.randomUUID();
-    console.log(id);
-    localStorage.setItem("user_id", id);
-  }
-
-  return id;
-}
-
-
-
-
-// const speakTextAsync = (text) => {
-//   const synth = window.speechSynthesis;
-
-//   if (!synth) {
-//     console.error("Speech Synthesis not supported");
-//     return;
-//   }
-
-//   synth.cancel();
-
-//   const utterance = new SpeechSynthesisUtterance(text);
-
-//   utterance.lang = "en-US";
-//   utterance.pitch = 1.0;  // Higher pitch = child-like
-//   utterance.rate = 1.0;  // Slightly faster
-//   utterance.volume = 1.05;
-
-//   // Try to select a lighter voice if available
-//   const voices = synth.getVoices();
-//   const preferredVoice = voices.find(v =>
-//     v.name.toLowerCase().includes("female") ||
-//     v.name.toLowerCase().includes("google")
-//   );
-
-//   if (preferredVoice) {
-//     utterance.voice = preferredVoice;
-//   }
-
-//   synth.speak(utterance);
-// };
-
-// const speakTextAsync = async(text) =>{
-//   try {
-//     // Stop any currently playing audio (similar to synth.cancel())
-//     if (window.currentAudio) {
-//       window.currentAudio.pause();
-//       window.currentAudio = null;
-//     }
-
-//     const response = await fetch("https://chatbot-launch.onrender.com/api/tts", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({ text }),
-//     });
-
-//     if (!response.ok) {
-//       throw new Error("ElevenLabs TTS failed");
-//     }
-
-//     const audioBlob = await response.blob();
-//     const audioUrl = URL.createObjectURL(audioBlob);
-
-//     const audio = new Audio(audioUrl);
-//     window.currentAudio = audio;
-
-//     audio.play();
-//   } catch (error) {
-//     console.error("TTS Error:", error);
-//   }
-// }
-const speakTextAsync = (text) => {
-  return new Promise((resolve) => {
-    const synth = window.speechSynthesis;
-
-    if (!synth) {
-      console.error("Speech Synthesis not supported");
-      return resolve();
-    }
-
-    // Stop any ongoing speech
-    synth.cancel();
-
-    const utterance = new SpeechSynthesisUtterance(text);
-
-    utterance.lang = "en-US";
-    utterance.pitch = 1.0;
-    utterance.rate = 1.0;
-    utterance.volume = 1.05;
-
-    // Ensure voices are loaded (Chrome quirk)
-    const setVoiceAndSpeak = () => {
-      const voices = synth.getVoices();
-      const preferredVoice = voices.find(
-        (v) =>
-          v.name.toLowerCase().includes("female") ||
-          v.name.toLowerCase().includes("google")
-      );
-
-      if (preferredVoice) {
-        utterance.voice = preferredVoice;
-      }
-
-      synth.speak(utterance);
-    };
-
-    // Resolve ONLY when speech finishes
-    utterance.onend = () => resolve();
-    utterance.onerror = () => resolve();
-
-    // Handle delayed voice loading
-    if (synth.getVoices().length === 0) {
-      synth.onvoiceschanged = () => setVoiceAndSpeak();
+  const toggleVoiceMode = () => {
+    if (voiceModeRef.current) {
+      stopVoiceConversation();
     } else {
-      setVoiceAndSpeak();
+      startVoiceConversation();
     }
-  });
-};
+  };
 
-const fetchBotReply = async (text) => {
-try{
-    const res = 
-      await fetch("https://chatbot-llm-6ogk.onrender.com/chat", {
+  const startVoiceConversation = async () => {
+    voiceModeRef.current = true;
+    setVoiceMode(true);
+    await voiceConversationLoop();
+  };
+
+  const stopVoiceConversation = () => {
+    voiceModeRef.current = false;
+    setVoiceMode(false);
+
+    if (mediaRecorderRef.current?.state !== "inactive") {
+      mediaRecorderRef.current.stop();
+    }
+
+    // Stop any playing ElevenLabs audio
+    if (window.currentAudio) {
+      window.currentAudio.pause();
+      window.currentAudio = null;
+    }
+  };
+
+  const voiceConversationLoop = async () => {
+    if (!voiceModeRef.current) return;
+
+    const userText = await recordAndTranscribe();
+    if (!userText || !voiceModeRef.current) return;
+
+    setMessages((p) => [...p, { sender: "user", text: userText }]);
+
+    const botReply = await fetchBotReply(userText);
+    if (!voiceModeRef.current) return;
+
+    setMessages((p) => [...p, { sender: "bot", text: botReply }]);
+
+    await speakTextAsync(botReply); // waits for audio to finish
+
+    voiceConversationLoop(); // continue conversation
+  };
+
+  const recordAndTranscribe = () => {
+    return new Promise(async (resolve) => {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const recorder = new MediaRecorder(stream);
+
+      mediaRecorderRef.current = recorder;
+      audioChunksRef.current = [];
+
+      recorder.ondataavailable = (e) => {
+        audioChunksRef.current.push(e.data);
+      };
+
+      recorder.onstop = async () => {
+        stream.getTracks().forEach((t) => t.stop());
+
+        if (!voiceModeRef.current) return resolve(null);
+
+        const audioBlob = new Blob(audioChunksRef.current, {
+          type: "audio/webm",
+        });
+        const formData = new FormData();
+        formData.append("audio", audioBlob);
+
+        const res = await fetch(
+          "https://chatbot-launch.onrender.com/api/speech-to-text",
+          { method: "POST", body: formData },
+        );
+
+        const data = await res.json();
+        resolve(data?.text || null);
+      };
+
+      recorder.start();
+      setTimeout(() => recorder.stop(), 4000);
+    });
+  };
+
+  const fetchBotReply = async (text) => {
+    try {
+      const res = await fetch("https://chatbot-llm-6ogk.onrender.com/chat", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ user_id: getUserId(), question: text }),
       });
-
       const data = await res.json();
-
       return data.reply;
-  }
-  catch(err){
-    console.error("Chat error:", err);
-  }
-}
+    } catch (err) {
+      console.error("Chat error:", err);
+    }
+  };
 
+  /* ---------------- TTS: ElevenLabs via backend ---------------- */
 
+  const speakTextAsync = async (text) => {
+    try {
+      // Stop any currently playing audio
+      if (window.currentAudio) {
+        window.currentAudio.pause();
+        window.currentAudio = null;
+      }
 
+      const response = await fetch(
+        "https://chatbot-launch.onrender.com/api/tts",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text }),
+        },
+      );
 
+      if (!response.ok) throw new Error("ElevenLabs TTS failed");
 
+      const audioBlob = await response.blob();
+      const audioUrl = URL.createObjectURL(audioBlob);
+      const audio = new Audio(audioUrl);
+      window.currentAudio = audio;
 
-
+      // Wait for audio to finish before resolving
+      return new Promise((resolve) => {
+        audio.onended = resolve;
+        audio.onerror = resolve; // resolve even on error so loop continues
+        audio.play();
+      });
+    } catch (error) {
+      console.error("TTS Error:", error);
+    }
+  };
 
   /* ---------------- UI ---------------- */
 
   return (
     <>
       {!open && (
-        <div className="assistant-wrapper " >
+        <div className="assistant-wrapper">
           <div className="assistant-bubble">
             {bubbleText === 1 ? (
               <>
@@ -495,7 +239,12 @@ try{
         </div>
       )}
 
-      <Drawer anchor="right" open={open} onClose={() => setOpen(false)} class="box-on-above" >
+      <Drawer
+        anchor="right"
+        open={open}
+        onClose={() => setOpen(false)}
+        class="box-on-above"
+      >
         <Box
           sx={{
             width: 360,
@@ -505,7 +254,6 @@ try{
             color: "#fff",
             display: "flex",
             flexDirection: "column",
-            
           }}
         >
           {/* Header */}
