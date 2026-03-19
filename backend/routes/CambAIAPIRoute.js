@@ -1,5 +1,7 @@
 import express from "express";
 import { CambClient, CambApi } from "@camb-ai/sdk";
+import dotenv from "dotenv";
+dotenv.config();
 
 const router = express.Router();
 
