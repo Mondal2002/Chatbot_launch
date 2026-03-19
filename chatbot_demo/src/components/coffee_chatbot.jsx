@@ -12,7 +12,7 @@ import MicIcon from "@mui/icons-material/Mic";
 import GraphicEqIcon from "@mui/icons-material/GraphicEq";
 import "../styles/ChatAssistant.css";
 
-const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
+// const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
 const VOICE_ID = "Kavya";
 const Smallest_Ai_Api_Key = process.env.Smallest_Ai_Api_Key;
 
