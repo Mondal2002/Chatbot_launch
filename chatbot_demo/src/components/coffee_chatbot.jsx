@@ -95,11 +95,7 @@ const ChatAssistant = () => {
       mediaRecorderRef.current.stop();
     }
 
-    // Stop any playing ElevenLabs audio
-    if (window.currentAudio) {
-      window.currentAudio.pause();
-      window.currentAudio = null;
-    }
+    window.speechSynthesis?.cancel();
   };
 
   const voiceConversationLoop = async () => {
@@ -115,7 +111,7 @@ const ChatAssistant = () => {
 
     setMessages((p) => [...p, { sender: "bot", text: botReply }]);
 
-    await speakTextAsync(botReply); // waits for audio to finish
+    await speakTextAsync(botReply); // waits for speech to finish
 
     voiceConversationLoop(); // continue conversation
   };
@@ -171,41 +167,21 @@ const ChatAssistant = () => {
     }
   };
 
-  /* ---------------- TTS: ElevenLabs via backend ---------------- */
+  /* ---------------- TTS: SpeechSynthesis ---------------- */
 
-  const speakTextAsync = async (text) => {
-    try {
-      // Stop any currently playing audio
-      if (window.currentAudio) {
-        window.currentAudio.pause();
-        window.currentAudio = null;
-      }
+  const speakTextAsync = (text) => {
+    return new Promise((resolve) => {
+      window.speechSynthesis?.cancel(); // stop any ongoing speech
 
-      const response = await fetch(
-        "https://chatbot-launch.onrender.com/api/tts",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ text }),
-        },
-      );
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "en-US";
+      utterance.rate = 1;
+      utterance.pitch = 1;
+      utterance.onend = resolve; // wait for speech to finish
+      utterance.onerror = resolve; // resolve even on error so loop continues
 
-      if (!response.ok) throw new Error("ElevenLabs TTS failed");
-
-      const audioBlob = await response.blob();
-      const audioUrl = URL.createObjectURL(audioBlob);
-      const audio = new Audio(audioUrl);
-      window.currentAudio = audio;
-
-      // Wait for audio to finish before resolving
-      return new Promise((resolve) => {
-        audio.onended = resolve;
-        audio.onerror = resolve; // resolve even on error so loop continues
-        audio.play();
-      });
-    } catch (error) {
-      console.error("TTS Error:", error);
-    }
+      window.speechSynthesis.speak(utterance);
+    });
   };
 
   /* ---------------- UI ---------------- */
