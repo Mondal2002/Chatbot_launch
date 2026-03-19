@@ -3,45 +3,43 @@ import axios from "axios";
 
 const router = express.Router();
 
-const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
-const VOICE_ID = process.env.VOICE_ID;
+const SMALLEST_API_KEY = process.env.SMALLEST_API_KEY;
+const VOICE_ID = process.env.VOICE_ID || "Kavya";
 
 router.post("/tts", async (req, res) => {
   try {
     const { text } = req.body;
 
-    if (!ELEVENLABS_API_KEY) {
-      return res.status(500).json({ message: "Missing ELEVENLABS_API_KEY" });
-    }
-    if (!VOICE_ID) {
-      return res.status(500).json({ message: "Missing VOICE_ID" });
+    if (!SMALLEST_API_KEY) {
+      return res.status(500).json({ message: "Missing SMALLEST_API_KEY" });
     }
     if (!text || !text.trim()) {
       return res.status(400).json({ message: "Text is required" });
     }
 
     const response = await axios.post(
-      `https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}`,
+      "https://waves-api.smallest.ai/api/v1/lightning/get_speech",
       {
         text,
-        model_id: "eleven_multilingual_v2",
-        output_format: "mp3_44100_128",
+        voice_id: VOICE_ID,
+        sample_rate: 24000,
+        speed: 1.0,
+        add_wav_header: true,
       },
       {
         headers: {
-          "xi-api-key": ELEVENLABS_API_KEY,
+          Authorization: `Bearer ${SMALLEST_API_KEY}`,
           "Content-Type": "application/json",
-          Accept: "audio/mpeg",
         },
         responseType: "arraybuffer",
-      }
+      },
     );
 
-    res.set("Content-Type", "audio/mpeg");
+    res.set("Content-Type", "audio/wav");
     res.send(response.data);
   } catch (err) {
-    console.error("ElevenLabs TTS error:", err.response?.data || err.message);
-    res.status(500).json({ message: "ElevenLabs TTS failed" });
+    console.error("Smallest.ai TTS error:", err.response?.data || err.message);
+    res.status(500).json({ message: "Smallest.ai TTS failed" });
   }
 });
 
