@@ -13,7 +13,8 @@ import GraphicEqIcon from "@mui/icons-material/GraphicEq";
 import "../styles/ChatAssistant.css";
 
 const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
-const ELEVENLABS_VOICE_ID = process.env.VOICE_ID;
+const VOICE_ID = "Kavya";
+const Smallest_Ai_Api_Key = process.env.Smallest_Ai_Api_Key;
 
 const ChatAssistant = () => {
   const [open, setOpen] = useState(false);
@@ -192,6 +193,8 @@ const ChatAssistant = () => {
 
   /* ---------------- TTS: ElevenLabs direct ---------------- */
 
+  /* ---------------- TTS: Smallest.ai Waves direct ---------------- */
+
   const speakTextAsync = async (text) => {
     try {
       if (window.currentAudio) {
@@ -200,22 +203,24 @@ const ChatAssistant = () => {
       }
 
       const response = await fetch(
-        `https://api.elevenlabs.io/v1/text-to-speech/${ELEVENLABS_VOICE_ID}`,
+        "https://waves-api.smallest.ai/api/v1/lightning/get_speech",
         {
           method: "POST",
           headers: {
-            "xi-api-key": ELEVENLABS_API_KEY,
+            Authorization: `Bearer ${Smallest_Ai_Api_Key}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
             text,
-            model_id: "eleven_turbo_v2",
-            voice_settings: { stability: 0.5, similarity_boost: 0.75 },
+            voice_id: VOICE_ID,
+            sample_rate: 24000,
+            speed: 1.0,
+            add_wav_header: true,
           }),
         },
       );
 
-      if (!response.ok) throw new Error("ElevenLabs TTS failed");
+      if (!response.ok) throw new Error("Smallest.ai TTS failed");
 
       const audioBlob = await response.blob();
       const audio = new Audio(URL.createObjectURL(audioBlob));
