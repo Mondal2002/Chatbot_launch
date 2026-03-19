@@ -25,8 +25,8 @@ router.post("/tts2", async (req, res) => {
     const response = await client.textToSpeech.tts({
       text,
       voice_id: VOICE_ID,
-      language: CambApi.CreateStreamTtsRequestPayload.Language.EnUs,
-      speech_model: CambApi.CreateStreamTtsRequestPayload.SpeechModel.MarsPro,
+      language: "en-us",
+      speech_model: "mars8-pro",
       output_configuration: { format: "wav" },
     });
 
