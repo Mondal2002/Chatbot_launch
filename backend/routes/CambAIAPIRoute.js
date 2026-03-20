@@ -11,7 +11,7 @@ const client = new CambClient({
 
 const VOICE_ID = 165288;
 
-router.post("/tts2", async (req, res) => {
+router.post("/ttscamb", async (req, res) => {
   try {
     const { text } = req.body;
 
