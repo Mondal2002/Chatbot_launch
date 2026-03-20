@@ -201,7 +201,7 @@ const ChatAssistant = () => {
       }
 
       const response = await fetch(
-        "https://chatbot-launch.onrender.com/api/tts",
+        "https://chatbot-launch.onrender.com/api/ttscamb",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
