@@ -67,6 +67,7 @@ router.post("/speech-to-text", upload.single("audio"), async (req, res) => {
       data: {
         audio_url: audioUrl,
         language_detection: true,
+        speech_models: ["universal-3-pro", "universal-2"],
       },
     });
 
@@ -97,6 +98,7 @@ router.post("/speech-to-text", upload.single("audio"), async (req, res) => {
     // send back transcript text
 
     res.json({ text: transcriptResult.text });
+    0;
   } catch (err) {
     console.error("AssemblyAI error:", err.response?.data || err.message);
     res.status(500).json({ message: "AssemblyAI failed" });
